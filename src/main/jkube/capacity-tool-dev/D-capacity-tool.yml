@@ -147,11 +147,6 @@ spec:
                 configMapKeyRef:
                   name: capacity-tool-cm-0
                   key: app.ocp.instance.name
-            - name: app.ocp.server.token
-              valueFrom:
-                configMapKeyRef:
-                  name: capacity-tool-cm-0
-                  key: app.ocp.server.token
             - name: app.ocp.server.url
               valueFrom:
                 configMapKeyRef:
