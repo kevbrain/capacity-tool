@@ -12,7 +12,7 @@ public class WelcomePageRedirect implements WebMvcConfigurer{
 
 	  public void addViewControllers(ViewControllerRegistry registry) {
 	    registry.addViewController("/")
-	        .setViewName("forward:/ocp-tool-capacity.xhtml");
+	        .setViewName("forward:/capacity-tool.xhtml");
 	    registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	  }
 }

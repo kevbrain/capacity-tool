@@ -182,6 +182,11 @@ spec:
                 configMapKeyRef:
                   name: capacity-tool-cm-0
                   key: prometheus.query.maxovertime
+            - name: app.ocp.console.url
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.ocp.console.url
             - name: prometheus.url
               valueFrom:
                 configMapKeyRef:
