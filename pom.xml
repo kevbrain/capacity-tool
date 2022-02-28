@@ -113,6 +113,9 @@
                 </executions>
                 <configuration>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
+                    <container>
+                    	<mainClass>com.bil.buildfactory.ClusterCapacity</mainClass>
+                    </container>
                     <from>
                         <image>image-registry.openshift-image-registry.svc.cluster.local:5000/openshift/java:11</image>
                     </from>
