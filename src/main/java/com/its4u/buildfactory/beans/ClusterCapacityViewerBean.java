@@ -172,11 +172,11 @@ public class ClusterCapacityViewerBean {
 	public void reload() {
 		logger.info("Start reload");
 		this.clusterOcp = schedulerService.getClusterOcp();
-		//meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
-		//meterGaugeRequestMEMFullUsage.setValue(clusterOcp.getSim_tot_request_memory().divide(clusterOcp.getCluster_memory(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
+		meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
+		meterGaugeRequestMEMFullUsage.setValue(clusterOcp.getSim_tot_request_memory().divide(clusterOcp.getCluster_memory(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
 		
-		//meterGaugeRequestCPUCurrentUsage.setValue(clusterOcp.getPrc_totCpuRequest());
-		//meterGaugeRequestMEMCurrentUsage.setValue(clusterOcp.getPrc_totMemRequest());
+		meterGaugeRequestCPUCurrentUsage.setValue(clusterOcp.getPrc_totCpuRequest());
+		meterGaugeRequestMEMCurrentUsage.setValue(clusterOcp.getPrc_totMemRequest());
 		logger.info(clusterOcp.getName()+ " reloaded");
 		
 		this.environmentsLoaded=true;

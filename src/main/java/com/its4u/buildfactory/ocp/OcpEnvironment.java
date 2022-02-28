@@ -329,15 +329,15 @@ public class OcpEnvironment {
 	            
 	            
 	            if (nsp.getMetadata()!=null && nsp.getMetadata().getLabels()!=null 
-	            		&& nsp.getMetadata().getLabels().get("bil.com/team")!=null
-	            		&& nsp.getMetadata().getLabels().get("bil.com/value-chain")!=null) {
+	            		&& nsp.getMetadata().getLabels().get("its4u.com/team")!=null
+	            		&& nsp.getMetadata().getLabels().get("its4u.com/value-chain")!=null) {
 	            	String teamEmail=null;
 	            	if (nsp.getMetadata().getAnnotations()!=null) {
-	            		teamEmail= nsp.getMetadata().getAnnotations().get("bil.com/team-mail");
+	            		teamEmail= nsp.getMetadata().getAnnotations().get("its4u.com/team-mail");
 	            	}
 	            	
-	            	String team = nsp.getMetadata().getLabels().get("bil.com/team").toLowerCase();
-	            	String vc = nsp.getMetadata().getLabels().get("bil.com/value-chain").toLowerCase();
+	            	String team = nsp.getMetadata().getLabels().get("its4u.com/team").toLowerCase();
+	            	String vc = nsp.getMetadata().getLabels().get("its4u.com/value-chain").toLowerCase();
 	            	
 	            	namespaceOcp.setTeam(team);
 	            	namespaceOcp.setTeamEmail(teamEmail);
