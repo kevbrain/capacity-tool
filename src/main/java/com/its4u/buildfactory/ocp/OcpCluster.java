@@ -255,10 +255,8 @@ public class OcpCluster {
     }
     
     public  void loadWorkers(ServiceKubernetes serviceKubernetes,List<String> logs) {
-        //NodeList nodeslist = serviceKubernetes.getClient().nodes().withLabel("node-role.kubernetes.io/worker","").withoutLabel("node-role.kubernetes.io/infra","").withoutLabel("cluster.ocs.openshift.io/openshift-storage","").list();                       
-        NodeList nodeslist = serviceKubernetes.getClient().nodes().list();
-        
-        
+        NodeList nodeslist = serviceKubernetes.getClient().nodes().withLabel("node-role.kubernetes.io/worker","").withoutLabel("node-role.kubernetes.io/infra","").withoutLabel("cluster.ocs.openshift.io/openshift-storage","").list();                       
+                
         for (Node node: nodeslist.getItems()) { 
              
            NodeStatus nodeStatus = node.getStatus();
