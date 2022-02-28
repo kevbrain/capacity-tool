@@ -8,11 +8,30 @@
 	  xmlns:f="http://java.sun.com/jsf/core"
 >
 
+
+
 <h:head>
 </h:head>
 
 <h:body style="margin-left:10px">
 	
+	<style type="text/css">
+		.cold {
+			background-color: #f5ecf8 !important;
+			background-image: none !important;
+			color: black !important;
+		}
+		.hot {
+			background-color: #cda0de !important;
+			background-image: none !important;
+			color: black !important;
+		}
+		.lukewarm {
+			background-color: #d7b3e5 !important;
+			background-image: none !important;
+			color: black !important;
+		}
+	</style>
 	
 	<script type="text/javascript">
 		function handleDrop(event, ui) {
@@ -20,21 +39,812 @@
 			
 		}
 	</script>
-    
+ 	<h:form id="form" prependId="false" >   
+ 	
+ 	
 	<p:panel id="panelApp">
 			<f:facet name="header">
 				<h:panelGrid columns="3">
 					<p:graphicImage name="LOGO_ITS4U_Group_Interstate_COLOR.png"  style="background: transparent;width:200px;margin-right:20px;"/>
-					
-					<p:outputLabel value="capacity-tool"   style="width:100%;text-align: center;font-size: 40px;color:#003b50"></p:outputLabel>
-					
+						<div style="position:relative;margin:auto;text-align: center;">
+							<p:outputLabel value="#{clusterCapacityViewerBean.displayOcpInstanceName} Capacity tool" style="font-size: 40px;color:#702F8A"></p:outputLabel>
+						</div>
 				</h:panelGrid>			
 			</f:facet>
-   		<h:form id="form" prependId="false">
-   			Welcome
-    	</h:form>
-	</p:panel>
-    
- 
+   	
+   		   			
+	   		<div style="position:relative;margin:auto;text-align:center;" >
+	   				<p:commandButton value="Load Datas"  actionListener="#{clusterCapacityViewerBean.reload}"
+			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
+			    		rendered="#{!clusterCapacityViewerBean.environmentsLoaded}"
+			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />
+	   		
+	   				<p:commandButton value="RELOAD"  actionListener="#{clusterCapacityViewerBean.reload}"
+			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
+			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
+			    	 	update="@form" style="margin:10px;background:white;color:#702F8A" />
+			    	<p:commandButton value="Workers"  actionListener="#{clusterCapacityViewerBean.displayWorkers}"
+			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
+			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
+			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />			    				    	
+			    	<p:commandButton value="Environments Details"  actionListener="#{clusterCapacityViewerBean.displayEnvironments}"
+			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()"
+			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
+			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" immediate="true"/>
+			    	<p:commandButton value="Environments Summary"  actionListener="#{clusterCapacityViewerBean.displayResume}" 
+			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
+			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
+			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />
+			    	<p:commandButton value="Teams Summary"  actionListener="#{clusterCapacityViewerBean.displayTeams}" 
+			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
+			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
+			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />	
+			    	 <p:commandButton value="Value-Chain Summary"  actionListener="#{clusterCapacityViewerBean.displayValueChains}" 
+			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
+			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
+			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />		    	
+			    	<p:commandButton value="Alerts"  actionListener="#{clusterCapacityViewerBean.displayAlerts}"
+			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}" 
+			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="false"
+			    		update="@form" style="margin:10px;background:#702F8A;color:white" />
+			 </div>
+			 <p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.nodes}" var="node" rendered="#{clusterCapacityViewerBean.displayWorkers}" 
+			 rowStyleClass="#{node.value.hightRequestOrMemory ? 'hot' : node.value.mediumRequestOrMemory ? 'lukewarm' : null}"
+			>
+			   			<p:column  headerText="Worker" style="width:300px;" >	
+						 		<h:outputText value="#{node.value.name}"/>
+						</p:column>
+						<p:column  headerText="Nbr Pods" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.nbrPods}"/>
+						</p:column>
+						
+						<p:column  headerText="Usg cpu" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.current_cpu}/#{node.value.allocatable_cpu}"/>
+						</p:column>
+						
+						<p:column  headerText="%" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.percentageCurrentCpu}">
+						 			<f:convertNumber pattern="#0" />
+						 		</h:outputText>
+						</p:column>
+						
+						<p:column  headerText="Req cpu" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.requests_cpu}/#{node.value.allocatable_cpu}"/>
+						</p:column>
+						
+						<p:column  headerText="%" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.percentageRequestCpu}">
+						 			<f:convertNumber pattern="#0" />
+						 		</h:outputText>
+						</p:column>
+						
+						<p:column  headerText="Cpu[Req/Lim]" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.limits_cpu}/#{node.value.allocatable_cpu}"/>
+						</p:column>
+						
+						<p:column  headerText="%" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.percentageLimitCpu}">
+						 			<f:convertNumber pattern="#0" />
+						 		</h:outputText>
+						</p:column>
+						
+						<p:column  headerText="Usg mem" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.current_memory}/#{node.value.allocatable_memory}"/>
+						</p:column>
+						
+						<p:column  headerText="%" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.percentageCurrentMemory}">
+						 			<f:convertNumber pattern="#0" />
+						 		</h:outputText>
+						</p:column>
+						
+						<p:column  headerText="Req mem" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.requests_memory}/#{node.value.allocatable_memory}"/>
+						</p:column>
+						
+						<p:column  headerText="%" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.percentageRequestMemory}">
+						 			<f:convertNumber pattern="#0" />
+						 		</h:outputText>
+						</p:column>
+						
+						<p:column  headerText="Lim mem" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.limits_memory}/#{node.value.allocatable_memory}"/>
+						</p:column>
+						
+						<p:column  headerText="%" style="text-align:right;">	
+						 		<h:outputText value="#{node.value.percentageLimitMemory}">
+						 			<f:convertNumber pattern="#0" />
+						 		</h:outputText>
+						</p:column>
+						<p:columnGroup type="footer" id="totalGroup" >
+	                        <p:row >
+	                            <p:column footerText="total %" colspan="3"/>
+	                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpu}" style="text-align:right;"/>
+	                            <p:column />
+	                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpuRequest}" style="text-align:right;"/>
+	                            <p:column />
+	                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpuLimit}" style="text-align:right;"/>
+	                            <p:column />
+	                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMem}" style="text-align:right;"/>
+	                            <p:column />
+	                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMemRequest}" style="text-align:right;"/>
+	                        	<p:column />
+	                        	<p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMemlimit}" style="text-align:right;"/>
+	                        </p:row>
+	                    </p:columnGroup>
+			   		</p:dataTable>
+			<p:tabView value="#{clusterCapacityViewerBean.clusterOcp.environment}" var="env" 
+				rendered="#{clusterCapacityViewerBean.displayenvironments}">
+				
+	   			<p:tab title="#{env.value.name}">
+	   				<h:panelGrid columns="2">
+	   					<h:outputLabel value="Max Replicas : "/>
+	   					<h:outputLabel value="#{env.value.defaultMaxReplicas}"/>
+	   				</h:panelGrid>
+	   				 <p:dataTable value="#{env.value.namespaces}" var="ns"  sortBy="#{ns.name}"
+	   				 	 rowStyleClass="#{ns.hightRequestOrMemory ? 'hot' : ns.mediumRequestOrMemory ? 'lukewarm' : null}">
+		   				 <p:column style="width:16px">
+	           				 <p:rowToggler />
+	        			 </p:column>
+		   				 <p:column  headerText="Project" style="width:300px;" sortBy="#{ns.name}">
+		   				 	<h:outputText value="#{ns.name}"/>
+		   				 </p:column>	
+		   				 <p:column  headerText="Nbr Pods" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.nbrPods}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="Limits" style="text-align:right;">		   				 	
+		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByLimits}" />
+		   				 </p:column>
+		   				  <p:column  headerText="quotas" style="text-align:right;">
+		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByQuotas}" />
+		   				 </p:column>
+		   				 <p:column  headerText="Rolling update" style="text-align:right;">
+		   				 	<p:selectBooleanCheckbox value="#{ns.rollingUpdate}" />
+		   				 </p:column>
+		   				 <p:column  headerText="Cur Cpu" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayCurrentCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageCurrentCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Req Cpu" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayRequestCpu}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageRequestCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Cpu[Req/Lim]" style="text-align:right;"> 
+		   				 	<h:outputText value="#{ns.displayLimitCpu}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageLimitCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Cur Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayCurrentMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageCurrentMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Req Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayRequestMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageRequestMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Lim Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayLimitMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageLimitMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:rowExpansion>
+		   				 	<p:dataTable value="#{ns.ocpPods}" var="pod" >
+		   				 		<p:column  headerText="Pod">
+				   				 	<h:outputText value="#{pod.value.name}"/>
+				   				</p:column>	
+				   				<p:column  headerText="Restart">
+				   				 	<h:outputText value="#{pod.value.countRestart}"/>
+				   				</p:column>	
+				   				<p:column  headerText="Cpu[Req/Lim]" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.cpuDisplay}" />
+				   				</p:column>
+				   				<p:column  headerText="Mem[Req/Lim]" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.memoryDisplay}" />
+				   				</p:column>
+				   				<p:column  headerText="Usg Cpu" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.usageCpu}" />
+				   				</p:column>
+				   				
+				   				<p:column  headerText="Max Cpu" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.maxCpu}" />
+				   				</p:column>
+				   				<p:column  headerText="Usg Mem" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.usageMemory}" />
+				   				</p:column>
+				   				<p:column  headerText="Max Mem" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.maxMemory}" />
+				   				</p:column>
+		   				 	</p:dataTable>
+		   				 </p:rowExpansion>
+	   				 </p:dataTable>
+	   			</p:tab>	   			
+   			</p:tabView>
+   			
+   			<p:tabView value="#{clusterCapacityViewerBean.clusterOcp.bilTeams}" var="team" 
+   				rendered="#{clusterCapacityViewerBean.displayTeams}">
+   				<p:tab title="#{team.value.teamName}">
+   					<p:dataTable value="#{team.value.namespaces}" var="ns"
+	   				 	 rowStyleClass="#{ns.hightRequestOrMemory ? 'hot' : ns.mediumRequestOrMemory ? 'lukewarm' : null}"
+	   				 	  sortBy="#{ns.name}">
+		   				 <p:column style="width:16px">
+	           				 <p:rowToggler />
+	        			 </p:column>
+		   				 <p:column  headerText="Project" style="width:300px;" sortBy="#{ns.name}" 
+		   				 			filterBy="#{ns.name}" filterMatchMode="contains">
+		   				 	<h:outputText value="#{ns.name}"/>
+		   				 </p:column>	
+		   				 <p:column  headerText="Nbr Pods" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.nbrPods}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="Limits" style="text-align:right;">		   				 	
+		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByLimits}" />
+		   				 </p:column>
+		   				  <p:column  headerText="quotas" style="text-align:right;">
+		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByQuotas}" />
+		   				 </p:column>
+		   				 <p:column  headerText="Rolling update" style="text-align:right;">
+		   				 	<p:selectBooleanCheckbox value="#{ns.rollingUpdate}" />
+		   				 </p:column>
+		   				 <p:column  headerText="Cur Cpu" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayCurrentCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageCurrentCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Req Cpu" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayRequestCpu}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageRequestCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Cpu[Req/Lim]" style="text-align:right;"> 
+		   				 	<h:outputText value="#{ns.displayLimitCpu}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageLimitCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Cur Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayCurrentMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageCurrentMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Req Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayRequestMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageRequestMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Lim Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayLimitMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageLimitMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:rowExpansion>
+		   				 	<p:dataTable value="#{ns.ocpPods}" var="pod" >
+		   				 		<p:column  headerText="Pod">
+				   				 	<h:outputText value="#{pod.value.name}"/>
+				   				</p:column>	
+				   				<p:column  headerText="Restart">
+				   				 	<h:outputText value="#{pod.value.countRestart}"/>
+				   				</p:column>	
+				   				<p:column  headerText="Cpu[Req/Lim]" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.cpuDisplay}" />
+				   				</p:column>
+				   				<p:column  headerText="Mem[Req/Lim]" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.memoryDisplay}" />
+				   				</p:column>
+				   				<p:column  headerText="Usg Cpu" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.usageCpu}" />
+				   				</p:column>
+				   				
+				   				<p:column  headerText="Max Cpu" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.maxCpu}" />
+				   				</p:column>
+				   				<p:column  headerText="Usg Mem" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.usageMemory}" />
+				   				</p:column>
+				   				<p:column  headerText="Max Mem" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.maxMemory}" />
+				   				</p:column>
+		   				 	</p:dataTable>
+		   				 </p:rowExpansion>
+		   				 <p:columnGroup type="footer" id="totalGroup" >
+		                        <p:row >
+		                            <p:column footerText="totalisation" colspan="2"/>
+		                            <p:column footerText="#{team.value.pods}" style="text-align:right;"/>
+		                            <p:column colspan="4"/>
+		                            <p:column footerText="#{team.value.currentCurCpu}" style="text-align:right;"/>
+		                           	<p:column/>
+		                           	<p:column footerText="#{team.value.currentReqCpu}" style="text-align:right;"/>
+		                           	<p:column/>
+		                           	<p:column footerText="#{team.value.limCpu}" style="text-align:right;"/>
+		                           	<p:column/>
+		                           	<p:column footerText="#{team.value.currentMemory}" style="text-align:right;"/>
+		                           	<p:column/>
+		                           	<p:column footerText="#{team.value.reqMemory}" style="text-align:right;"/>
+		                           	<p:column/>
+		                           	<p:column footerText="#{team.value.limMemory}" style="text-align:right;"/>
+		                        </p:row>
+		                    </p:columnGroup>
+	   				 </p:dataTable>
+	  				<!--  				 
+	   				 <p:donutChart model="#{clusterCapacityViewerBean.clusterOcp.teamsRepartionPods}" style="width: 100%; height: 500px;"/>
+	   				  -->
+	   				 <p:barChart model="#{clusterCapacityViewerBean.clusterOcp.hbarModelReparitionCpu}" style="width: 100%; height: 500px;"></p:barChart>
+   				</p:tab>
+   			</p:tabView>
+   			
+   			
+   			<p:tabView value="#{clusterCapacityViewerBean.clusterOcp.bilValueChains}" var="vc" 
+   					rendered="#{clusterCapacityViewerBean.displayValueChains}">
+   				<p:tab title="#{vc.value.vcName}">
+   					<p:dataTable value="#{vc.value.namespaces}" var="ns"  sortBy="#{ns.name}"
+	   				 	 rowStyleClass="#{ns.hightRequestOrMemory ? 'hot' : ns.mediumRequestOrMemory ? 'lukewarm' : null}">
+		   				 <p:column style="width:16px">
+	           				 <p:rowToggler />
+	        			 </p:column>
+		   				 <p:column  headerText="Project" style="width:300px;" filterBy="#{ns.name}">
+		   				 	<h:outputText value="#{ns.name}"/>
+		   				 </p:column>	
+		   				 <p:column  headerText="Nbr Pods" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.nbrPods}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="Limits" style="text-align:right;">		   				 	
+		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByLimits}" />
+		   				 </p:column>
+		   				  <p:column  headerText="quotas" style="text-align:right;">
+		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByQuotas}" />
+		   				 </p:column>
+		   				 <p:column  headerText="Rolling update" style="text-align:right;">
+		   				 	<p:selectBooleanCheckbox value="#{ns.rollingUpdate}" />
+		   				 </p:column>
+		   				 <p:column  headerText="Cur Cpu" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayCurrentCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageCurrentCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Req Cpu" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayRequestCpu}"/>
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageRequestCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Cpu[Req/Lim]" style="text-align:right;"> 
+		   				 	<h:outputText value="#{ns.displayLimitCpu}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageLimitCpu}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Cur Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayCurrentMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageCurrentMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Req Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayRequestMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageRequestMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:column  headerText="Lim Mem" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.displayLimitMemory}" />
+		   				 </p:column>
+		   				 <p:column  headerText="%" style="text-align:right;">
+		   				 	<h:outputText value="#{ns.percentageLimitMemory}" >
+		   				 		<f:convertNumber pattern="#0" />
+		   				 	</h:outputText>
+		   				 </p:column>
+		   				 <p:rowExpansion>
+		   				 	<p:dataTable value="#{ns.ocpPods}" var="pod" >
+		   				 		<p:column  headerText="Pod">
+				   				 	<h:outputText value="#{pod.value.name}"/>
+				   				</p:column>	
+				   				<p:column  headerText="Restart">
+				   				 	<h:outputText value="#{pod.value.countRestart}"/>
+				   				</p:column>	
+				   				<p:column  headerText="Cpu[Req/Lim]" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.cpuDisplay}" />
+				   				</p:column>
+				   				<p:column  headerText="Mem[Req/Lim]" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.memoryDisplay}" />
+				   				</p:column>
+				   				<p:column  headerText="Usg Cpu" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.usageCpu}" />
+				   				</p:column>
+				   				
+				   				<p:column  headerText="Max Cpu" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.maxCpu}" />
+				   				</p:column>
+				   				<p:column  headerText="Usg Mem" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.usageMemory}" />
+				   				</p:column>
+				   				<p:column  headerText="Max Mem" style="text-align:right;">
+				   				 	<h:outputText value="#{pod.value.maxMemory}" />
+				   				</p:column>
+		   				 	</p:dataTable>
+		   				 </p:rowExpansion>
+	   				 </p:dataTable>
+   				</p:tab>
+   			</p:tabView>
+   			
+   			
+   			<p:fieldset legend="Current usage" rendered="#{clusterCapacityViewerBean.displayResume}" >
+	   			<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.environment}" var="env" >
+	   				<p:column  headerText="Environment">
+					   	<h:outputText value="#{env.value.name}"/>
+					</p:column>	
+					<p:column  headerText="Projects" style="text-align:right;">
+					   	<h:outputText value="#{env.value.env_size}"/>
+					</p:column>
+					<p:column  headerText="Pods" style="text-align:right;">
+					   	<h:outputText value="#{env.value.currentPods}"/>
+					</p:column>
+					<p:column  headerText="Request CPU" style="text-align:right;">
+					   	<h:outputText value="#{env.value.requestCpu}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_req_cpu}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Limit CPU" style="text-align:right;">
+					   	<h:outputText value="#{env.value.limitCpu}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_lim_cpu}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Request Mem" style="text-align:right;">
+					   	<h:outputText value="#{env.value.requestMemory}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_req_memory}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Limit Mem" style="text-align:right;">
+					   	<h:outputText value="#{env.value.limitMemory}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_lim_memory}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Quota Request Cpu" style="text-align:right;">
+					   	<h:outputText value="#{env.value.quotaCpuRequest}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_quota_req_cpu}">
+			   				 		<f:convertNumber pattern="#0" />
+			   		    </h:outputText>
+					</p:column>
+					<p:column  headerText="Quota Limit Cpu" style="text-align:right;">
+					   	<h:outputText value="#{env.value.quotaCpuLimit}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_quota_lim_cpu}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Quota Request Mem" style="text-align:right;">
+					   	<h:outputText value="#{env.value.quotaMemoryRequest}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_quota_req_memory}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Quota Limit Mem" style="text-align:right;">
+					   	<h:outputText value="#{env.value.quotaMemoryLimit}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_quota_lim_memory}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:columnGroup type="footer" id="totalGroup" >
+                        <p:row >
+                            <p:column footerText="totalisation" colspan="2"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_pods}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_request_cpu}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpuRequest}" style="text-align:right;"/>                            
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_lim_cpu}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpuLimit}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_request_memory}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMemRequest}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_limit_memory}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMemlimit}" style="text-align:right;"/>
+                        </p:row>
+                    </p:columnGroup>
+	   			</p:dataTable>
+	   			<center>
+		   			<h:panelGrid columns="2">
+			   			<p:chart type="metergauge" model="#{clusterCapacityViewerBean.meterGaugeRequestCPUCurrentUsage}" style="width:400px;height:250px;"/>
+			   			<p:chart type="metergauge" model="#{clusterCapacityViewerBean.meterGaugeRequestMEMCurrentUsage}" style="width:400px;height:250px;"/>
+			   		</h:panelGrid>
+		   		</center>
+    		</p:fieldset>
+    		<p:fieldset legend="Full usage" rendered="#{clusterCapacityViewerBean.displayResume}">
+	   			<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.environment}" var="env" >
+	   				<p:column  headerText="Environment">
+					   	<h:outputText value="#{env.value.name}"/>
+					</p:column>	
+					<p:column  headerText="Projects" style="text-align:right;">
+					   	<h:outputText value="#{env.value.env_size}"/>
+					</p:column>
+					<p:column  headerText="Pods" style="text-align:right;">
+					   	<h:outputText value="#{env.value.newPodsWithSimulation}"/>
+					</p:column>
+					<p:column  headerText="Request CPU" style="text-align:right;">
+					   	<h:outputText value="#{env.value.newRequestCpuWithSimulation}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.new_per_req_cpu}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Limit CPU" style="text-align:right;">
+					   	<h:outputText value="#{env.value.newLimitCpuWithSimulation}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.new_per_lim_cpu}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Request Mem" style="text-align:right;">
+					   	<h:outputText value="#{env.value.newRequestMemoryWithSimulation}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.new_per_req_memory}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Limit Mem" style="text-align:right;">
+					   	<h:outputText value="#{env.value.newLimitMemoryWithSimulation}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.new_per_lim_memory}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Quota Request Cpu" style="text-align:right;">
+					   	<h:outputText value="#{env.value.quotaCpuRequest}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_quota_req_cpu}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Quota Limit Cpu" style="text-align:right;">
+					   	<h:outputText value="#{env.value.quotaCpuLimit}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_quota_lim_cpu}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Quota Request Mem" style="text-align:right;">
+					   	<h:outputText value="#{env.value.quotaMemoryRequest}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_quota_req_memory}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:column  headerText="Quota Limit Mem" style="text-align:right;">
+					   	<h:outputText value="#{env.value.quotaMemoryLimit}"/>
+					</p:column>
+					<p:column  headerText="%" style="text-align:right;">
+					   	<h:outputText value="#{env.value.per_quota_lim_memory}">
+			   				 		<f:convertNumber pattern="#0" />
+			   				 	</h:outputText>
+					</p:column>
+					<p:columnGroup type="footer" id="totalGroup" >
+                        <p:row >
+                            <p:column footerText="totalisation" colspan="3"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_tot_request_cpu}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totCpuRequest}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_tot_lim_cpu}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totCpuLimit}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_tot_request_memory}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totMemRequest}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_tot_limit_memory}" style="text-align:right;"/>
+                        	<p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totMemlimit}" style="text-align:right;"/>
+                        </p:row>
+                    </p:columnGroup>
+	   			</p:dataTable>
+	   			<center>
+		   			<h:panelGrid columns="2">
+			   			<p:chart type="metergauge" model="#{clusterCapacityViewerBean.meterGaugeRequestCPUFullUsage}" style="width:400px;height:250px;"/>
+			   			<p:chart type="metergauge" model="#{clusterCapacityViewerBean.meterGaugeRequestMEMFullUsage}" style="width:400px;height:250px;"/>
+			   		</h:panelGrid>
+			   	
+			   		<p:panel header="Simulation Add/Remove workers in full usage">
+						   	<h:panelGrid columns="6">
+						   		<p:outputLabel value="Add or remove Workers : "/>
+						   		<p:spinner stepFactor="2" value="#{clusterCapacityViewerBean.nbrWorkersToAdd}" >
+						   			<p:ajax event="change"  listener="#{clusterCapacityViewerBean.simulateAddWorkers}" update="@form"/>
+						   		</p:spinner>
+						   		<p:outputLabel value="mCpu : "/>
+						   		<p:inputText value="#{clusterCapacityViewerBean.newWorkerCpu}"/>
+						   		<p:outputLabel value="Memory Mi : "/>
+						   		<p:inputText value="#{clusterCapacityViewerBean.newWorkerMemory}"/>
+						   	</h:panelGrid>
+					
+					</p:panel>
+			   	</center>
+    		</p:fieldset>
+		</p:panel>
+	    
+	    <p:fieldset legend="Projects without Default limits" rendered="#{clusterCapacityViewerBean.displayAlerts}" toggleable="true">
+	    
+	    	<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.alertsPodwithoutLimits}" var="alert" >
+	    		<p:column  headerText="Namespace" style="text-align:left;">	
+						<h:outputText value="#{alert.namespaceName}"/>
+				</p:column>				
+				<p:column  headerText="Link" style="text-align:left;">	
+						<h:outputLink  value="#{alert.link}" >#{alert.link}</h:outputLink>							
+				</p:column>
+	    	</p:dataTable>
+	    </p:fieldset>
+	    
+	    <p:fieldset legend="Projects without Quotas" rendered="#{clusterCapacityViewerBean.displayAlerts}" toggleable="true">
+	    
+	    	<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.alertsPodwithoutQuotas}" var="alert" >
+	    		<p:column  headerText="Namespace" style="text-align:left;">	
+						<h:outputText value="#{alert.namespaceName}"/>
+				</p:column>				
+				<p:column  headerText="Link" style="text-align:left;">	
+						<h:outputLink   value="#{alert.link}">#{alert.link}</h:outputLink>							
+				</p:column>
+	    	</p:dataTable>
+	    </p:fieldset>
+	    
+	    <p:fieldset legend="Pods with intempestive restart" rendered="#{clusterCapacityViewerBean.displayAlerts}" toggleable="true">
+	    	<p:commandButton value="Send OOMKilled alerts Emails to concerned teams" actionListener="#{clusterCapacityViewerBean.sendTeamNotificationOOMKill}"
+	    			style="margin:10px;background:#702F8A;color:white" immediate="true"/>
+	    	<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.alertsPodRestarts}" var="alert" >
+	    		<p:column  headerText="Team" style="text-align:left;">	
+						<h:outputText value="#{alert.namespace.team}"/>							
+				</p:column>
+				<p:column  headerText="Team Email" style="text-align:left;">	
+						<h:outputText value="#{alert.namespace.teamEmail}"/>							
+				</p:column>
+	    		<p:column  headerText="Namespace" style="text-align:left;">	
+						<h:outputText value="#{alert.namespaceName}"/>
+				</p:column>
+				<p:column  headerText="Pod" style="text-align:left;">	
+						<h:outputText value="#{alert.podName}"/>
+				</p:column>
+				<p:column  headerText="Count Restart" style="text-align:right;width:100px;">	
+						<h:outputText value="#{alert.countRestart}">
+							<f:convertNumber pattern="#0" />
+						</h:outputText>
+				</p:column>			
+				<p:column  headerText="Reason" style="text-align:left;">	
+						<h:outputText value="#{alert.reason}"/>							
+				</p:column>
+				<p:column  headerText="Link" style="text-align:left;">	
+						<h:outputLink   value="#{alert.link}">#{alert.link}</h:outputLink>							
+				</p:column>
+				
+	    	</p:dataTable>
+	    </p:fieldset>
+	    
+	    <p:fieldset legend="Pods with Hight CPU consumption" rendered="#{clusterCapacityViewerBean.displayAlerts}" toggleable="true">
+	    
+	    	<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.alertsPodHigthCpu}" var="alert" >
+	    		<p:column  headerText="Namespace" style="text-align:left;">	
+						<h:outputText value="#{alert.namespaceName}"/>
+				</p:column>
+				<p:column  headerText="Pod" style="text-align:left;">	
+						<h:outputText value="#{alert.podName}"/>
+				</p:column>
+				<p:column  headerText="CPU %" style="text-align:right;width:100px;">	
+						<h:outputText value="#{alert.percentCpu}">
+							<f:convertNumber pattern="#0" />
+						</h:outputText>
+				</p:column>
+				<p:column  headerText="Link" style="text-align:left;">	
+						<h:outputLink   value="#{alert.link}">#{alert.link}</h:outputLink>						
+				</p:column>
+	    	</p:dataTable>
+	    </p:fieldset>
+	    
+	    <p:fieldset legend="Pods with Hight Memory consumption" rendered="#{clusterCapacityViewerBean.displayAlerts}" toggleable="true">
+	    
+	    	<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.alertsPodHightMemory}" var="alert" >
+	    		<p:column  headerText="Namespace" style="text-align:left;">	
+						<h:outputText value="#{alert.namespaceName}"/>
+				</p:column>
+				<p:column  headerText="Pod" style="text-align:left;">	
+						<h:outputText value="#{alert.podName}"/>
+				</p:column>
+				<p:column  headerText="MEM %" style="text-align:right;width:100px;">	
+						<h:outputText value="#{alert.percentMemory}">
+							<f:convertNumber pattern="#0" />
+						</h:outputText>
+				</p:column>
+				<p:column  headerText="Link" style="text-align:left;">	
+						<h:outputLink   value="#{alert.link}">#{alert.link}</h:outputLink>						
+				</p:column>
+	    	</p:dataTable>
+	    </p:fieldset>
+	    
+	    <p:dialog  id="logsBox" widgetVar="wdg_process" showEffect="fade" width="400" minHeight="50" >
+	    	 <p:ajax event="close" update="@form" />
+	    	<p:progressBar style="height:6px" mode="indeterminate"/>
+	    	<div style="position:relative;margin:auto;text-align: center;">
+	    		.... Please wait ....
+	    		This may take a while
+	    	</div>
+	    			    	
+	    </p:dialog>
+	</h:form>
 </h:body>
 </html>

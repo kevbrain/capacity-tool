@@ -97,6 +97,106 @@ spec:
                 configMapKeyRef:
                   name: capacity-tool-cm-0
                   key: app-version
+            - name: alert.percentage.consumption.resource.threshold
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: alert.percentage.consumption.resource.threshold
+            - name: app.envs
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.envs
+            - name: app.envs.namespace.label
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.envs.namespace.label
+            - name: app.gonogo.block.request.level
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.gonogo.block.request.level
+            - name: app.gonogo.warning.request.level
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.gonogo.warning.request.level
+            - name: app.mail.default.recipient
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.mail.default.recipient
+            - name: app.mail.password
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.mail.password
+            - name: app.mail.smtp.host
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.mail.smtp.host
+            - name: app.mail.smtp.port
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.mail.smtp.port
+            - name: app.mail.user
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.mail.user
+            - name: app.ocp.instance.name
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.ocp.instance.name
+            - name: app.ocp.server.token
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.ocp.server.token
+            - name: app.ocp.server.url
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.ocp.server.url
+            - name: app.simulator.reserve.pods
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.simulator.reserve.pods
+            - name: project.default.limit.cpu
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: project.default.limit.cpu
+            - name: project.default.limit.memory
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: project.default.limit.memory
+            - name: project.default.request.cpu
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: project.default.request.cpu
+            - name: project.default.request.memory
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: project.default.request.memory
+            - name: prometheus.query.maxovertime
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: prometheus.query.maxovertime
+            - name: prometheus.url
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: prometheus.url
             - name: actuator.password
               valueFrom:
                 secretKeyRef:

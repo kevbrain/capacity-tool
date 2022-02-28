@@ -1,0 +1,45 @@
+<html>
+<style>
+table, th, td { border:1px solid black;text-align: right; }
+</style>
+<body>
+Dear ,<br/>
+<br/>
+It looks like you have one or more pods with high memory consumption causing that pod(s) to restart
+<br/>
+<br/>
+<table>
+	<tr><th style="text-align: center;">Applications</th></tr>
+<#list appNames as app>
+	<tr><td>${app}</td></tr>
+</#list>
+</table>
+<br/>
+It's recommended to increase the memory. http://wiki-it/display/DEVOPS/OCP+FAQ+and+Troubleshooting#OCPFAQandTroubleshooting-Exceedingquotas,limitedresources
+<br/>
+You just have to declare the request and limits placeholders in your XLD dictionary placed before (order of the dictionaries) the dico openshift-ocnp1-dict
+<br/>
+Find below the list of placeholders to overwrite :
+<br/> 
+For the ms, please <b>increase</b> the following values in XLD
+<br/>
+<br/>
+<#list pods as pod>
+	<table>
+		<tr><th colspan="2" style="text-align: center;">${pod.namespace.name}</th></tr>
+		<tr><th style="text-align: center;">XLD Placeholders</th><th>Current Value</th></tr>
+		<tr><td>project.memory.request</td><td>${pod.pod.requests_memory}</td></tr>	
+		<tr><td>project.memory.limit</td><td>${pod.pod.limits_memory}</td></tr>				
+	</table>
+	<br/>
+</#list>
+<br/>
+Take care ! if we don't do this, at each deployment the values will be set with the values of the default dictionary.<br/>
+
+If you have any issue with quota, don't hesitate to contact us.<br/>
+<br/>
+Regards<br/>
+<br/>
+DevOps Team<br/>
+</body>
+</html>

@@ -6,6 +6,20 @@ metadata:
   labels:
     app: capacity-tool
 data: 
+  its4u.environment: "{{its4u.environment}}"
+  alert.percentage.consumption.resource.threshold: "{{alert.percentage.consumption.resource.threshold}}"
+  app.ocp.instance.name: "{{app.ocp.instance.name}}"
+  app.ocp.console.url: "{{app.ocp.console.url}}"
+  app.envs: "{{app.envs}}"
+  app.envs.namespace.label: "{{app.envs.namespace.label}}"
+  app.mail.default.recipient: "{{app.mail.default.recipient}}"
+  app.mail.smtp.host: "{{app.mail.smtp.host}}"
+  app.mail.smtp.port: "{{app.mail.smtp.port}}"
+  app.mail.user: "{{app.mail.user}}"
+  app.ocp.server.url: "{{app.ocp.server.url}}"
+  app.simulator.reserve.pods: "{{app.simulator.reserve.pods}}"
+  app.gonogo.block.request.level: "{{app.gonogo.block.request.level}}"
+  app.gonogo.warning.request.level: "{{app.gonogo.warning.request.level}}"
   app-limit.memory: "{{app-limit.memory}}"
   ocp-cluster.registry: "{{ocp-cluster.registry}}"
   app-limit.cpu: "{{app-limit.cpu}}"
@@ -18,4 +32,6 @@ data:
   app-request.cpu: "{{app-request.cpu}}"
   ocp.replicas: "{{ocp.replicas}}"
   app-version: "{{app-version}}"
+  prometheus.query.maxovertime: "{{prometheus.query.maxovertime}}"
+  prometheus.url: "{{prometheus.url}}"
 ---

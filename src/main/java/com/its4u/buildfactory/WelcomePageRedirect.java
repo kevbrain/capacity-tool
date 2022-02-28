@@ -1,4 +1,4 @@
-package com.its4u;
+package com.its4u.buildfactory;
 
 
 import org.springframework.context.annotation.Configuration;
@@ -9,10 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WelcomePageRedirect implements WebMvcConfigurer{
 
-	@Override
+
 	  public void addViewControllers(ViewControllerRegistry registry) {
 	    registry.addViewController("/")
-	        .setViewName("forward:/capacity-tool.xhtml");
+	        .setViewName("forward:/ocp-tool-capacity.xhtml");
 	    registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	  }
 }

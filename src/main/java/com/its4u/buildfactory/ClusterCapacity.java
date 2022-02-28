@@ -1,15 +1,13 @@
-package com.its4u;
-
+package com.its4u.buildfactory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
-public class Application {
+public class ClusterCapacity {
 
 	public static void main(String[] args) {
-		 SpringApplication.run(Application.class, args);
-
+		 SpringApplication.run(ClusterCapacity.class, args);
 	}
-	
 }

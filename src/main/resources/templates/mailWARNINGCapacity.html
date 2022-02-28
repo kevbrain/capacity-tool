@@ -1,0 +1,25 @@
+<html>
+<style>
+table, th, td { border:1px solid black;text-align: right; }
+</style>
+<body>
+Dear ,<br/>
+<br/>
+A request for the creation of a new project and its environments has been initiated. <br/>
+<span style="color:green"><b>CapacyTool has authorized this request </b></span> and project was created on the ocp cluster </br>
+But note that we are in warning mode in terms of request capacity,<br/>
+<b>The percentage of cpu or memory requested exceeds ${gonogoLevelWarning}% of the capacity cluster but is still less than ${gonogoLevelBlock}%</b><br/>
+<br/>
+
+<table>
+	<tr><th colspan="2" style="text-align: center;">Resources requested</th></tr>
+	<tr><th width="150"  style="text-align: center;">Cpu</th><th width="150" style="text-align: center;">Memory</th>
+	<tr><td style="text-align: center;font-size:30px;">${requestCpu}%</td><td style="text-align: center;font-size:30px;">${requestMemory}%</td></tr>
+</table>
+<br/>
+<br/>
+Regards<br/>
+<br/>
+DevOps CapacityTool<br/>
+</body>
+</html>
