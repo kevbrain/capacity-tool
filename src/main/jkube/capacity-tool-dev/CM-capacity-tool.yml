@@ -34,4 +34,8 @@ data:
   app-version: "{{app-version}}"
   prometheus.query.maxovertime: "{{prometheus.query.maxovertime}}"
   prometheus.url: "{{prometheus.url}}"
+  project.default.limit.cpu: "{{project.default.limit.cpu}}"
+  project.default.limit.memory: "{{project.default.limit.memory}}"
+  project.default.request.cpu: "{{project.default.request.cpu}}"
+  project.default.request.memory: "{{project.default.request.memory}}"
 ---
