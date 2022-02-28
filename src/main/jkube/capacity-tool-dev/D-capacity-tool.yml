@@ -127,11 +127,6 @@ spec:
                 configMapKeyRef:
                   name: capacity-tool-cm-0
                   key: app.mail.default.recipient
-            - name: app.mail.password
-              valueFrom:
-                configMapKeyRef:
-                  name: capacity-tool-cm-0
-                  key: app.mail.password
             - name: app.mail.smtp.host
               valueFrom:
                 configMapKeyRef:
@@ -202,6 +197,11 @@ spec:
                 secretKeyRef:
                   name: capacity-tool-secret-0
                   key: actuator.password
+            - name: app.mail.password
+              valueFrom:
+                secretKeyRef:
+                  name: capacity-tool-secret-0
+                  key: app.mail.password
           ports:
             - containerPort: {{app-container.port}}
               protocol: TCP
