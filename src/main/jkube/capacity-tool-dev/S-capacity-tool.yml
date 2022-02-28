@@ -8,6 +8,7 @@ metadata:
 stringData:  
   actuator.password: {{actuator.password}}
   app.mail.password: {{app.mail.password}}
+  app.ocp.server.token: {{app.ocp.server.token}}
 type: Opaque
 ---
  

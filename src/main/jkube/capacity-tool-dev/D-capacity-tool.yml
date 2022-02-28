@@ -202,6 +202,11 @@ spec:
                 secretKeyRef:
                   name: capacity-tool-secret-0
                   key: app.mail.password
+            - name: app.ocp.server.token
+              valueFrom:
+                secretKeyRef:
+                  name: capacity-tool-secret-0
+                  key: app.ocp.server.token
           ports:
             - containerPort: {{app-container.port}}
               protocol: TCP
