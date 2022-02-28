@@ -1,0 +1,11 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: capacity-tool-dev-trigger
+  namespace: capacity-tool-dev
+spec:
+  serviceAccountName: pipeline
+  bindings:
+    - ref: capacity-tool-dev-triggerbinding
+  template:
+    ref: capacity-tool-dev-triggertemplate

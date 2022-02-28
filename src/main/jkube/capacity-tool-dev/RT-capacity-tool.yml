@@ -1,0 +1,18 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  namespace: {{ocp-namespace}}
+  name: capacity-tool-route
+  labels:
+    app: capacity-tool
+spec:
+  to:
+    kind: Service
+    name: capacity-tool-service
+    weight: 256
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+  wildcardPolicy: None
+---

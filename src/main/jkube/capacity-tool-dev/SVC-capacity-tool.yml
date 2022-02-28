@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: {{ocp-namespace}}
+  name: capacity-tool-service
+  labels:
+    app: capacity-tool
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: capacity-tool

@@ -1,0 +1,41 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: capacity-tool-dev-triggertemplate
+  namespace: capacity-tool-dev
+  labels:
+    app.kubernetes.io/instance: cluster-configs
+spec:
+  params:
+    - description: The git repository url
+      name: git-repo-url
+    - description: The git revision
+      name: git-revision
+    - description: The git application
+      name: git-application-name
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: build-deploy-$(tt.params.git-revision)
+        generation: 1
+        namespace: capacity-tool-dev
+      spec:
+        params:
+          - name: git-revision
+            value: $(tt.params.git-revision)
+          - name: git-repo-url
+            value: $(tt.params.git-repo-url)
+          - name: git-application-name
+            value: $(tt.params.git-application-name)
+        pipelineRef:
+          name: capacity-tool-dev-pipeline-build
+        serviceAccountName: pipeline
+        timeout: 1h0m0s
+        workspaces:
+          - name: source
+            persistentVolumeClaim:
+              claimName: capacity-tool-dev-pipeline-claim
+          - configMap:
+              name: capacity-tool-dev-maven-settings-cm
+            name: maven-settings

@@ -1,0 +1,15 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: capacity-tool-dev-triggerbinding
+  namespace: capacity-tool-dev
+  labels:
+    app.kubernetes.io/instance: cluster-configs
+spec:
+  params:
+    - name: git-repo-url
+      value: $(body.repository.url)
+    - name: git-revision
+      value: $(body.head_commit.id)
+    - name: git-application-name
+      value: $(body.repository.name)

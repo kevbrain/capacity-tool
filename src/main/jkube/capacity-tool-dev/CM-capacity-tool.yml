@@ -1,0 +1,21 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  namespace: {{ocp-namespace}}
+  name: capacity-tool-cm-0
+  labels:
+    app: capacity-tool
+data: 
+  app-limit.memory: "{{app-limit.memory}}"
+  ocp-cluster.registry: "{{ocp-cluster.registry}}"
+  app-limit.cpu: "{{app-limit.cpu}}"
+  ocp.environment: "{{ocp.environment}}"
+  ocp-namespace: "{{ocp-namespace}}"
+  cluster-suffix: "{{cluster-suffix}}"
+  app-actuator.port: "{{app-actuator.port}}"
+  app-request.memory: "{{app-request.memory}}"
+  app-container.port: "{{app-container.port}}"
+  app-request.cpu: "{{app-request.cpu}}"
+  ocp.replicas: "{{ocp.replicas}}"
+  app-version: "{{app-version}}"
+---

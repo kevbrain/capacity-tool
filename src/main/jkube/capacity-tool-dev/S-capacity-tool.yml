@@ -1,0 +1,12 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  namespace: {{ocp-namespace}}
+  name: capacity-tool-secret-0
+  labels:
+    app: capacity-tool    
+stringData:  
+  actuator.password: {{actuator.password}}
+type: Opaque
+---
+ 

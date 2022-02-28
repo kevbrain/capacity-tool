@@ -1,0 +1,140 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: capacity-tool-dev-pipeline-build
+  namespace: capacity-tool-dev
+  labels:
+    app.kubernetes.io/instance: cluster-configs
+spec:
+  params:
+    - name: git-revision
+      type: string
+    - name: git-repo-url
+      type: string
+    - name: git-application-name
+      type: string
+  tasks:
+    - name: git-clone
+      params:
+        - name: url
+          value: $(params.git-repo-url)
+        - name: revision
+          value: $(params.git-revision)
+        - name: submodules
+          value: 'true'
+        - name: depth
+          value: '1'
+        - name: sslVerify
+          value: 'true'
+        - name: deleteExisting
+          value: 'true'
+        - name: verbose
+          value: 'true'
+        - name: gitInitImage
+          value: >-
+            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:afc5d3f9efe26c7042635d43b8ffd09d67936e3d0b6b901dc08a33e20313d361
+        - name: subdirectory
+          value: /$(params.git-revision)
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: source
+    - name: compile
+      params:
+        - name: MAVEN_IMAGE
+          value: >-
+            gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
+        - name: GOALS
+          value:
+            - compile
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: CONTEXT_DIR
+          value: /$(params.git-revision)
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: ClusterTask
+        name: maven
+      workspaces:
+        - name: source
+          workspace: source
+        - name: maven-settings
+          workspace: maven-settings
+    - name: push-image
+      params:
+        - name: MAVEN_IMAGE
+          value: >-
+            gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
+        - name: GOALS
+          value:
+            - 'jib:build'
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: CONTEXT_DIR
+          value: /$(params.git-revision)
+      runAfter:
+        - compile
+      taskRef:
+        kind: ClusterTask
+        name: maven
+      workspaces:
+        - name: source
+          workspace: source
+        - name: maven-settings
+          workspace: maven-settings
+    - name: maven-get-pom-version
+      params:
+        - name: MAVEN_IMAGE
+          value: >-
+            gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
+        - name: GOALS
+          value:
+            - package
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: CONTEXT_DIR
+          value: /$(params.git-revision)
+      runAfter:
+        - push-image
+      taskRef:
+        kind: ClusterTask
+        name: maven-get-pom-version
+      workspaces:
+        - name: source
+          workspace: source
+        - name: maven-settings
+          workspace: maven-settings
+    - name: get-app-version
+      params:
+        - name: project-name
+          value: $(params.git-application-name)
+        - name: curl-image
+          value: >-
+            docker.io/curlimages/curl:7.72.0@sha256:bd5bbd35f89b867c1dccbc84b8be52f3f74dea20b46c5fe0db3780e040afcb6f
+      runAfter:
+        - maven-get-pom-version
+      taskRef:
+        kind: ClusterTask
+        name: get-app-version
+    - name: openshift-client
+      params:
+        - name: SCRIPT
+          value: oc rollout restart deployment/$(params.git-application-name)
+        - name: VERSION
+          value: latest
+      runAfter:
+        - get-app-version
+      taskRef:
+        kind: ClusterTask
+        name: openshift-client
+      when:
+        - input: $(tasks.maven-get-pom-version.results.current-pom-version)
+          operator: in
+          values:
+            - $(tasks.get-app-version.results.current-app-version)
+  workspaces:
+    - name: source
+    - name: maven-settings

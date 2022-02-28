@@ -1,0 +1,158 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: capacity-tool-dev-pipeline-tag
+  namespace: capacity-tool-dev
+spec:
+  params:
+    - name: project-name
+      type: string
+    - name: tag-name
+      type: string
+    - name: git-user
+      type: string
+    - name: git-token
+      type: string
+  tasks:
+    - name: git-clone
+      params:
+        - name: url
+          value: 'https://github.com/kevbrain/$(params.project-name).git'
+        - name: revision
+          value: master
+        - name: submodules
+          value: 'true'
+        - name: depth
+          value: '1'
+        - name: sslVerify
+          value: 'true'
+        - name: deleteExisting
+          value: 'true'
+        - name: verbose
+          value: 'true'
+        - name: subdirectory
+          value: /$(params.project-name)-$(params.tag-name)
+        - name: gitInitImage
+          value: >-
+            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:afc5d3f9efe26c7042635d43b8ffd09d67936e3d0b6b901dc08a33e20313d361
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: source
+    - name: maven-set-version
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: ClusterTask
+        name: maven
+      params:
+        - name: MAVEN_IMAGE
+          value: >-
+            gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
+        - name: GOALS
+          value:
+            - versions:set
+            - '-DnewVersion=$(params.tag-name)'
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: CONTEXT_DIR
+          value: .
+      workspaces:
+        - name: source
+          workspace: source
+        - name: maven-settings
+          workspace: maven-settings
+    - name: git-tag
+      params:
+        - name: BASE_IMAGE
+          value: >-
+            docker.io/alpine/git:v2.26.2@sha256:23618034b0be9205d9cc0846eb711b12ba4c9b468efdd8a59aac1d7b1a23363f
+        - name: GIT_SCRIPT
+          value: >
+            git config --global user.name 'ksc';
+            git config --global user.email 'ksc@example.com';
+            git commit -am "new version $(params.tag-name)";
+            git config remote.origin.url
+            https://$(params.git-user):$(params.git-token)@github.com/kevbrain/$(params.project-name).git;
+            git push origin HEAD:master;
+            git tag -a $(params.tag-name) -m "create version $(params.tag-name)";
+            git push origin $(params.tag-name)
+      runAfter:
+        - maven-set-version
+      taskRef:
+        kind: ClusterTask
+        name: git-cli
+      workspaces:
+        - name: source
+          workspace: source
+        - name: input
+          workspace: source
+    - name: maven-new-snapshot
+      runAfter:
+        - git-tag
+      taskRef:
+        kind: ClusterTask
+        name: maven
+      params:
+        - name: MAVEN_IMAGE
+          value: >-
+            gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
+        - name: GOALS
+          value:
+            - versions:set
+            - '-DnewVersion=$(params.tag-name)-SNAPSHOT'
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: CONTEXT_DIR
+          value: .
+      workspaces:
+        - name: source
+          workspace: source
+        - name: maven-settings
+          workspace: maven-settings
+    - name: git-push
+      params:
+        - name: BASE_IMAGE
+          value: >-
+            docker.io/alpine/git:v2.26.2@sha256:23618034b0be9205d9cc0846eb711b12ba4c9b468efdd8a59aac1d7b1a23363f
+        - name: GIT_SCRIPT
+          value: >
+            git config --global user.name 'ksc';
+            git config --global user.email 'ksc@example.com';
+            git commit -am "new version snapshot";
+            git config remote.origin.url https://$(params.git-user):$(params.git-token)@github.com/kevbrain/$(params.project-name).git;
+            git push origin HEAD:master;
+      runAfter:
+        - maven-new-snapshot
+      taskRef:
+        kind: ClusterTask
+        name: git-cli
+      workspaces:
+        - name: source
+          workspace: source
+        - name: input
+          workspace: source
+    - name: gitops-application-deployer
+      params:
+        - name: url
+          value: >-
+            https://placeholdermanager-route-placeholdermanager-dev.apps.ocp-lab.its4u.eu/projects/$(params.project-name)/create-version/$(params.tag-name)-SNAPSHOT
+        - name: options
+          value: []
+        - name: curl-image
+          value: >-
+            docker.io/curlimages/curl:7.72.0@sha256:bd5bbd35f89b867c1dccbc84b8be52f3f74dea20b46c5fe0db3780e040afcb6f
+      runAfter:
+        - git-push
+      taskRef:
+        kind: Task
+        name: curl
+  workspaces:
+    - name: source
+      optional: false
+    - name: maven-settings
+      optional: false
+  resources: []
+  finally: []

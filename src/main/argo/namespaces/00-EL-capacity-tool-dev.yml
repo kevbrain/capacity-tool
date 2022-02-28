@@ -1,0 +1,9 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: capacity-tool-dev-eventlistener
+  namespace: capacity-tool-dev
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - triggerRef: capacity-tool-dev-trigger
