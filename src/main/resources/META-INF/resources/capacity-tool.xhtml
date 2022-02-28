@@ -47,7 +47,7 @@
 				<h:panelGrid columns="3">
 					<p:graphicImage name="LOGO_ITS4U_Group_Interstate_COLOR.png"  style="background: transparent;width:200px;margin-right:20px;"/>
 						<div style="position:relative;margin:auto;text-align: center;">
-							<p:outputLabel value="#{clusterCapacityViewerBean.displayOcpInstanceName} Capacity tool" style="font-size: 40px;color:#702F8A"></p:outputLabel>
+							<p:outputLabel value="#{clusterCapacityViewerBean.displayOcpInstanceName} Capacity tool" style="width:100%;text-align: center;font-size: 40px;color:#003b50"></p:outputLabel>
 						</div>
 				</h:panelGrid>			
 			</f:facet>
@@ -57,36 +57,36 @@
 	   				<p:commandButton value="Load Datas"  actionListener="#{clusterCapacityViewerBean.reload}"
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{!clusterCapacityViewerBean.environmentsLoaded}"
-			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />
+			    	 	update="@form" style="margin:10px;background:#003b50;color:white" />
 	   		
 	   				<p:commandButton value="RELOAD"  actionListener="#{clusterCapacityViewerBean.reload}"
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
-			    	 	update="@form" style="margin:10px;background:white;color:#702F8A" />
+			    	 	update="@form" style="margin:10px;background:white;color:#003b50" />
 			    	<p:commandButton value="Workers"  actionListener="#{clusterCapacityViewerBean.displayWorkers}"
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
-			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />			    				    	
+			    	 	update="@form" style="margin:10px;background:#003b50;color:white" />			    				    	
 			    	<p:commandButton value="Environments Details"  actionListener="#{clusterCapacityViewerBean.displayEnvironments}"
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
-			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" immediate="true"/>
+			    	 	update="@form" style="margin:10px;background:#003b50;color:white" immediate="true"/>
 			    	<p:commandButton value="Environments Summary"  actionListener="#{clusterCapacityViewerBean.displayResume}" 
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
-			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />
+			    	 	update="@form" style="margin:10px;background:#003b50;color:white" />
 			    	<p:commandButton value="Teams Summary"  actionListener="#{clusterCapacityViewerBean.displayTeams}" 
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
-			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />	
+			    	 	update="@form" style="margin:10px;background:#003b50;color:white" />	
 			    	 <p:commandButton value="Value-Chain Summary"  actionListener="#{clusterCapacityViewerBean.displayValueChains}" 
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
-			    	 	update="@form" style="margin:10px;background:#702F8A;color:white" />		    	
+			    	 	update="@form" style="margin:10px;background:#003b50;color:white" />		    	
 			    	<p:commandButton value="Alerts"  actionListener="#{clusterCapacityViewerBean.displayAlerts}"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}" 
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="false"
-			    		update="@form" style="margin:10px;background:#702F8A;color:white" />
+			    		update="@form" style="margin:10px;background:#003b50;color:white" />
 			 </div>
 			 <p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.nodes}" var="node" rendered="#{clusterCapacityViewerBean.displayWorkers}" 
 			 rowStyleClass="#{node.value.hightRequestOrMemory ? 'hot' : node.value.mediumRequestOrMemory ? 'lukewarm' : null}"
@@ -767,7 +767,7 @@
 	    
 	    <p:fieldset legend="Pods with intempestive restart" rendered="#{clusterCapacityViewerBean.displayAlerts}" toggleable="true">
 	    	<p:commandButton value="Send OOMKilled alerts Emails to concerned teams" actionListener="#{clusterCapacityViewerBean.sendTeamNotificationOOMKill}"
-	    			style="margin:10px;background:#702F8A;color:white" immediate="true"/>
+	    			style="margin:10px;background:#003b50;color:white" immediate="true"/>
 	    	<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.alertsPodRestarts}" var="alert" >
 	    		<p:column  headerText="Team" style="text-align:left;">	
 						<h:outputText value="#{alert.namespace.team}"/>							
