@@ -93,8 +93,9 @@
 			    		update="@form" style="margin:10px;background:#003b50;color:white" />
 			 </div>
 			 <p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.nodes}" var="node" rendered="#{clusterCapacityViewerBean.displayWorkers}" >
-			   			<p:column  headerText="Worker" style="width:300px;" >	
-						 		<h:outputText value="#{node.value.name}"/>
+			   			<p:column  headerText="Worker" style="width:300px;" >
+			   				<p:commandButton type="button" value="#{node.value.name}"
+					    			styleClass="rounded-button ui-button-secondary"	/>						 		
 						</p:column>
 						<p:column  headerText="Health" >	
 						 		<p:commandButton   type="button" icon="pi pi-heart"
@@ -567,7 +568,8 @@
    			<p:fieldset legend="Current usage" rendered="#{clusterCapacityViewerBean.displayResume}" >
 	   			<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.environment}" var="env" >
 	   				<p:column  headerText="Environment">
-					   	<h:outputText value="#{env.value.name}"/>
+	   						<p:commandButton type="button" value="#{env.value.name}"
+					    			styleClass="rounded-button ui-button-secondary"	/>						 
 					</p:column>	
 					<p:column  headerText="Projects" style="text-align:right;">
 					   	<h:outputText value="#{env.value.env_size}"/>
