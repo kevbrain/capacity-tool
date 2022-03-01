@@ -99,13 +99,13 @@
 						<p:column  headerText="Health" >	
 						 		<p:commandButton   type="button" icon="pi pi-heart"
 		   									styleClass="rounded-button ui-button-success ui-button-outlined" 
-		   									rendered="#{ns.protectedByLimits}"/>
+		   									rendered="#{!node.value.mediumRequestOrMemory and !node.value.mediumRequestOrMemory}"/>
 		   						<p:commandButton   type="button" icon="pi pi-heart"
-		   					 				styleClass="rounded-button ui-button-danger ui-button-outlined" 
-				   	   					    rendered="#{!ns.protectedByLimits}"/>
+		   					 				styleClass="rounded-button ui-button-warning ui-button-outlined" 
+				   	   					    rendered="#{node.value.mediumRequestOrMemory}"/>
 				   	   			<p:commandButton   type="button" icon="pi pi-heart"
 		   					 				styleClass="rounded-button ui-button-danger ui-button-outlined" 
-				   	   					    rendered="#{!ns.protectedByLimits}"/>
+				   	   					    rendered="#{node.value.hightRequestOrMemory}"/>
 						</p:column>
 						
 						<p:column  headerText="Nbr Pods" style="text-align:right;">	
