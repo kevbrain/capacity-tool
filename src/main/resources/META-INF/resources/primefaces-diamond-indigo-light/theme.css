@@ -183,7 +183,7 @@ body .ui-button .ui-icon-triangle-1-s {
   background: none;
 }
 body .ui-button .ui-icon-triangle-1-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-selectbooleanbutton,
 body .ui-selectonebutton > .ui-button,
@@ -647,7 +647,7 @@ body .ui-splitbutton .ui-button.ui-splitbutton-menubutton .ui-icon.ui-icon-trian
   background: none;
 }
 body .ui-splitbutton .ui-button.ui-splitbutton-menubutton .ui-icon.ui-icon-triangle-1-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 
 body .ui-speeddial-button.ui-button.ui-button-icon-only {
@@ -1098,7 +1098,7 @@ body .ui-datatable .ui-datatable-data > tr .ui-row-toggler.ui-icon-circle-triang
   background: none;
 }
 body .ui-datatable .ui-datatable-data > tr .ui-row-toggler.ui-icon-circle-triangle-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-datatable .ui-datatable-data > tr .ui-rowgroup-toggler {
   margin-right: 1rem;
@@ -1139,7 +1139,7 @@ body .ui-datatable .ui-datatable-data > tr .ui-rowgroup-toggler .ui-rowgroup-tog
   background: none;
 }
 body .ui-datatable .ui-datatable-data > tr .ui-rowgroup-toggler .ui-rowgroup-toggler-icon.ui-icon-circle-triangle-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-datatable .ui-datatable-data > tr.ui-datatable-rowordering {
   background: #E8EAF6;
@@ -2020,7 +2020,7 @@ body .ui-tree .ui-tree-container .ui-treenode .ui-treenode-content .ui-tree-togg
   background: none;
 }
 body .ui-tree .ui-tree-container .ui-treenode .ui-treenode-content .ui-tree-toggler.ui-icon-triangle-1-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-tree .ui-tree-container .ui-treenode .ui-treenode-content .ui-tree-toggler.ui-icon-triangle-1-w {
   font-family: "primeicons" !important;
@@ -2340,7 +2340,7 @@ body .ui-treetable .ui-treetable-data > tr > td .ui-treetable-toggler.ui-icon-tr
   background: none;
 }
 body .ui-treetable .ui-treetable-data > tr > td .ui-treetable-toggler.ui-icon-triangle-1-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-treetable .ui-treetable-data > tr > td .ui-chkbox.ui-selection {
   vertical-align: middle;
@@ -2598,7 +2598,7 @@ body .ui-autocomplete .ui-autocomplete-dropdown .ui-icon {
   background: none;
 }
 body .ui-autocomplete .ui-autocomplete-dropdown .ui-icon:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-autocomplete .ui-autocomplete-multiple-container {
   padding: 0.25rem 0.5rem;
@@ -3204,7 +3204,7 @@ body .ui-datepicker .ui-picker-down .ui-icon {
   background: none;
 }
 body .ui-datepicker .ui-picker-down .ui-icon:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-datepicker.ui-datepicker-multi {
   width: auto !important;
@@ -3812,7 +3812,7 @@ body .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
   background: none;
 }
 body .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-selectcheckboxmenu.ui-state-hover {
   border-color: #3F51B5;
@@ -4127,7 +4127,7 @@ body .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
   background: none;
 }
 body .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-selectonemenu.ui-state-hover {
   border-color: #3F51B5;
@@ -4561,7 +4561,7 @@ body .ui-menu.ui-menu-toggleable .ui-menu-list .ui-widget-header .ui-icon-triang
   background: none;
 }
 body .ui-menu.ui-menu-toggleable .ui-menu-list .ui-widget-header .ui-icon-triangle-1-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-menu.ui-menu-toggleable .ui-menu-list .ui-widget-header h3 {
   font-size: 1rem;
@@ -4835,7 +4835,7 @@ body .ui-panelmenu h3.ui-panelmenu-header .ui-icon.ui-icon-triangle-1-s {
   background: none;
 }
 body .ui-panelmenu h3.ui-panelmenu-header .ui-icon.ui-icon-triangle-1-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-panelmenu h3.ui-panelmenu-header a {
   display: inline;
@@ -5643,7 +5643,7 @@ body .ui-galleria .ui-galleria-thumbnail-container .ui-galleria-thumbnail-next .
 }
 body .ui-galleria .ui-galleria-thumbnail-container .ui-galleria-thumbnail-prev .ui-icon-circle-triangle-s:before,
 body .ui-galleria .ui-galleria-thumbnail-container .ui-galleria-thumbnail-next .ui-icon-circle-triangle-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-galleria .ui-galleria-thumbnail-container .ui-galleria-thumbnail-prev .ui-icon-circle-triangle-w,
 body .ui-galleria .ui-galleria-thumbnail-container .ui-galleria-thumbnail-next .ui-icon-circle-triangle-w {
@@ -6410,7 +6410,7 @@ body .ui-accordion .ui-accordion-header > .ui-icon.ui-icon-triangle-1-s {
   background: none;
 }
 body .ui-accordion .ui-accordion-header > .ui-icon.ui-icon-triangle-1-s:before {
-  content: "\e902";
+  content: "\25B6";
 }
 body .ui-accordion .ui-accordion-content {
   border: 1px solid #dee2e6;
