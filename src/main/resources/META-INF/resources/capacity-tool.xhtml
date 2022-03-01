@@ -199,26 +199,26 @@
 		   				 
 		   				 </p:column>
 		   				 <p:column  headerText="Limits" style="text-align:center;">			   				 	
-		   					<p:commandButton  icon="pi pi-check-circle" 
+		   					<p:commandButton  icon="pi pi-check-circle" type="button"
 		   						styleClass="rounded-button ui-button-success ui-button-flat" 
 		   						rendered="#{ns.protectedByLimits}"/>
-		   					<p:commandButton  icon="pi pi-minus-circle"
+		   					<p:commandButton  icon="pi pi-minus-circle" type="button"
 		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
 		   					 rendered="#{!ns.protectedByLimits}"/>
 		   				 </p:column>
 		   				  <p:column  headerText="quotas" style="text-align:right;">
-		   				  	<p:commandButton  icon="pi pi-check-circle" 
+		   				  	<p:commandButton  icon="pi pi-check-circle" type="button"
 		   						styleClass="rounded-button ui-button-success ui-button-flat" 
-		   						rendered="#{ns.protectedByQuotas}"/>
-		   					<p:commandButton  icon="pi pi-minus-circle"
+		   						/>
+		   					<p:commandButton  icon="pi pi-minus-circle" type="button"
 		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
-		   					 rendered="#{!ns.protectedByQuotas}"/>		   				 	
+		   					    />		   				 	
 		   				 </p:column>
 		   				 <p:column  headerText="Rolling update" style="text-align:right;">
-		   				 	<p:commandButton  icon="pi pi-check-circle" 
+		   				 	<p:commandButton  icon="pi pi-check-circle" type="button"
 		   						styleClass="rounded-button ui-button-success ui-button-flat" 
 		   						rendered="#{ns.rollingUpdate}"/>
-		   					<p:commandButton  icon="pi pi-minus-circle"
+		   					<p:commandButton  icon="pi pi-minus-circle" type="button"
 		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
 		   					 rendered="#{!ns.rollingUpdate}"/>
 		   				 </p:column>
