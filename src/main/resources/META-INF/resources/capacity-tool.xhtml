@@ -92,12 +92,22 @@
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="false"
 			    		update="@form" style="margin:10px;background:#003b50;color:white" />
 			 </div>
-			 <p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.nodes}" var="node" rendered="#{clusterCapacityViewerBean.displayWorkers}" 
-			 rowStyleClass="#{node.value.hightRequestOrMemory ? 'hot' : node.value.mediumRequestOrMemory ? 'lukewarm' : null}"
-			>
+			 <p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.nodes}" var="node" rendered="#{clusterCapacityViewerBean.displayWorkers}" >
 			   			<p:column  headerText="Worker" style="width:300px;" >	
 						 		<h:outputText value="#{node.value.name}"/>
 						</p:column>
+						<p:column  headerText="Health" >	
+						 		<p:commandButton  icon="pi pi-check-circle" type="button" icon="pi pi-heart"
+		   									styleClass="rounded-button ui-button-success ui-button-outlined" 
+		   									rendered="#{ns.protectedByLimits}"/>
+		   						<p:commandButton  icon="pi pi-minus-circle" type="button" icon="pi pi-heart"
+		   					 				styleClass="rounded-button ui-button-danger ui-button-outlined" 
+				   	   					    rendered="#{!ns.protectedByLimits}"/>
+				   	   			<p:commandButton  icon="pi pi-minus-circle" type="button" icon="pi pi-heart"
+		   					 				styleClass="rounded-button ui-button-danger ui-button-outlined" 
+				   	   					    rendered="#{!ns.protectedByLimits}"/>
+						</p:column>
+						
 						<p:column  headerText="Nbr Pods" style="text-align:right;">	
 						 		<h:outputText value="#{node.value.nbrPods}"/>
 						</p:column>
