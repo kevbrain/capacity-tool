@@ -197,8 +197,8 @@
 		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
 		   				 </p:column>
-		   				 <p:column  headerText="Limits" style="text-align:right;">	
-		   				 	<i class="pi #{ns.protectedByLimits?'pi-check-circle':'pi-minus-circle'}"/>	
+		   				 <p:column  headerText="Limits" style="text-align:center;">	
+		   				 	<i class="pi #{ns.protectedByLimits ? 'pi-check':'pi-minus-circle'}" style="display: inline-block"/>	
 		   				
 		   				 </p:column>
 		   				  <p:column  headerText="quotas" style="text-align:right;">
