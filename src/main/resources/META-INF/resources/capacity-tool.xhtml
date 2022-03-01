@@ -99,13 +99,13 @@
 						<p:column  headerText="Health" >	
 						 		<p:commandButton   type="button" icon="pi pi-heart"
 		   									styleClass="rounded-button ui-button-success ui-button-outlined" 
-		   									rendered="#{!node.value.mediumRequestOrMemory and !node.value.mediumRequestOrMemory}"/>
+		   									rendered="#{!node.value.mediumRequestOrMemory and !node.value.hightRequestOrMemory}"/>
 		   						<p:commandButton   type="button" icon="pi pi-heart"
 		   					 				styleClass="rounded-button ui-button-warning ui-button-outlined" 
-				   	   					    rendered="#{node.value.mediumRequestOrMemory}"/>
+				   	   					    rendered="#{node.value.mediumRequestOrMemory and !node.value.hightRequestOrMemory}"/>
 				   	   			<p:commandButton   type="button" icon="pi pi-heart"
 		   					 				styleClass="rounded-button ui-button-danger ui-button-outlined" 
-				   	   					    rendered="#{node.value.hightRequestOrMemory}"/>
+				   	   					    rendered="#{!node.value.mediumRequestOrMemory and node.value.hightRequestOrMemory}"/>
 						</p:column>
 						
 						<p:column  headerText="Nbr Pods" style="text-align:right;">	
@@ -643,13 +643,13 @@
                             <p:column footerText="totalisation" colspan="2"/>
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_pods}" style="text-align:right;"/>
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_request_cpu}" style="text-align:right;"/>
-                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpuRequest}" style="text-align:right;"/>                            
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpuRequest}%" style="text-align:right;"/>                            
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_lim_cpu}" style="text-align:right;"/>
-                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpuLimit}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totCpuLimit}%" style="text-align:right;"/>
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_request_memory}" style="text-align:right;"/>
-                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMemRequest}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMemRequest}%" style="text-align:right;"/>
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.tot_limit_memory}" style="text-align:right;"/>
-                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMemlimit}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.prc_totMemlimit}%" style="text-align:right;"/>
                         </p:row>
                     </p:columnGroup>
 	   			</p:dataTable>
@@ -739,13 +739,13 @@
                         <p:row >
                             <p:column footerText="totalisation" colspan="3"/>
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_tot_request_cpu}" style="text-align:right;"/>
-                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totCpuRequest}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totCpuRequest}%" style="text-align:right;"/>
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_tot_lim_cpu}" style="text-align:right;"/>
-                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totCpuLimit}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totCpuLimit}%" style="text-align:right;"/>
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_tot_request_memory}" style="text-align:right;"/>
-                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totMemRequest}" style="text-align:right;"/>
+                            <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totMemRequest}%" style="text-align:right;"/>
                             <p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_tot_limit_memory}" style="text-align:right;"/>
-                        	<p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totMemlimit}" style="text-align:right;"/>
+                        	<p:column footerText="#{clusterCapacityViewerBean.clusterOcp.sim_prc_totMemlimit}%" style="text-align:right;"/>
                         </p:row>
                     </p:columnGroup>
 	   			</p:dataTable>
