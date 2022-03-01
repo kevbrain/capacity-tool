@@ -1088,7 +1088,7 @@ body .ui-datatable .ui-datatable-data > tr .ui-row-toggler.ui-icon-circle-triang
   background: none;
 }
 body .ui-datatable .ui-datatable-data > tr .ui-row-toggler.ui-icon-circle-triangle-e:before {
-  content: "\003E";
+  content: "\23F5";
 }
 body .ui-datatable .ui-datatable-data > tr .ui-row-toggler.ui-icon-circle-triangle-s {
   font-family: "primeicons" !important;
@@ -7010,3 +7010,7 @@ body .ui-wizard .ui-icon-arrowthick-1-e:before {
 }
 
 /* Add your customizations of the theme styles here */
+
+body .ui-row-toggler .ui-icon .ui-icon-circle-triangle-e {
+  content: "\23F5"
+}
