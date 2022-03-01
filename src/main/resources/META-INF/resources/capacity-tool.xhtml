@@ -198,7 +198,7 @@
 		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
 		   				 </p:column>
 		   				 <p:column  headerText="Limits" style="text-align:right;">	
-		   				 	<h:outputText value="#{ns.protectedByLimits}" styleClass="pi pi-check"/>	
+		   				 	<i class="pi #{ns.protectedByLimits?'pi-check-circle':'pi-minus-circle'}"/>	
 		   				
 		   				 </p:column>
 		   				  <p:column  headerText="quotas" style="text-align:right;">
