@@ -196,15 +196,23 @@
 		   				 </p:column>
 		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
-		   				 	<i class="pi pi-check-minus"></i>
+		   				 
 		   				 </p:column>
-		   				 <p:column  headerText="Limits" style="text-align:center;">	
-		   				 	<i class="pi #{ns.protectedByLimits ? 'pi-check':'pi-check'}" style="display: inline-block"/>	
-		   				
+		   				 <p:column  headerText="Limits" style="text-align:center;">			   				 	
+		   					<p:commandButton  icon="pi pi-check-circle" 
+		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						rendered="#{ns.protectedByLimits}"/>
+		   					<p:commandButton  icon="pi pi-check-minuse"
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					 rendered="#{!ns.protectedByLimits}"/>/>
 		   				 </p:column>
 		   				  <p:column  headerText="quotas" style="text-align:right;">
-		   				  	<i class="pi pi-check-circle"></i>
-		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByQuotas}" />
+		   				  	<p:commandButton  icon="pi pi-check-circle" 
+		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						rendered="#{ns.protectedByQuotas}"/>
+		   					<p:commandButton  icon="pi pi-check-minuse"
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					 rendered="#{!ns.protectedByQuotas}"/>/>		   				 	
 		   				 </p:column>
 		   				 <p:column  headerText="Rolling update" style="text-align:right;">
 		   				 	<p:selectBooleanCheckbox value="#{ns.rollingUpdate}" />
