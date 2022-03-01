@@ -213,6 +213,7 @@
 		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
 		   				 
 		   				 </p:column>
+		   				 
 		   				 <p:column  headerText="Limits">			   				 	
 		   					<p:commandButton  icon="pi pi-check-circle" type="button"
 		   						styleClass="rounded-button ui-button-success ui-button-flat" 
@@ -227,8 +228,7 @@
 		   					    />	
 		   				  	<p:commandButton  icon="pi pi-check-circle" type="button"
 		   						styleClass="rounded-button ui-button-success ui-button-flat" 
-		   						/>
-		   						   				 	
+		   						/>		   						   				 	
 		   				 </p:column>
 		   				 <p:column  headerText="Rolling update" style="text-align:right;">
 		   				 	<p:commandButton  icon="pi pi-check-circle" type="button"
@@ -238,6 +238,7 @@
 		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
 		   					 rendered="#{!ns.rollingUpdate}"/>
 		   				 </p:column>
+		   				 
 		   				 <p:column  headerText="Cur Cpu" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.displayCurrentCpu}" >
 		   				 		<f:convertNumber pattern="#0" />
@@ -340,15 +341,31 @@
 		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
 		   				 </p:column>
-		   				 <p:column  headerText="Limits" style="text-align:right;">		   				 	
-		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByLimits}" />
+		   				  <p:column  headerText="Limits">			   				 	
+		   					<p:commandButton  icon="pi pi-check-circle" type="button"
+		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						rendered="#{ns.protectedByLimits}"/>
+		   					<p:commandButton  icon="pi pi-minus-circle" type="button"
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					 rendered="#{!ns.protectedByLimits}"/>
 		   				 </p:column>
-		   				  <p:column  headerText="quotas" style="text-align:right;">
-		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByQuotas}" />
+		   				  <p:column  headerText="quotas" >
+		   				    <p:commandButton  icon="pi pi-minus-circle" type="button"
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					    />	
+		   				  	<p:commandButton  icon="pi pi-check-circle" type="button"
+		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						/>		   						   				 	
 		   				 </p:column>
 		   				 <p:column  headerText="Rolling update" style="text-align:right;">
-		   				 	<p:selectBooleanCheckbox value="#{ns.rollingUpdate}" />
+		   				 	<p:commandButton  icon="pi pi-check-circle" type="button"
+		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						rendered="#{ns.rollingUpdate}"/>
+		   					<p:commandButton  icon="pi pi-minus-circle" type="button"
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					 rendered="#{!ns.rollingUpdate}"/>
 		   				 </p:column>
+		   			
 		   				 <p:column  headerText="Cur Cpu" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.displayCurrentCpu}" >
 		   				 		<f:convertNumber pattern="#0" />
@@ -472,14 +489,29 @@
 		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
 		   				 </p:column>
-		   				 <p:column  headerText="Limits" style="text-align:right;">		   				 	
-		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByLimits}" />
+		   				 <p:column  headerText="Limits">			   				 	
+		   					<p:commandButton  icon="pi pi-check-circle" type="button"
+		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						rendered="#{ns.protectedByLimits}"/>
+		   					<p:commandButton  icon="pi pi-minus-circle" type="button"
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					 rendered="#{!ns.protectedByLimits}"/>
 		   				 </p:column>
-		   				  <p:column  headerText="quotas" style="text-align:right;">
-		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByQuotas}" />
+		   				  <p:column  headerText="quotas" >
+		   				    <p:commandButton  icon="pi pi-minus-circle" type="button"
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					    />	
+		   				  	<p:commandButton  icon="pi pi-check-circle" type="button"
+		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						/>		   						   				 	
 		   				 </p:column>
 		   				 <p:column  headerText="Rolling update" style="text-align:right;">
-		   				 	<p:selectBooleanCheckbox value="#{ns.rollingUpdate}" />
+		   				 	<p:commandButton  icon="pi pi-check-circle" type="button"
+		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						rendered="#{ns.rollingUpdate}"/>
+		   					<p:commandButton  icon="pi pi-minus-circle" type="button"
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					 rendered="#{!ns.rollingUpdate}"/>
 		   				 </p:column>
 		   				 <p:column  headerText="Cur Cpu" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.displayCurrentCpu}" >
