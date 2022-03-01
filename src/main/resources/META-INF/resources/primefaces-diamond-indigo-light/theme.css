@@ -7010,7 +7010,3 @@ body .ui-wizard .ui-icon-arrowthick-1-e:before {
 }
 
 /* Add your customizations of the theme styles here */
-
-body .ui-row-toggler .ui-icon .ui-icon-circle-triangle-e {
-  content: "\003E"
-}
