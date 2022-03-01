@@ -196,12 +196,14 @@
 		   				 </p:column>
 		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
+		   				 	<i class="pi pi-check-minus"></i>
 		   				 </p:column>
 		   				 <p:column  headerText="Limits" style="text-align:center;">	
-		   				 	<i class="pi #{ns.protectedByLimits ? 'pi-check':'pi-minus-circle'}" style="display: inline-block"/>	
+		   				 	<i class="pi #{ns.protectedByLimits ? 'pi-check':'pi-check'}" style="display: inline-block"/>	
 		   				
 		   				 </p:column>
 		   				  <p:column  headerText="quotas" style="text-align:right;">
+		   				  	<i class="pi pi-check-circle"></i>
 		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByQuotas}" />
 		   				 </p:column>
 		   				 <p:column  headerText="Rolling update" style="text-align:right;">
