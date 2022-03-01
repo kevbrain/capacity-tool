@@ -183,8 +183,8 @@
 	   					<h:outputLabel value="Max Replicas : "/>
 	   					<h:outputLabel value="#{env.value.defaultMaxReplicas}"/>
 	   				</h:panelGrid>
-	   				 <p:dataTable value="#{env.value.namespaces}" var="ns"  sortBy="#{ns.name}"
-	   				 	 rowStyleClass="#{ns.hightRequestOrMemory ? 'hot' : ns.mediumRequestOrMemory ? 'lukewarm' : null}">
+	   				 <p:dataTable value="#{env.value.namespaces}" var="ns"  sortBy="#{ns.name}">
+	   				 	
 		   				 <p:column style="width:16px">
 	           				 <p:rowToggler />
 	        			 </p:column>
