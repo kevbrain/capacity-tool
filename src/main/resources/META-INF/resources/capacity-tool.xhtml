@@ -188,7 +188,7 @@
 		   				 <p:column style="width:16px">
 	           				 <p:rowToggler />
 	        			 </p:column>
-		   				 <p:column  headerText="Project" style="width:300px;" sortBy="#{ns.name}">
+		   				 <p:column  headerText="Projects" style="width:300px;" sortBy="#{ns.name}">
 		   				 	<h:outputText value="#{ns.name}"/>
 		   				 </p:column>	
 		   				 <p:column  headerText="Nbr Pods" style="text-align:right;">
@@ -197,8 +197,9 @@
 		   				 <p:column  headerText="Avl Pods" style="text-align:right;">
 		   				 	<h:outputText value="#{ns.nbrPodPossibleToDeploy}"/>
 		   				 </p:column>
-		   				 <p:column  headerText="Limits" style="text-align:right;">		   				 	
-		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByLimits}" />
+		   				 <p:column  headerText="Limits" style="text-align:right;">	
+		   				 	<h:outputText value="#{ns.protectedByLimits}" styleClass="pi pi-check"/>	
+		   				
 		   				 </p:column>
 		   				  <p:column  headerText="quotas" style="text-align:right;">
 		   				 	<p:selectBooleanCheckbox value="#{ns.protectedByQuotas}" />
