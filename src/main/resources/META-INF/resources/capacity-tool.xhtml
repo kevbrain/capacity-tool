@@ -225,10 +225,10 @@
 		   				  <p:column  headerText="quotas" >
 		   				    <p:commandButton  icon="pi pi-minus-circle" type="button"
 		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
-		   					    />	
+		   					 	 rendered="#{!ns.protectedByQuotas}" />	
 		   				  	<p:commandButton  icon="pi pi-check-circle" type="button"
 		   						styleClass="rounded-button ui-button-success ui-button-flat" 
-		   						/>		   						   				 	
+		   						rendered="#{ns.protectedByQuotas}"	/>		   						   				 	
 		   				 </p:column>
 		   				 <p:column  headerText="Rolling update" style="text-align:right;">
 		   				 	<p:commandButton  icon="pi pi-check-circle" type="button"
@@ -351,10 +351,10 @@
 		   				 </p:column>
 		   				  <p:column  headerText="quotas" >
 		   				    <p:commandButton  icon="pi pi-minus-circle" type="button"
-		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
+		   					 styleClass="rounded-button ui-button-danger ui-button-flat" rendered="#{!ns.protectedByQuotas}"
 		   					    />	
 		   				  	<p:commandButton  icon="pi pi-check-circle" type="button"
-		   						styleClass="rounded-button ui-button-success ui-button-flat" 
+		   						styleClass="rounded-button ui-button-success ui-button-flat" rendered="#{ns.protectedByQuotas}"
 		   						/>		   						   				 	
 		   				 </p:column>
 		   				 <p:column  headerText="Rolling update" style="text-align:right;">
@@ -498,10 +498,10 @@
 		   					 rendered="#{!ns.protectedByLimits}"/>
 		   				 </p:column>
 		   				  <p:column  headerText="quotas" >
-		   				    <p:commandButton  icon="pi pi-minus-circle" type="button"
+		   				    <p:commandButton  icon="pi pi-minus-circle" type="button" rendered="#{!ns.protectedByQuotas}"
 		   					 styleClass="rounded-button ui-button-danger ui-button-flat" 
 		   					    />	
-		   				  	<p:commandButton  icon="pi pi-check-circle" type="button"
+		   				  	<p:commandButton  icon="pi pi-check-circle" type="button" rendered="#{ns.protectedByQuotas}"
 		   						styleClass="rounded-button ui-button-success ui-button-flat" 
 		   						/>		   						   				 	
 		   				 </p:column>
