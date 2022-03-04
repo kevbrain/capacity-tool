@@ -42,6 +42,8 @@ public class ScheduleService {
 	    
     private int sim_capacityPodsCluster;
 	
+	private OcpCluster clusterOcpAnalyseInProgess;
+	
 	private OcpCluster clusterOcp;
 	
 	private CapacityStatus capacityStatus;
@@ -74,44 +76,45 @@ public class ScheduleService {
     		String gonogoLevelBlock = System.getenv("app.gonogo.block.request.level");
     		String name = System.getenv("app.ocp.instance.name");
     		
-    		clusterOcp = new OcpCluster(name,server,token);
-    		clusterOcp.loadPropertiesFromEnv();    	
-    		clusterOcp.setHa("default");
-    		clusterOcp.setGonogoLevelWarning(Integer.valueOf(gonogoLevelWarning));
-    		clusterOcp.setGonogoLevelBlock(Integer.valueOf(gonogoLevelBlock));
+    		clusterOcpAnalyseInProgess = new OcpCluster(name,server,token);
+    		clusterOcpAnalyseInProgess.loadPropertiesFromEnv();    	
+    		clusterOcpAnalyseInProgess.setHa("default");
+    		clusterOcpAnalyseInProgess.setGonogoLevelWarning(Integer.valueOf(gonogoLevelWarning));
+    		clusterOcpAnalyseInProgess.setGonogoLevelBlock(Integer.valueOf(gonogoLevelBlock));
     		
     		ServiceKubernetes serviceKubernetes = new ServiceKubernetes(server,token);
     		StringBuilder txtMail = new StringBuilder();
-	    	clusterOcp.loadWorkers(serviceKubernetes,new ArrayList<String>());   		    	
-	    	clusterOcp.loadEnvironments(serviceKubernetes);
+	    	clusterOcpAnalyseInProgess.loadWorkers(serviceKubernetes,new ArrayList<String>());   		    	
+	    	clusterOcpAnalyseInProgess.loadEnvironments(serviceKubernetes);
 	    	
 	    	displayEvaluateWorkers(txtMail);
 	    	displayEvaluateCurrentWorkload(txtMail); 
 	    	displayEvaluateAvailablePodWithCurrentWorkload(txtMail);
 	    	displaySimulateHAworkload(txtMail);
 	    	
-	    	ServiceAlerts.alertAll(clusterOcp, new StringBuilder(), serviceKubernetes);
+	    	ServiceAlerts.alertAll(clusterOcpAnalyseInProgess, new StringBuilder(), serviceKubernetes);
 	    	
-	    	logger.info("Current usage Cpu "+ clusterOcp.getPrc_totCpu());
-	    	logger.info("Current usage Memory = " +clusterOcp.getPrc_totMem());
-	    	logger.info("Current usage Cpu Requested = "+clusterOcp.getPrc_totCpuRequest());
-	    	logger.info("Full Workload Cpu Requested = "+clusterOcp.getSim_prc_totCpuRequest());
-	    	logger.info("Current Memory Requested = "+clusterOcp.getPrc_totMemRequest());
-	    	logger.info("Full Workload Memory Requested = "+clusterOcp.getSim_prc_totMemRequest());
-	    	logger.info("Available Pods in current usage = "+clusterOcp.getAvailablePodsInCurrentUsage());
-	    	logger.info("Available Pods in full Workload = "+clusterOcp.getAvailablePodsInFullWorkload());
+	    	logger.info("Current usage Cpu "+ clusterOcpAnalyseInProgess.getPrc_totCpu());
+	    	logger.info("Current usage Memory = " +clusterOcpAnalyseInProgess.getPrc_totMem());
+	    	logger.info("Current usage Cpu Requested = "+clusterOcpAnalyseInProgess.getPrc_totCpuRequest());
+	    	logger.info("Full Workload Cpu Requested = "+clusterOcpAnalyseInProgess.getSim_prc_totCpuRequest());
+	    	logger.info("Current Memory Requested = "+clusterOcpAnalyseInProgess.getPrc_totMemRequest());
+	    	logger.info("Full Workload Memory Requested = "+clusterOcpAnalyseInProgess.getSim_prc_totMemRequest());
+	    	logger.info("Available Pods in current usage = "+clusterOcpAnalyseInProgess.getAvailablePodsInCurrentUsage());
+	    	logger.info("Available Pods in full Workload = "+clusterOcpAnalyseInProgess.getAvailablePodsInFullWorkload());
 	    	
 	    	this.capacityStatus = new CapacityStatus(
-	    			clusterOcp.getPrc_totCpu(),
-	    			clusterOcp.getPrc_totMem(),
-	    			clusterOcp.getPrc_totCpuRequest(),
-	    			clusterOcp.getSim_prc_totCpuRequest(),
-	    			clusterOcp.getPrc_totMemRequest(),
-	    			clusterOcp.getSim_prc_totMemRequest(),
-	    			clusterOcp.getAvailablePodsInCurrentUsage(),
-	    			clusterOcp.getAvailablePodsInFullWorkload()
+	    			clusterOcpAnalyseInProgess.getPrc_totCpu(),
+	    			clusterOcpAnalyseInProgess.getPrc_totMem(),
+	    			clusterOcpAnalyseInProgess.getPrc_totCpuRequest(),
+	    			clusterOcpAnalyseInProgess.getSim_prc_totCpuRequest(),
+	    			clusterOcpAnalyseInProgess.getPrc_totMemRequest(),
+	    			clusterOcpAnalyseInProgess.getSim_prc_totMemRequest(),
+	    			clusterOcpAnalyseInProgess.getAvailablePodsInCurrentUsage(),
+	    			clusterOcpAnalyseInProgess.getAvailablePodsInFullWorkload()
 	    	);
 	    	this.loaded=true;
+	    	this.clusterOcp = clusterOcpAnalyseInProgess;
 	    
 	    	
     	} catch (Exception e) {
@@ -123,31 +126,31 @@ public class ScheduleService {
 	}
 	
 	  public void displayEvaluateWorkers(StringBuilder txtMail) {
-	    	String analyseYorkers = ServiceWriter.writeWorkersAnalyse(clusterOcp,new ArrayList(clusterOcp.getNodes().values()),false,false);
+	    	String analyseYorkers = ServiceWriter.writeWorkersAnalyse(clusterOcpAnalyseInProgess,new ArrayList(clusterOcpAnalyseInProgess.getNodes().values()),false,false);
 	    	txtMail.append(analyseYorkers);
 	    }
 
 	    public void displayEvaluateCurrentWorkload(StringBuilder txtMail) {
 	    	txtMail.append(OcpEnvironment.printHeaderHtml("Current workload"));
-	    	for (OcpEnvironment env:clusterOcp.getEnvironment().values()) {
-	    		txtMail.append(env.printItemHtml(clusterOcp));
+	    	for (OcpEnvironment env:clusterOcpAnalyseInProgess.getEnvironment().values()) {
+	    		txtMail.append(env.printItemHtml(clusterOcpAnalyseInProgess));
 	    	}	    		    
-	    	txtMail.append(ServiceWriter.printFooterTotalHtml(clusterOcp,clusterOcp.getTot_pods(),clusterOcp.getTot_request_cpu(),clusterOcp.getTot_lim_cpu(),clusterOcp.getTot_request_memory(),clusterOcp.getTot_limit_memory()));    	
+	    	txtMail.append(ServiceWriter.printFooterTotalHtml(clusterOcpAnalyseInProgess,clusterOcpAnalyseInProgess.getTot_pods(),clusterOcpAnalyseInProgess.getTot_request_cpu(),clusterOcpAnalyseInProgess.getTot_lim_cpu(),clusterOcpAnalyseInProgess.getTot_request_memory(),clusterOcpAnalyseInProgess.getTot_limit_memory()));    	
 	    }
 	    
 	    public void displayEvaluateAvailablePodWithCurrentWorkload(StringBuilder txtMail) {
-	    	BigDecimal start_request_cpu = clusterOcp.getTot_request_cpu();
-	    	BigDecimal start_limit_cpu = clusterOcp.getTot_lim_cpu();
-	    	BigDecimal start_memory = clusterOcp.getTot_request_memory();
-	    	BigDecimal start_limit_memory = clusterOcp.getTot_limit_memory();    	
-	    	this.capacityPodsCluster = clusterOcp.calculateCapacityForNewPodByCluster(start_request_cpu,start_limit_cpu,start_memory,start_limit_memory);
-	    	txtMail.append("Available pods (default limits [cpu "+ clusterOcp.getDefault_request_cpu()+"/"+clusterOcp.getDefault_limit_cpu()+" mem "+clusterOcp.getDefault_request_memory()+"/"+clusterOcp.getDefault_limit_memory()+"]) with current workload : "+capacityPodsCluster);    	
+	    	BigDecimal start_request_cpu = clusterOcpAnalyseInProgess.getTot_request_cpu();
+	    	BigDecimal start_limit_cpu = clusterOcpAnalyseInProgess.getTot_lim_cpu();
+	    	BigDecimal start_memory = clusterOcpAnalyseInProgess.getTot_request_memory();
+	    	BigDecimal start_limit_memory = clusterOcpAnalyseInProgess.getTot_limit_memory();    	
+	    	this.capacityPodsCluster = clusterOcpAnalyseInProgess.calculateCapacityForNewPodByCluster(start_request_cpu,start_limit_cpu,start_memory,start_limit_memory);
+	    	txtMail.append("Available pods (default limits [cpu "+ clusterOcpAnalyseInProgess.getDefault_request_cpu()+"/"+clusterOcpAnalyseInProgess.getDefault_limit_cpu()+" mem "+clusterOcpAnalyseInProgess.getDefault_request_memory()+"/"+clusterOcpAnalyseInProgess.getDefault_limit_memory()+"]) with current workload : "+capacityPodsCluster);    	
 	    }
 	    
 	    public void displaySimulateHAworkload(StringBuilder txtMail) {
 	    	
-	    	txtMail.append(OcpEnvironment.printHeaderHtml("Simulate workload mode ["+clusterOcp.getHa()+"]"));
-	    	for (OcpEnvironment env:clusterOcp.getEnvironment().values()) {
+	    	txtMail.append(OcpEnvironment.printHeaderHtml("Simulate workload mode ["+clusterOcpAnalyseInProgess.getHa()+"]"));
+	    	for (OcpEnvironment env:clusterOcpAnalyseInProgess.getEnvironment().values()) {
 	    		if (env.getName().equalsIgnoreCase("others")) {
 	    			env.setNewPodsWithSimulation(env.getCurrentPods());
 	    			env.setNewRequestCpuWithSimulation(env.getRequestCpu());
@@ -155,20 +158,20 @@ public class ScheduleService {
 	    			env.setNewRequestMemoryWithSimulation(env.getRequestMemory());
 	    			env.setNewLimitMemoryWithSimulation(env.getLimitMemory());
 	    		}
-	    		txtMail.append(env.printFullChargeItemHtml(clusterOcp));
+	    		txtMail.append(env.printFullChargeItemHtml(clusterOcpAnalyseInProgess));
 	    	}    		  
-	    	String resultsAdditionalWorkloadAfterSimulation = ServiceWriter.writeAdditionalWorkloadPerEnvAfterSimulation(clusterOcp,false,false);
+	    	String resultsAdditionalWorkloadAfterSimulation = ServiceWriter.writeAdditionalWorkloadPerEnvAfterSimulation(clusterOcpAnalyseInProgess,false,false);
 	    	txtMail.append(resultsAdditionalWorkloadAfterSimulation);
 
 	    	// compute available pod based on the mode HA
-	    	BigDecimal start_request_cpu = clusterOcp.getSim_tot_request_cpu();
-	    	BigDecimal start_limit_cpu = clusterOcp.getSim_tot_lim_cpu();
-	    	BigDecimal start_memory = clusterOcp.getSim_tot_request_memory();
-	    	BigDecimal start_limit_memory = clusterOcp.getSim_tot_limit_memory();  
-	    	this.sim_capacityPodsCluster = clusterOcp.calculateCapacityForNewPodByCluster(start_request_cpu,start_limit_cpu,start_memory,start_limit_memory);
+	    	BigDecimal start_request_cpu = clusterOcpAnalyseInProgess.getSim_tot_request_cpu();
+	    	BigDecimal start_limit_cpu = clusterOcpAnalyseInProgess.getSim_tot_lim_cpu();
+	    	BigDecimal start_memory = clusterOcpAnalyseInProgess.getSim_tot_request_memory();
+	    	BigDecimal start_limit_memory = clusterOcpAnalyseInProgess.getSim_tot_limit_memory();  
+	    	this.sim_capacityPodsCluster = clusterOcpAnalyseInProgess.calculateCapacityForNewPodByCluster(start_request_cpu,start_limit_cpu,start_memory,start_limit_memory);
 	    		    	
 	    	// compute available projects [ we reserve  x pods for rolling update ]
-	    	this.capacityNewProjects = (sim_capacityPodsCluster-clusterOcp.getNbrPodsForReserve())/9;    
+	    	this.capacityNewProjects = (sim_capacityPodsCluster-clusterOcpAnalyseInProgess.getNbrPodsForReserve())/9;    
 
 	    }
 
@@ -194,14 +197,14 @@ public class ScheduleService {
 
 
 
-	public OcpCluster getClusterOcp() {
-		return clusterOcp;
+	public OcpCluster getclusterOcpAnalyseInProgess() {
+		return clusterOcpAnalyseInProgess;
 	}
 
 
 
-	public void setClusterOcp(OcpCluster clusterOcp) {
-		this.clusterOcp = clusterOcp;
+	public void setclusterOcpAnalyseInProgess(OcpCluster clusterOcpAnalyseInProgess) {
+		this.clusterOcpAnalyseInProgess = clusterOcpAnalyseInProgess;
 	}
 
 
@@ -221,20 +224,20 @@ public class ScheduleService {
 		try {
 			this.generator = new TemplateGenerator(pathTemplate);
 			MailAlertModel model = new MailAlertModel();
-			model.setGonogoLevelBlock(clusterOcp.getGonogoLevelBlock());
-			model.setGonogoLevelWarning(clusterOcp.getGonogoLevelWarning());
-			model.setRequestCpu(clusterOcp.getPrc_totCpuRequest());
-			model.setRequestMemory(clusterOcp.getPrc_totMemRequest());
+			model.setGonogoLevelBlock(clusterOcpAnalyseInProgess.getGonogoLevelBlock());
+			model.setGonogoLevelWarning(clusterOcpAnalyseInProgess.getGonogoLevelWarning());
+			model.setRequestCpu(clusterOcpAnalyseInProgess.getPrc_totCpuRequest());
+			model.setRequestMemory(clusterOcpAnalyseInProgess.getPrc_totMemRequest());
 			if (!computeIfGoNoGo()) {	
 				// We raise a NOGO
 				mailContent=generator.generateAlertEmail(model, generator.getMailBlockCapacity());
-				MailUtils.SendMail(mailContent,null ,clusterOcp.getName()+" CapacityTool Alert");
+				MailUtils.SendMail(mailContent,null ,clusterOcpAnalyseInProgess.getName()+" CapacityTool Alert");
 				return "NOGO";
 			} else {
-				if (clusterOcp.getPrc_totCpuRequest()>=clusterOcp.getGonogoLevelWarning() || clusterOcp.getPrc_totMemRequest()>=clusterOcp.getGonogoLevelWarning()) {
+				if (clusterOcpAnalyseInProgess.getPrc_totCpuRequest()>=clusterOcpAnalyseInProgess.getGonogoLevelWarning() || clusterOcpAnalyseInProgess.getPrc_totMemRequest()>=clusterOcpAnalyseInProgess.getGonogoLevelWarning()) {
 					// We Raise a GO with Warning
 					mailContent=generator.generateAlertEmail(model, generator.getMailWarningCapacity());
-					MailUtils.SendMail(mailContent, null,clusterOcp.getName()+" CapacityTool Warning");
+					MailUtils.SendMail(mailContent, null,clusterOcpAnalyseInProgess.getName()+" CapacityTool Warning");
 				}
 				return "GO";
 			}
@@ -262,7 +265,7 @@ public class ScheduleService {
 	
 	public boolean computeIfGoNoGo() {
 		// For a Nogo , total percentage cpu or memory request must be superior than gonogoLevelBlock
-		if (clusterOcp.getPrc_totCpuRequest()>=clusterOcp.getGonogoLevelBlock() || clusterOcp.getPrc_totMemRequest()>=clusterOcp.getGonogoLevelBlock()) return false;
+		if (clusterOcpAnalyseInProgess.getPrc_totCpuRequest()>=clusterOcpAnalyseInProgess.getGonogoLevelBlock() || clusterOcpAnalyseInProgess.getPrc_totMemRequest()>=clusterOcpAnalyseInProgess.getGonogoLevelBlock()) return false;
 		return true;
 	}
 
@@ -274,6 +277,26 @@ public class ScheduleService {
 
 	public void setLoaded(boolean loaded) {
 		this.loaded = loaded;
+	}
+
+
+	public OcpCluster getClusterOcpAnalyseInProgess() {
+		return clusterOcpAnalyseInProgess;
+	}
+
+
+	public void setClusterOcpAnalyseInProgess(OcpCluster clusterOcpAnalyseInProgess) {
+		this.clusterOcpAnalyseInProgess = clusterOcpAnalyseInProgess;
+	}
+
+
+	public OcpCluster getClusterOcp() {
+		return clusterOcp;
+	}
+
+
+	public void setClusterOcp(OcpCluster clusterOcp) {
+		this.clusterOcp = clusterOcp;
 	}
 	
 	

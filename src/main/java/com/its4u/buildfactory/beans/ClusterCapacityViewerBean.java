@@ -6,6 +6,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -172,6 +173,14 @@ public class ClusterCapacityViewerBean {
 	public void reload() {
 		logger.info("Start reload");
 		this.clusterOcp = schedulerService.getClusterOcp();
+		while (schedulerService.getClusterOcp()==null) {			
+				try {
+					TimeUnit.SECONDS.sleep(20);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}			
+		}
 		meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
 		meterGaugeRequestMEMFullUsage.setValue(clusterOcp.getSim_tot_request_memory().divide(clusterOcp.getCluster_memory(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
 		
