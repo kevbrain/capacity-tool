@@ -33,13 +33,15 @@
 		        <type>pom</type>
 		        <scope>import</scope>
       </dependency>
-	  <dependency>
-				<groupId>org.keycloak.bom</groupId>
-				<artifactId>keycloak-adapter-bom</artifactId>
-    			<version>6.0.1.redhat-00001</version>
-				<type>pom</type>
-				<scope>import</scope>
-	  </dependency>
+      <!-- https://mvnrepository.com/artifact/org.keycloak.bom/keycloak-adapter-bom -->
+		<dependency>
+		    <groupId>org.keycloak.bom</groupId>
+		    <artifactId>keycloak-adapter-bom</artifactId>
+		    <version>15.0.4.redhat-00001</version>
+		    <type>pom</type>
+		</dependency>
+      
+	
     </dependencies>
   </dependencyManagement>
  <dependencies>
