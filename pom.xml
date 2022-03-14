@@ -27,15 +27,27 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.joinfaces</groupId>
-        <artifactId>joinfaces-dependencies</artifactId>
-        <version>${joinfaces.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
+		        <groupId>org.joinfaces</groupId>
+		        <artifactId>joinfaces-dependencies</artifactId>
+		        <version>${joinfaces.version}</version>
+		        <type>pom</type>
+		        <scope>import</scope>
       </dependency>
+	  <dependency>
+				<groupId>org.keycloak.bom</groupId>
+				<artifactId>keycloak-adapter-bom</artifactId>
+    			<version>6.0.1.redhat-00001</version>
+				<type>pom</type>
+				<scope>import</scope>
+	  </dependency>
     </dependencies>
   </dependencyManagement>
  <dependencies>
+		<dependency>
+		   <groupId>org.keycloak</groupId>
+			<artifactId>keycloak-spring-boot-2-starter</artifactId>
+			<version>4.0.0.Final</version>
+		</dependency>
     	<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-actuator</artifactId>
@@ -82,6 +94,7 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
         </dependency>
+
 </dependencies>
 	    
     <build>
