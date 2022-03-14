@@ -10,7 +10,8 @@ public class CapacityController {
 	
 	@GetMapping(value = "/")
 	public String getHome() {
-		return "index";
+		System.out.println("get Home");
+		return "capacity-tool.xhtml";
 	}
 
 }
