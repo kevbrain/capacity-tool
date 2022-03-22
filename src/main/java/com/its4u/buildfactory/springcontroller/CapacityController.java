@@ -13,5 +13,11 @@ public class CapacityController {
 		System.out.println("get Home");
 		return "capacity-tool.xhtml";
 	}
+	
+	@GetMapping(value = "/Login")
+	public String getLogin() {
+		System.out.println("Login Page");
+		return "login.xhtml";
+	}
 
 }
