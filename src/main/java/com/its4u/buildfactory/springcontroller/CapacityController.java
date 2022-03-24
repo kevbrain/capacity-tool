@@ -20,10 +20,9 @@ public class CapacityController {
 	}
 
 	@GetMapping(value = "/dashboard")
-	public String getHome(Model model) {
+	public String getHome() {
 		System.out.println("Dashboard");
-		configCommonAttributes(model);
-		return "capacity-tool.xhtml";
+			return "capacity-tool.xhtml";
 	}
 	
 	@GetMapping(value = "/Login")
