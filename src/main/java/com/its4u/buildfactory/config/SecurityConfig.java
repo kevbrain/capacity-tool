@@ -48,8 +48,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         super.configure(http);
         http
             .authorizeRequests()
-            .antMatchers("/books").hasAnyRole("Member", "Librarian")
-            .antMatchers("/manager").hasRole("Librarian")
+            //.antMatchers("/dashboard").hasAnyRole("Member", "Librarian")
+            //.antMatchers("/manager").hasRole("Librarian")
             .anyRequest().permitAll();
     }
 
