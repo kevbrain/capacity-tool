@@ -19,7 +19,7 @@ public class CapacityController {
 		this.request = request;
 	}
 
-	@GetMapping(value = "/dashboard")
+	@GetMapping(value = "/")
 	public String getHome() {
 		System.out.println("Dashboard");
 			return "capacity-tool.xhtml";
