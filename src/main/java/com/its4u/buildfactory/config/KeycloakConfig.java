@@ -1,4 +1,4 @@
-package com.its4u.buildfactory;
+package com.its4u.buildfactory.config;
 
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.springframework.context.annotation.Bean;
