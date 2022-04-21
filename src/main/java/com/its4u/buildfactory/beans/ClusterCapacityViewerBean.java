@@ -177,7 +177,7 @@ public class ClusterCapacityViewerBean {
 					TimeUnit.SECONDS.sleep(20);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					
+					Thread.currentThread().interrupt();
 				}			
 		}
 		meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());

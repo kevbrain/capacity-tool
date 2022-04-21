@@ -282,11 +282,7 @@ public class OcpNamespace extends OcpResource{
 	            	ocppod.setCurrent_memory(ocppod.getCurrent_memory().add(new BigDecimal(containeMetric.getUsage().get("memory").getAmount()).divide(new BigDecimal(1024))));
 	            }	            	            
 	          } catch (KubernetesClientException ex) {
-	            if (ex.getCode() == HttpURLConnection.HTTP_NOT_FOUND) {
-	              //logger.info(" - Pod has not reported any metrics yet");
-	            } else {
-	              //logger.info(" - Error retrieving Pod metrics");
-	            }	          
+	            
 	        }
 	    	
 	    	String appName=null;
