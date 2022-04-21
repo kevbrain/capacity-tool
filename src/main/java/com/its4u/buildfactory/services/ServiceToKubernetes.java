@@ -113,7 +113,7 @@ public class ServiceToKubernetes implements Callable<Integer> {
 	    	if (mail) MailUtils.SendMail(txtMail.toString(),null,clusterOcp.getName()+" Capacity Report And Simulation");
 	    	
     	} catch (Exception e) {
-    		e.printStackTrace();
+    		
     		logger.info(e.getMessage());
     		return -1;
     	}

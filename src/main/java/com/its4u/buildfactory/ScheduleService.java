@@ -116,7 +116,7 @@ public class ScheduleService {
 	    
 	    	
     	} catch (Exception e) {
-    		e.printStackTrace();
+
     		logger.info(e.getMessage());
     		
     	}
@@ -241,16 +241,16 @@ public class ScheduleService {
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (TemplateException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 		return "NOGO";
 		

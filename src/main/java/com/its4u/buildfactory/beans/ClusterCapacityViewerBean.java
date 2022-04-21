@@ -165,7 +165,7 @@ public class ClusterCapacityViewerBean {
 	    		    	
 	    	
 		} catch (Exception e) {			
-			e.printStackTrace();
+			
 		}   				
     }
 	
@@ -177,7 +177,7 @@ public class ClusterCapacityViewerBean {
 					TimeUnit.SECONDS.sleep(20);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				}			
 		}
 		meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
@@ -367,10 +367,10 @@ public class ClusterCapacityViewerBean {
 				mailContent=generator.generateAlertEmail(model, generator.getMailOOMKillAlert());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			} catch (TemplateException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			}
 			
 			if (mailContent!=null && !podOOMKillAlertsByTeam.get(recipient).isEmpty()) {
@@ -380,10 +380,10 @@ public class ClusterCapacityViewerBean {
 					MailUtils.SendMail(mailContent, "kevyn.schrondweiler@external-staff.com",clusterOcp.getName()+" OOMKilled Alerts");
 				} catch (AddressException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				} catch (MessagingException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				}
 			}
 			
