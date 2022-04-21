@@ -28,7 +28,7 @@ public class ServiceRequestsAndLimits {
     	
     	for (String typeLimit : quantities.keySet()) {
     		
-            if (typeLimit=="cpu" || typeLimit=="limits.cpu") { 
+            if (typeLimit.equals("cpu") || typeLimit.equals("limits.cpu")) { 
           
                   if (quantities.get(typeLimit).getFormat().equalsIgnoreCase("m")) {                                                  
                 	  	reqLim.setLim_cpu(new BigDecimal(quantities.get(typeLimit).getAmount()));                         	  
@@ -36,7 +36,7 @@ public class ServiceRequestsAndLimits {
                  	reqLim.setLim_cpu(new BigDecimal(quantities.get(typeLimit).getAmount()).multiply(new BigDecimal(1000)));                       	  
                   }
             } 
-            if (typeLimit=="memory" || typeLimit=="limits.memory") {    
+            if (typeLimit.equals("memory") || typeLimit.equals("limits.memory")) {    
             	
                   if (quantities.get(typeLimit).getFormat().equalsIgnoreCase("Gi")){                        
                  	 reqLim.setLim_memory((new BigDecimal(quantities.get(typeLimit).getAmount()).multiply(new BigDecimal(1024))));
@@ -55,7 +55,7 @@ public class ServiceRequestsAndLimits {
 
     	for (String typeRequest : quantities.keySet()) {
     		
-            if (typeRequest=="cpu" || typeRequest =="requests.cpu") {
+            if (typeRequest.equals("cpu") || typeRequest.equals("requests.cpu")) {
            
 	           	 if (quantities.get(typeRequest).getFormat().equalsIgnoreCase("m")) {
 	           		reqLim.setReq_cpu(new BigDecimal(quantities.get(typeRequest).getAmount()));                               		
@@ -63,7 +63,7 @@ public class ServiceRequestsAndLimits {
 	           		reqLim.setReq_cpu(new BigDecimal(quantities.get(typeRequest).getAmount()).multiply(new BigDecimal(1000)));                               		
 	           	 }
             }
-            if (typeRequest=="memory" || typeRequest =="requests.memory") {
+            if (typeRequest.equals("memory") || typeRequest.equals("requests.memory")) {
             	
 	           	 if (quantities.get(typeRequest).getFormat().equalsIgnoreCase("Gi")){
 	           		reqLim.setReq_memory(new BigDecimal(quantities.get(typeRequest).getAmount()).multiply(new BigDecimal(1024))); 
