@@ -81,9 +81,9 @@ public class PrometheusService {
 				logger.error(e.getMessage());
 			} catch (IOException e) {
 				logger.error(e.getMessage());
-			} finally {
-				
-				return maxConsumptionLast2w;
-			}    	                 
+			}    
+			  
+			return maxConsumptionLast2w;
     }
+  
 }
