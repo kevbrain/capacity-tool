@@ -330,7 +330,6 @@ public class ClusterCapacityViewerBean {
 		clusterOcp.setAlertPercentageConsumptionResourceThreshold(new BigDecimal(alertPercentageConsumptionResourceThreshold));
 		clusterOcp.setNbrPodsForReserve(Integer.valueOf(appSimulatorReservePods));
 		
-		System.out.println("properties loaded");
 	}
 	
 	public void sendTeamNotificationOOMKill() {
