@@ -211,8 +211,7 @@ public class ClusterCapacityViewerBean {
 				add(150);
 			}			
 		};
-		return new MeterGaugeChartModel(percentage,intervals);
-		
+		return new MeterGaugeChartModel(percentage,intervals);		
 	}
 	
 	public void startAnalyse() {
