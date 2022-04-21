@@ -261,14 +261,14 @@ public abstract class OcpResource {
     }
     
     public String getPerCpuFromCpuLimit()  {
-    	if (this.getLimits_cpu()!=null && this.getLimits_cpu().compareTo(BigDecimal.ZERO)==1) {
+    	if (this.getLimits_cpu()!=null && this.getLimits_cpu().compareTo(BigDecimal.ZERO)>0) {
     		return ""+getCurrent_cpu().divide(getLimits_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
     	} 
     	return "-";
     }
 	
     public String getPerMemoryFromMemoryLimit() {
-    	if (this.getLimits_memory()!=null && this.getLimits_memory().compareTo(BigDecimal.ZERO)==1) {
+    	if (this.getLimits_memory()!=null && this.getLimits_memory().compareTo(BigDecimal.ZERO)>0) {
     		return ""+getCurrent_memory().divide(getLimits_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
     	} 
     	return "-";

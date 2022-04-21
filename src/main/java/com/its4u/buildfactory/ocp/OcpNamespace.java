@@ -425,10 +425,10 @@ public class OcpNamespace extends OcpResource{
 		    												 this.getContainer_cpu_limit().compareTo(BigDecimal.ZERO)==0 ||
 		    														 this.getContainer_memory_request().compareTo(BigDecimal.ZERO)==0 ||
 		    																 this.getContainer_memory_limit().compareTo(BigDecimal.ZERO)==0 ||
-		    				 newRequest_cpu.compareTo(this.getAllocatable_cpu())==1 ||
-		    				 newLimit_cpu.compareTo(this.getAllocatable_cpu())==1 ||
-		    				 newRequest_memory.compareTo(this.getAllocatable_memory())==1 ||
-		    				 newLimit_memory.compareTo(this.getAllocatable_memory())==1
+		    				 newRequest_cpu.compareTo(this.getAllocatable_cpu())>0 ||
+		    				 newLimit_cpu.compareTo(this.getAllocatable_cpu())>0 ||
+		    				 newRequest_memory.compareTo(this.getAllocatable_memory())>0 ||
+		    				 newLimit_memory.compareTo(this.getAllocatable_memory())>0
 		    				)
 		    		{		  		
 		    			nbrPodPossibleToDeploy--;

@@ -354,8 +354,8 @@ public class OcpCluster {
     				 newLimit_cpu.compareTo(BigDecimal.ZERO)==0 ||
     				 newRequest_memory.compareTo(BigDecimal.ZERO)==0 ||
     				 newLimit_memory.compareTo(BigDecimal.ZERO)==0 ||    			  
-    				 newRequest_cpu.compareTo(this.getCluster_cpu())==1 ||
-    				 newRequest_memory.compareTo(this.getCluster_memory())==1 
+    				 newRequest_cpu.compareTo(this.getCluster_cpu())>0 ||
+    				 newRequest_memory.compareTo(this.getCluster_memory())>0
 
     				)
     		{  		
