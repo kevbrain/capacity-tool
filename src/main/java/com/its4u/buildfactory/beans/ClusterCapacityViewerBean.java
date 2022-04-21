@@ -202,14 +202,11 @@ public class ClusterCapacityViewerBean {
 	}
 	
 	private MeterGaugeChartModel initMeterGaugeModel(int percentage) {
-		List<Number> intervals = new ArrayList<Number>() {
-			{
-				add(50);
-				add(80);
-				add(100);
-				add(150);
-			}			
-		};
+		List<Number> intervals = new ArrayList<Number>() ;
+		intervals.add(50);
+		intervals.add(80);
+		intervals.add(100);
+		intervals.add(150);	
 		return new MeterGaugeChartModel(percentage,intervals);		
 	}
 	
