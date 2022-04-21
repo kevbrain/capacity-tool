@@ -7,9 +7,6 @@ import java.math.RoundingMode;
 
 import com.its4u.buildfactory.utils.FormatUtils;
 
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class OcpPod extends OcpResource{
 

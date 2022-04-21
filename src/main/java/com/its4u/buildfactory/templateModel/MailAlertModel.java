@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.its4u.buildfactory.ocp.OcpAlertPodRestart;
 
-import lombok.Data;
-
 
 public class MailAlertModel {
 	

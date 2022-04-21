@@ -34,10 +34,9 @@ import com.its4u.buildfactory.utils.MailUtils;
 import com.its4u.buildfactory.utils.TemplateGenerator;
 
 import freemarker.template.TemplateException;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
-
-import lombok.AccessLevel;
 @Data
 @Component
 @ManagedBean(name = "clusterCapacityViewerBean")

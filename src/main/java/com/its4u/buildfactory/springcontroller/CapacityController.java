@@ -1,11 +1,12 @@
 package com.its4u.buildfactory.springcontroller;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
 import org.keycloak.KeycloakSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CapacityController {

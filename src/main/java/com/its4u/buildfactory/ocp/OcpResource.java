@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import io.fabric8.kubernetes.api.model.Pod;
-import lombok.Data;
 
 
 public abstract class OcpResource {

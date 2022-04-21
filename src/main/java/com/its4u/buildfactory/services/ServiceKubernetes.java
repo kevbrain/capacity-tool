@@ -1,9 +1,5 @@
 package com.its4u.buildfactory.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.its4u.buildfactory.ScheduleService;
-
 import io.fabric8.kubernetes.api.model.PodList;
 import io.fabric8.kubernetes.client.Config;
 import io.fabric8.kubernetes.client.ConfigBuilder;

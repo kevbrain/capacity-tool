@@ -6,13 +6,10 @@ import java.util.concurrent.Callable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.its4u.buildfactory.ScheduleService;
 import com.its4u.buildfactory.ocp.OcpCluster;
 import com.its4u.buildfactory.ocp.OcpEnvironment;
 import com.its4u.buildfactory.utils.MailUtils;
-import com.its4u.buildfactory.utils.SSLUtils;
 
 import picocli.CommandLine;
 

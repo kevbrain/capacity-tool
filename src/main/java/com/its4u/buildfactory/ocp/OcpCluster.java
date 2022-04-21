@@ -14,7 +14,6 @@ import org.primefaces.model.charts.donut.DonutChartDataSet;
 import org.primefaces.model.charts.donut.DonutChartModel;
 import org.primefaces.model.charts.hbar.HorizontalBarChartDataSet;
 import org.primefaces.model.charts.hbar.HorizontalBarChartModel;
-import org.primefaces.model.charts.pie.PieChartDataSet;
 
 import com.its4u.buildfactory.model.ChartDataModel;
 import com.its4u.buildfactory.services.PrometheusService;
@@ -25,8 +24,6 @@ import io.fabric8.kubernetes.api.model.Node;
 import io.fabric8.kubernetes.api.model.NodeList;
 import io.fabric8.kubernetes.api.model.NodeStatus;
 import io.fabric8.kubernetes.api.model.PodList;
-import lombok.Getter;
-import lombok.Setter;
 
 
 
