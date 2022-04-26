@@ -39,8 +39,8 @@ public class ServiceKubernetes {
 		
 		
 		Config config = new ConfigBuilder().withMasterUrl(server)
-				.withDisableHostnameVerification(true)
-				.withOauthToken(token)
+				.withDisableHostnameVerification(true)				
+				.withOauthToken(mytoken)
 				.withTrustCerts(false)
 				.build();
 		
