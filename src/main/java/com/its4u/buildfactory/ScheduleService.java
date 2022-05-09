@@ -119,9 +119,7 @@ public class ScheduleService {
 	    
 	    	
     	} catch (Exception e) {
-    		e.printStackTrace();
-    		logger.info(e.getMessage());
-    		
+    		logger.info(e.getMessage());    		
     	}
     	
 	}
