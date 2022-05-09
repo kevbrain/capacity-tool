@@ -26,7 +26,7 @@ public class OcpNode extends OcpResource{
 	
 	
     public static String printHeader() {
-    	StringBuffer txt = new StringBuffer();
+    	StringBuilder txt = new StringBuilder();
 		String header =
     			format("Resource",50) +    	
     			format("Pods",5) +
@@ -61,7 +61,7 @@ public class OcpNode extends OcpResource{
 	}
     
     public static String printHeaderHtml() {
-		StringBuffer txt = new StringBuffer();
+    	StringBuilder txt = new StringBuilder();
 		txt.append("<html>" + 
 				"<style>" + 
 				"table, th, td {" + 

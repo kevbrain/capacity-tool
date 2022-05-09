@@ -45,7 +45,7 @@ public class PrometheusService {
     	BigDecimal maxConsumptionLast2w = BigDecimal.ZERO ;               
 	    	URL url;
 			try {
-				//String stringUrl="https://prometheus-k8s-openshift-monitoring.apps.ocnp1.bnet.luxds.net/api/v1/query?query=max(max_over_time(pod:container_"+type+":sum{namespace=\""+namespaceOcp.getName()+"\"}[2w]))";
+				
 				String stringUrl=clusterOcp.getPrometheus_url()+"/api/v1/query?query=max(max_over_time(pod:container_"+type+":sum{namespace=\""+namespaceOcp.getName()+"\",pod=\""+pod.getName()+"\"}["+clusterOcp.getPrometheus_query_maxOverTime()+"]))";				
 				url = new URL(stringUrl);
 				HttpURLConnection conn =  (HttpURLConnection) url.openConnection();
