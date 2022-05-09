@@ -82,7 +82,10 @@ public class ScheduleService {
     		
     		ServiceKubernetes serviceKubernetes = new ServiceKubernetes(server,token);
     		StringBuilder txtMail = new StringBuilder();
-	    	clusterOcpAnalyseInProgess.loadWorkers(serviceKubernetes,new ArrayList<String>());   		    	
+    		
+    		logger.info("Load workers ");    		
+	    	clusterOcpAnalyseInProgess.loadWorkers(serviceKubernetes,new ArrayList<String>()); 
+	    	logger.info("Load environments ");
 	    	clusterOcpAnalyseInProgess.loadEnvironments(serviceKubernetes);
 	    	
 	    	displayEvaluateWorkers(txtMail);
@@ -116,7 +119,7 @@ public class ScheduleService {
 	    
 	    	
     	} catch (Exception e) {
-
+    		e.printStackTrace();
     		logger.info(e.getMessage());
     		
     	}
