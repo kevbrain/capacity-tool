@@ -170,13 +170,13 @@ public class OcpEnvironment {
 		txt.append("<td>"+getPer_lim_memory()+"</td>");
 		
 		txt.append("<td>"+quotaCpuRequest+"</td>");
-		txt.append("<td>"+quotaCpuRequest.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+quotaCpuRequest.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+quotaCpuLimit+"</td>");
-		txt.append("<td>"+quotaCpuLimit.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+quotaCpuLimit.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+quotaMemoryRequest+"</td>");
-		txt.append("<td>"+quotaMemoryRequest.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+quotaMemoryRequest.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+quotaMemoryLimit+"</td>");
-		txt.append("<td>"+quotaMemoryLimit.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+quotaMemoryLimit.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("</tr>");
     	return txt.toString();
     }
@@ -189,23 +189,23 @@ public class OcpEnvironment {
 		txt.append("<td>"+newPodsWithSimulation+"</td>");
 		
 		txt.append("<td>"+newRequestCpuWithSimulation+"</td>");
-		txt.append("<td>"+newRequestCpuWithSimulation.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+newRequestCpuWithSimulation.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+newLimitCpuWithSimulation+"</td>");
-		txt.append("<td>"+newLimitCpuWithSimulation.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+newLimitCpuWithSimulation.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		
 		txt.append("<td>"+newRequestMemoryWithSimulation+"</td>");
-		txt.append("<td>"+newRequestMemoryWithSimulation.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+newRequestMemoryWithSimulation.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+newLimitMemoryWithSimulation+"</td>");
-		txt.append("<td>"+newLimitMemoryWithSimulation.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+newLimitMemoryWithSimulation.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		
 		txt.append("<td>"+quotaCpuRequest+"</td>");
-		txt.append("<td>"+quotaCpuRequest.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+quotaCpuRequest.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+quotaCpuLimit+"</td>");
-		txt.append("<td>"+quotaCpuLimit.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+quotaCpuLimit.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+quotaMemoryRequest+"</td>");
-		txt.append("<td>"+quotaMemoryRequest.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+quotaMemoryRequest.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+quotaMemoryLimit+"</td>");
-		txt.append("<td>"+quotaMemoryLimit.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+quotaMemoryLimit.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("</tr>");
     	return txt.toString();
     }
@@ -276,19 +276,19 @@ public class OcpEnvironment {
      			format("",4)
      			+
      			format(newTotRequestCpu+"/"+clusterOcp.getCluster_cpu(),13) +
-     			format(""+per_req_cpu.setScale(0, BigDecimal.ROUND_HALF_UP),4)
+     			format(""+per_req_cpu.setScale(0, RoundingMode.HALF_UP),4)
      			+     			
      			format(newTotLimitCpu+"/"+clusterOcp.getCluster_cpu(),13) +
-     			format(""+per_lim_cpu.setScale(0, BigDecimal.ROUND_HALF_UP),4)
+     			format(""+per_lim_cpu.setScale(0, RoundingMode.HALF_UP),4)
      			+
      			format("",16) +
      			format("",4)
      			+     			
-     			format(newTotRequestMemory.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP),16) +
-     			format(""+per_req_memory.setScale(0, BigDecimal.ROUND_HALF_UP),4)
+     			format(newTotRequestMemory.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP),16) +
+     			format(""+per_req_memory.setScale(0, RoundingMode.HALF_UP),4)
      			+     			
-     			format(newTotLimitMemory.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP),16) +
-     			format(""+per_lim_memory.setScale(0, BigDecimal.ROUND_HALF_UP),4) ;     			
+     			format(newTotLimitMemory.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP),16) +
+     			format(""+per_lim_memory.setScale(0, RoundingMode.HALF_UP),4) ;     			
      			
 		underline(footer);
 		System.out.println(footer);
@@ -652,7 +652,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getPer_lim_memory() {
-		return limitMemory.divide(this.ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return limitMemory.divide(this.ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setPer_lim_memory(BigDecimal per_lim_memory) {		
@@ -660,7 +660,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getPer_req_memory() {
-		return requestMemory.divide(this.ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);		
+		return requestMemory.divide(this.ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);		
 	}
 
 	public void setPer_req_memory(BigDecimal per_req_memory) {
@@ -668,7 +668,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getPer_req_cpu() {
-		return requestCpu.divide(this.ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);    	
+		return requestCpu.divide(this.ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);    	
 	}
 
 	public void setPer_req_cpu(BigDecimal per_req_cpu) {
@@ -676,7 +676,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getPer_lim_cpu() {
-		return limitCpu.divide(this.ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return limitCpu.divide(this.ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setPer_lim_cpu(BigDecimal per_lim_cpu) {
@@ -708,7 +708,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getPer_quota_lim_memory() {
-		return quotaMemoryLimit.divide(ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return quotaMemoryLimit.divide(ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setPer_quota_lim_memory(BigDecimal per_quota_lim_memory) {
@@ -716,7 +716,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getPer_quota_req_memory() {
-		return quotaMemoryRequest.divide(ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return quotaMemoryRequest.divide(ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setPer_quota_req_memory(BigDecimal per_quota_req_memory) {
@@ -724,7 +724,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getPer_quota_req_cpu() {
-		return quotaCpuLimit.divide(ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return quotaCpuLimit.divide(ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setPer_quota_req_cpu(BigDecimal per_quota_req_cpu) {
@@ -732,7 +732,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getPer_quota_lim_cpu() {
-		return quotaCpuLimit.divide(ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return quotaCpuLimit.divide(ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setPer_quota_lim_cpu(BigDecimal per_quota_lim_cpu) {
@@ -740,7 +740,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getNew_per_lim_memory() {
-		return newLimitMemoryWithSimulation.divide(ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return newLimitMemoryWithSimulation.divide(ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setNew_per_lim_memory(BigDecimal new_per_lim_memory) {
@@ -748,7 +748,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getNew_per_req_memory() {
-		return newRequestMemoryWithSimulation.divide(ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return newRequestMemoryWithSimulation.divide(ocpCluster.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setNew_per_req_memory(BigDecimal new_per_req_memory) {
@@ -756,7 +756,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getNew_per_req_cpu() {
-		return newRequestCpuWithSimulation.divide(ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return newRequestCpuWithSimulation.divide(ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setNew_per_req_cpu(BigDecimal new_per_req_cpu) {
@@ -764,7 +764,7 @@ public class OcpEnvironment {
 	}
 
 	public BigDecimal getNew_per_lim_cpu() {
-		return newLimitCpuWithSimulation.divide(ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		return newLimitCpuWithSimulation.divide(ocpCluster.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 	}
 
 	public void setNew_per_lim_cpu(BigDecimal new_per_lim_cpu) {

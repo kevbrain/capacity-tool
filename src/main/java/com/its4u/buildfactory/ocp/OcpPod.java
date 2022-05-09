@@ -49,21 +49,21 @@ public class OcpPod extends OcpResource{
     			FormatUtils.leftpad(this.getName(),50)
 				+ FormatUtils.format("" ,2)
 				+ FormatUtils.format("" ,2) 
-			    + FormatUtils.format("cpu["+this.getRequests_cpu().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+this.getLimits_cpu().setScale(0, BigDecimal.ROUND_HALF_UP)+"]",15)
-			    + FormatUtils.format("mem["+this.getRequests_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+this.getLimits_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"]",15)
+			    + FormatUtils.format("cpu["+this.getRequests_cpu().setScale(0, RoundingMode.HALF_UP)+"/"+this.getLimits_cpu().setScale(0, RoundingMode.HALF_UP)+"]",15)
+			    + FormatUtils.format("mem["+this.getRequests_memory().setScale(0, RoundingMode.HALF_UP)+"/"+this.getLimits_memory().setScale(0, RoundingMode.HALF_UP)+"]",15)
 				+ FormatUtils.format(""+this.getNbrPods(),5)
 				+ " | "			
 				+ FormatUtils.format(this.getCurrent_cpu()+"/"+this.getLimits_cpu(),13)    			
-				+ FormatUtils.format(""+this.getPercentageCurrentCpu().setScale(0, BigDecimal.ROUND_HALF_UP),4)
+				+ FormatUtils.format(""+this.getPercentageCurrentCpu().setScale(0, RoundingMode.HALF_UP),4)
 				
 				+ FormatUtils.format(this.getMax_cpu_last2w()+"/"+(this.getLimits_cpu()!=null?this.getLimits_cpu():"-"),13)    			
-				+ FormatUtils.format(""+this.getPercentageMaxCpu().setScale(0, BigDecimal.ROUND_HALF_UP),4) 
+				+ FormatUtils.format(""+this.getPercentageMaxCpu().setScale(0, RoundingMode.HALF_UP),4) 
 				
-				+ FormatUtils.format(this.getCurrent_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, BigDecimal.ROUND_HALF_UP):"-"),16) 
-				+ FormatUtils.format(""+this.getPercentageCurrentMemory().setScale(0, BigDecimal.ROUND_HALF_UP),4) 
+				+ FormatUtils.format(this.getCurrent_memory().setScale(0, RoundingMode.HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, RoundingMode.HALF_UP):"-"),16) 
+				+ FormatUtils.format(""+this.getPercentageCurrentMemory().setScale(0, RoundingMode.HALF_UP),4) 
 				
-				+ FormatUtils.format(this.getMax_memory_last2w().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, BigDecimal.ROUND_HALF_UP):"-"),16) 
-				+ FormatUtils.format(""+this.getPercentageMaxMemory().setScale(0, BigDecimal.ROUND_HALF_UP),4)
+				+ FormatUtils.format(this.getMax_memory_last2w().setScale(0, RoundingMode.HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, RoundingMode.HALF_UP):"-"),16) 
+				+ FormatUtils.format(""+this.getPercentageMaxMemory().setScale(0, RoundingMode.HALF_UP),4)
 				+ FormatUtils.format(""+this.getCountRestart(),8)	    		
 				;  				
     }
@@ -87,7 +87,7 @@ public class OcpPod extends OcpResource{
 	}
 
 	public String getUsageMemory() {
-		return this.getCurrent_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, BigDecimal.ROUND_HALF_UP):"-");
+		return this.getCurrent_memory().setScale(0, RoundingMode.HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, RoundingMode.HALF_UP):"-");
 	}
 
 	public void setUsageMemory(String usageMemory) {
@@ -95,7 +95,7 @@ public class OcpPod extends OcpResource{
 	}
 
 	public String getMaxMemory() {
-		return this.getMax_memory_last2w().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, BigDecimal.ROUND_HALF_UP):"-");
+		return this.getMax_memory_last2w().setScale(0, RoundingMode.HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, RoundingMode.HALF_UP):"-");
 	}
 
 	public void setMaxMemory(String maxMemory) {
@@ -124,7 +124,7 @@ public class OcpPod extends OcpResource{
  
 		 
 	public String getCpuDisplay() {
-		return "cpu["+this.getRequests_cpu().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+this.getLimits_cpu().setScale(0, BigDecimal.ROUND_HALF_UP)+"]";
+		return "cpu["+this.getRequests_cpu().setScale(0, RoundingMode.HALF_UP)+"/"+this.getLimits_cpu().setScale(0, RoundingMode.HALF_UP)+"]";
 	}
 
 	public void setCpuDisplay(String cpuDisplay) {
@@ -132,7 +132,7 @@ public class OcpPod extends OcpResource{
 	}
 
 	public String getMemoryDisplay() {
-		return "mem["+this.getRequests_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+this.getLimits_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"]";
+		return "mem["+this.getRequests_memory().setScale(0, RoundingMode.HALF_UP)+"/"+this.getLimits_memory().setScale(0, RoundingMode.HALF_UP)+"]";
 	}
 
 	public void setMemoryDisplay(String memoryDisplay) {

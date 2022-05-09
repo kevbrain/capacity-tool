@@ -160,16 +160,16 @@ public class OcpNamespace extends OcpResource{
      			FormatUtils.format(""+tot_pods,5) +
      			" | " +    			
      			FormatUtils.format(tot_usage_cpu+"/"+clusterOcp.getCluster_cpu(),13) +     			
-     			FormatUtils.format(""+per_usage_cpu.setScale(0, BigDecimal.ROUND_HALF_UP),4)
+     			FormatUtils.format(""+per_usage_cpu.setScale(0, RoundingMode.HALF_UP),4)
      			+
      			FormatUtils.format(tot_max_cpu+"/"+clusterOcp.getCluster_cpu(),13) +
-     			FormatUtils.format(""+per_max_cpu.setScale(0, BigDecimal.ROUND_HALF_UP),4)
+     			FormatUtils.format(""+per_max_cpu.setScale(0, RoundingMode.HALF_UP),4)
 				+     	
-				FormatUtils.format(tot_usage_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP),16) +
-				FormatUtils.format(""+per_usg_memory_limit.setScale(0, BigDecimal.ROUND_HALF_UP),4)
+				FormatUtils.format(tot_usage_memory.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP),16) +
+				FormatUtils.format(""+per_usg_memory_limit.setScale(0, RoundingMode.HALF_UP),4)
 				+
-				FormatUtils.format(tot_max_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP),16) +
-				FormatUtils.format(""+per_max_cpu.setScale(0, BigDecimal.ROUND_HALF_UP),4)     			
+				FormatUtils.format(tot_max_memory.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP),16) +
+				FormatUtils.format(""+per_max_cpu.setScale(0, RoundingMode.HALF_UP),4)     			
 				
 				+ FormatUtils.format("",8);
 				
@@ -204,14 +204,14 @@ public class OcpNamespace extends OcpResource{
     			" | "+
     			FormatUtils.format(""+tot_pod_simulation ,5) +
     			" | "+
-    			FormatUtils.format(tot_new_req_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_cpu().setScale(0, BigDecimal.ROUND_HALF_UP),16)+
-    			FormatUtils.format(""+per_tot_new_req_cpu.setScale(0, BigDecimal.ROUND_HALF_UP),4)+
-    			FormatUtils.format(tot_new_lim_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_cpu().setScale(0, BigDecimal.ROUND_HALF_UP),16) +
-    			FormatUtils.format(""+per_tot_new_lim_cpu.setScale(0, BigDecimal.ROUND_HALF_UP),4)+
-    			FormatUtils.format(tot_new_req_mem.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP),16) +
-    			FormatUtils.format(""+per_tot_new_req_mem.setScale(0, BigDecimal.ROUND_HALF_UP),4)+
-    			FormatUtils.format(tot_new_lim_mem.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP),16) +
-    			FormatUtils.format(""+per_tot_new_lim_mem.setScale(0, BigDecimal.ROUND_HALF_UP),4);
+    			FormatUtils.format(tot_new_req_cpu.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_cpu().setScale(0, RoundingMode.HALF_UP),16)+
+    			FormatUtils.format(""+per_tot_new_req_cpu.setScale(0, RoundingMode.HALF_UP),4)+
+    			FormatUtils.format(tot_new_lim_cpu.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_cpu().setScale(0, RoundingMode.HALF_UP),16) +
+    			FormatUtils.format(""+per_tot_new_lim_cpu.setScale(0, RoundingMode.HALF_UP),4)+
+    			FormatUtils.format(tot_new_req_mem.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP),16) +
+    			FormatUtils.format(""+per_tot_new_req_mem.setScale(0, RoundingMode.HALF_UP),4)+
+    			FormatUtils.format(tot_new_lim_mem.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP),16) +
+    			FormatUtils.format(""+per_tot_new_lim_mem.setScale(0, RoundingMode.HALF_UP),4);
     	FormatUtils.underline(footer);
     	logger.info(footer);
     	FormatUtils.underline(footer);
@@ -220,8 +220,8 @@ public class OcpNamespace extends OcpResource{
     public String printSimulateChargeNamespace() {		
     	return
   			  FormatUtils.format(this.getName()+"",50)
-  			+ FormatUtils.format("cpu["+this.getContainer_cpu_request().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+this.getContainer_cpu_limit().setScale(0, BigDecimal.ROUND_HALF_UP)+"]",15)
-  			+ FormatUtils.format("mem["+this.getContainer_memory_request().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+this.getContainer_memory_limit().setScale(0, BigDecimal.ROUND_HALF_UP)+"]",15)
+  			+ FormatUtils.format("cpu["+this.getContainer_cpu_request().setScale(0, RoundingMode.HALF_UP)+"/"+this.getContainer_cpu_limit().setScale(0, RoundingMode.HALF_UP)+"]",15)
+  			+ FormatUtils.format("mem["+this.getContainer_memory_request().setScale(0, RoundingMode.HALF_UP)+"/"+this.getContainer_memory_limit().setScale(0, RoundingMode.HALF_UP)+"]",15)
   			+ FormatUtils.format(""+this.getNbrPods(),5) 
   			+ " | "
   			+ FormatUtils.format(""+this.getNbrPodPossibleToDeploy() ,5)
@@ -231,13 +231,13 @@ public class OcpNamespace extends OcpResource{
   			+ FormatUtils.format(""+this.getNbrPodSimulation() ,5)
   			+ " | "
   			+ FormatUtils.format(this.getNewRequest_cpu()+"/"+this.getAllocatable_cpu() ,16)
-  			+ FormatUtils.format(""+this.getPer_newRequest_cpu().setScale(0, BigDecimal.ROUND_HALF_UP) ,4)
+  			+ FormatUtils.format(""+this.getPer_newRequest_cpu().setScale(0, RoundingMode.HALF_UP) ,4)
 	    	+ FormatUtils.format(this.getNewLimit_cpu()+"/"+this.getAllocatable_cpu() ,16)
-	    	+ FormatUtils.format(""+this.getPer_newLimit_cpu().setScale(0, BigDecimal.ROUND_HALF_UP) ,4)
+	    	+ FormatUtils.format(""+this.getPer_newLimit_cpu().setScale(0, RoundingMode.HALF_UP) ,4)
 	    	+ FormatUtils.format(this.getNewRequest_memory()+"/"+this.getAllocatable_memory() ,16)
-	    	+ FormatUtils.format(""+this.getPer_newRequest_memory().setScale(0, BigDecimal.ROUND_HALF_UP) ,4)
+	    	+ FormatUtils.format(""+this.getPer_newRequest_memory().setScale(0, RoundingMode.HALF_UP) ,4)
 	    	+ FormatUtils.format(this.getNewLimit_memory()+"/"+this.getAllocatable_memory() ,16)
-	    	+ FormatUtils.format(""+this.getPer_newLimit_memory().setScale(0, BigDecimal.ROUND_HALF_UP) ,4);
+	    	+ FormatUtils.format(""+this.getPer_newLimit_memory().setScale(0, RoundingMode.HALF_UP) ,4);
     		
     }
     
@@ -253,16 +253,16 @@ public class OcpNamespace extends OcpResource{
 				+ FormatUtils.format(""+this.getNbrPods(),5)
 				+ " | "			
 				+ FormatUtils.format(this.getCurrent_cpu()+"/"+(this.getAllocatable_cpu()!=null?this.getAllocatable_cpu():"-"),13)    			
-				+ FormatUtils.format(""+this.getPercentageCurrentCpu().setScale(0, BigDecimal.ROUND_HALF_UP),4)
+				+ FormatUtils.format(""+this.getPercentageCurrentCpu().setScale(0, RoundingMode.HALF_UP),4)
 				
 				+ FormatUtils.format(this.getMax_cpu_last2w()+"/"+(this.getAllocatable_cpu()!=null?this.getAllocatable_cpu():"-"),13)    			
-				+ FormatUtils.format(""+this.getPercentageMaxCpu().setScale(0, BigDecimal.ROUND_HALF_UP),4) 
+				+ FormatUtils.format(""+this.getPercentageMaxCpu().setScale(0, RoundingMode.HALF_UP),4) 
 			    		
-				+ FormatUtils.format(this.getCurrent_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+(this.getAllocatable_memory()!=null?this.getAllocatable_memory().setScale(0, BigDecimal.ROUND_HALF_UP):"-"),16) 
-				+ FormatUtils.format(""+this.getPercentageCurrentMemory().setScale(0, BigDecimal.ROUND_HALF_UP),4) 
+				+ FormatUtils.format(this.getCurrent_memory().setScale(0, RoundingMode.HALF_UP)+"/"+(this.getAllocatable_memory()!=null?this.getAllocatable_memory().setScale(0, RoundingMode.HALF_UP):"-"),16) 
+				+ FormatUtils.format(""+this.getPercentageCurrentMemory().setScale(0, RoundingMode.HALF_UP),4) 
 				
-				+ FormatUtils.format(this.getMax_memory_last2w().setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, BigDecimal.ROUND_HALF_UP):"-"),16) 
-				+ FormatUtils.format(""+this.getPercentageMaxMemory().setScale(0, BigDecimal.ROUND_HALF_UP),4)
+				+ FormatUtils.format(this.getMax_memory_last2w().setScale(0, RoundingMode.HALF_UP)+"/"+(this.getLimits_memory()!=null?this.getLimits_memory().setScale(0, RoundingMode.HALF_UP):"-"),16) 
+				+ FormatUtils.format(""+this.getPercentageMaxMemory().setScale(0, RoundingMode.HALF_UP),4)
 				+ FormatUtils.format("",8)
 				;  
 				

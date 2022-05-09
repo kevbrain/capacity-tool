@@ -78,17 +78,17 @@ public class ServiceWriter {
 	    	txt.append("<td>"+"Totals :"+"</td>");
 	    	txt.append("<td>"+tot_pods+"</td>");    	
 	    	txt.append("<td>"+tot_usage_cpu+"/"+clusterOcp.getCluster_cpu()+"</td>");
-	    	txt.append(evaluatePercentColor(per_usage_cpu)+per_usage_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+	    	txt.append(evaluatePercentColor(per_usage_cpu)+per_usage_cpu.setScale(0, RoundingMode.HALF_UP)+"</td>");
 	    	txt.append("<td>"+tot_req_cpu+"/"+clusterOcp.getCluster_cpu()+"</td>");
-	    	txt.append(evaluatePercentColor(per_req_cpu)+per_req_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"</b></td>");    	
+	    	txt.append(evaluatePercentColor(per_req_cpu)+per_req_cpu.setScale(0, RoundingMode.HALF_UP)+"</b></td>");    	
 	    	txt.append("<td>"+tot_lim_cpu+"/"+clusterOcp.getCluster_cpu()+"</td>");
-	    	txt.append(evaluatePercentColor(per_lim_cpu)+per_lim_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-	    	txt.append("<td>"+tot_usage_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-	    	txt.append(evaluatePercentColor(per_usage_memory)+per_usage_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-	    	txt.append("<td>"+tot_req_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-	    	txt.append(evaluatePercentColor(per_req_memory)+per_req_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</b></td>");
-	    	txt.append("<td>"+tot_lim_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-	    	txt.append(evaluatePercentColor(per_lim_memory)+per_lim_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+	    	txt.append(evaluatePercentColor(per_lim_cpu)+per_lim_cpu.setScale(0, RoundingMode.HALF_UP)+"</td>");
+	    	txt.append("<td>"+tot_usage_memory.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP)+"</td>");
+	    	txt.append(evaluatePercentColor(per_usage_memory)+per_usage_memory.setScale(0, RoundingMode.HALF_UP)+"</td>");
+	    	txt.append("<td>"+tot_req_memory.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP)+"</td>");
+	    	txt.append(evaluatePercentColor(per_req_memory)+per_req_memory.setScale(0, RoundingMode.HALF_UP)+"</b></td>");
+	    	txt.append("<td>"+tot_lim_memory.setScale(0, RoundingMode.HALF_UP)+"/"+clusterOcp.getCluster_memory().setScale(0, RoundingMode.HALF_UP)+"</td>");
+	    	txt.append(evaluatePercentColor(per_lim_memory)+per_lim_memory.setScale(0, RoundingMode.HALF_UP)+"</td>");
 	    	txt.append("</tr>");
 	    	    	
 	    	txt.append("</table>");
@@ -252,23 +252,23 @@ public class ServiceWriter {
 		
 		
 		txt.append("<td>"+newTotRequestCpu+"</td>");
-		txt.append(evaluatePercentColor(per_req_cpu)+per_req_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append(evaluatePercentColor(per_req_cpu)+per_req_cpu.setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+newTotLimitCpu+"</td>");
-		txt.append(evaluatePercentColor(per_lim_cpu)+per_lim_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append(evaluatePercentColor(per_lim_cpu)+per_lim_cpu.setScale(0, RoundingMode.HALF_UP)+"</td>");
 		
-		txt.append("<td>"+newTotRequestMemory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append(evaluatePercentColor(per_req_memory)+per_req_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append("<td>"+newTotLimitMemory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append(evaluatePercentColor(per_lim_memory)+per_lim_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+newTotRequestMemory.setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append(evaluatePercentColor(per_req_memory)+per_req_memory.setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append("<td>"+newTotLimitMemory.setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append(evaluatePercentColor(per_lim_memory)+per_lim_memory.setScale(0, RoundingMode.HALF_UP)+"</td>");
 		
-		txt.append("<td>"+clusterOcp.getTotQuotaCpuRequest().setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append(evaluatePercentColor(per_quot_req_cpu)+per_quot_req_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append("<td>"+clusterOcp.getTotQuotaCpuLimit().setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append(evaluatePercentColor(per_quot_lim_cpu)+per_quot_lim_cpu.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append("<td>"+clusterOcp.getTotQuotaMemoryRequest().setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append(evaluatePercentColor(per_quot_req_memory)+per_quot_req_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append("<td>"+clusterOcp.getTotQuotaMemoryLimit().setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
-		txt.append(evaluatePercentColor(per_quot_lim_memory)+per_quot_lim_memory.setScale(0, BigDecimal.ROUND_HALF_UP)+"</td>");
+		txt.append("<td>"+clusterOcp.getTotQuotaCpuRequest().setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append(evaluatePercentColor(per_quot_req_cpu)+per_quot_req_cpu.setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append("<td>"+clusterOcp.getTotQuotaCpuLimit().setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append(evaluatePercentColor(per_quot_lim_cpu)+per_quot_lim_cpu.setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append("<td>"+clusterOcp.getTotQuotaMemoryRequest().setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append(evaluatePercentColor(per_quot_req_memory)+per_quot_req_memory.setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append("<td>"+clusterOcp.getTotQuotaMemoryLimit().setScale(0, RoundingMode.HALF_UP)+"</td>");
+		txt.append(evaluatePercentColor(per_quot_lim_memory)+per_quot_lim_memory.setScale(0, RoundingMode.HALF_UP)+"</td>");
 		
 		txt.append("</tr>");
 		txt.append("</table>").append("</body>").append("</html>");

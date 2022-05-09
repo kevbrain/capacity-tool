@@ -98,7 +98,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getAllocatable_cpu() {
-		return allocatable_cpu!=null?allocatable_cpu.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return allocatable_cpu!=null?allocatable_cpu.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -108,7 +108,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getAllocatable_memory() {
-		return allocatable_memory!=null?allocatable_memory.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return allocatable_memory!=null?allocatable_memory.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -118,7 +118,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getQuota_request_cpu() {
-		return quota_request_cpu!=null?quota_request_cpu.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return quota_request_cpu!=null?quota_request_cpu.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -128,7 +128,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getQuota_request_memory() {
-		return quota_request_memory!=null?quota_request_memory.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return quota_request_memory!=null?quota_request_memory.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -138,7 +138,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getCurrent_cpu() {
-		return current_cpu!=null?current_cpu.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return current_cpu!=null?current_cpu.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -148,7 +148,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getCurrent_memory() {
-		return current_memory!=null?current_memory.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return current_memory!=null?current_memory.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -158,7 +158,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getMax_cpu_last2w() {
-		return max_cpu_last2w!=null?max_cpu_last2w.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return max_cpu_last2w!=null?max_cpu_last2w.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -168,7 +168,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getMax_memory_last2w() {
-		return max_memory_last2w!=null?max_memory_last2w.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return max_memory_last2w!=null?max_memory_last2w.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -178,7 +178,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getLimits_cpu() {
-		return limits_cpu!=null?limits_cpu.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return limits_cpu!=null?limits_cpu.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -188,7 +188,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getLimits_memory() {
-		return limits_memory!=null?limits_memory.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return limits_memory!=null?limits_memory.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -198,7 +198,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getRequests_cpu() {
-		return requests_cpu!=null?requests_cpu.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return requests_cpu!=null?requests_cpu.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -208,7 +208,7 @@ public abstract class OcpResource {
 
 
 	public BigDecimal getRequests_memory() {
-		return requests_memory!=null?requests_memory.setScale(0, BigDecimal.ROUND_HALF_UP):null;
+		return requests_memory!=null?requests_memory.setScale(0, RoundingMode.HALF_UP):null;
 	}
 
 
@@ -262,14 +262,14 @@ public abstract class OcpResource {
     
     public String getPerCpuFromCpuLimit()  {
     	if (this.getLimits_cpu()!=null && this.getLimits_cpu().compareTo(BigDecimal.ZERO)>0) {
-    		return ""+getCurrent_cpu().divide(getLimits_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+    		return ""+getCurrent_cpu().divide(getLimits_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
     	} 
     	return "-";
     }
 	
     public String getPerMemoryFromMemoryLimit() {
     	if (this.getLimits_memory()!=null && this.getLimits_memory().compareTo(BigDecimal.ZERO)>0) {
-    		return ""+getCurrent_memory().divide(getLimits_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+    		return ""+getCurrent_memory().divide(getLimits_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
     	} 
     	return "-";
     }

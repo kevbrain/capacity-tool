@@ -330,7 +330,7 @@ public class OcpCluster {
     		estimatedRequestMemory = estimatedRequestMemory.add( (env.getQuotaCpuRequest().divide(new BigDecimal(nbrEnv), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(env.getDefaultMaxReplicas()))));
     		System.out.println(env.getName()+ " Quotas Request: CPU = "+env.getQuotaCpuRequest()+ "  MEM = "+env.getQuotaMemoryRequest()); 
     		System.out.println(env.getName()+ " Quotas Limit: CPU = "+env.getQuotaCpuLimit()+ "  MEM = "+env.getQuotaMemoryLimit());
-    		System.out.println("-->"+estimatedRequestMemory.setScale(0, BigDecimal.ROUND_HALF_UP));
+    		System.out.println("-->"+estimatedRequestMemory.setScale(0, RoundingMode.HALF_UP));
     	}
     	System.out.println("TOTAL ENVS =  Quotas Requests: CPU = "+clusterQuotaCpuRequest+ "  MEM = "+clusterQuotaMemoryRequest); 
     	System.out.println("TOTAL ENVS =  Quotas Limit:    CPU = "+clusterQuotaCpuLimit+ "  MEM = "+clusterQuotaMemoryLimit);    		

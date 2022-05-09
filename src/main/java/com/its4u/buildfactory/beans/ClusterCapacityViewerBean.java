@@ -180,8 +180,8 @@ public class ClusterCapacityViewerBean {
 					Thread.currentThread().interrupt();
 				}			
 		}
-		meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
-		meterGaugeRequestMEMFullUsage.setValue(clusterOcp.getSim_tot_request_memory().divide(clusterOcp.getCluster_memory(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
+		meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP).intValue());
+		meterGaugeRequestMEMFullUsage.setValue(clusterOcp.getSim_tot_request_memory().divide(clusterOcp.getCluster_memory(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP).intValue());
 		
 		meterGaugeRequestCPUCurrentUsage.setValue(clusterOcp.getPrc_totCpuRequest());
 		meterGaugeRequestMEMCurrentUsage.setValue(clusterOcp.getPrc_totMemRequest());
@@ -215,8 +215,8 @@ public class ClusterCapacityViewerBean {
 		clusterOcp.loadWorkers(serviceKubernetes,logs);
 		this.workersLoaded=true;		
 		clusterOcp.loadEnvironments(serviceKubernetes);		
-		meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
-		meterGaugeRequestMEMFullUsage.setValue(clusterOcp.getSim_tot_request_memory().divide(clusterOcp.getCluster_memory(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).intValue());
+		meterGaugeRequestCPUFullUsage.setValue(clusterOcp.getSim_tot_request_cpu().divide(clusterOcp.getCluster_cpu(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP).intValue());
+		meterGaugeRequestMEMFullUsage.setValue(clusterOcp.getSim_tot_request_memory().divide(clusterOcp.getCluster_memory(),3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP).intValue());
 		
 		meterGaugeRequestCPUCurrentUsage.setValue(clusterOcp.getPrc_totCpuRequest());
 		meterGaugeRequestMEMCurrentUsage.setValue(clusterOcp.getPrc_totMemRequest());
@@ -231,8 +231,8 @@ public class ClusterCapacityViewerBean {
 		BigDecimal new_cluster_cpu = clusterOcp.getCluster_cpu().add(new BigDecimal(newWorkerCpu*nbrWorkersToAdd));
 		BigDecimal new_cluster_memory = clusterOcp.getCluster_memory().add(new BigDecimal(newWorkerMemory*nbrWorkersToAdd));
 		
-		BigDecimal new_percent_request_cpu = clusterOcp.getSim_tot_request_cpu().divide(new_cluster_cpu,3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
-		BigDecimal new_percent_request_memory = clusterOcp.getSim_tot_request_memory().divide(new_cluster_memory,3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
+		BigDecimal new_percent_request_cpu = clusterOcp.getSim_tot_request_cpu().divide(new_cluster_cpu,3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
+		BigDecimal new_percent_request_memory = clusterOcp.getSim_tot_request_memory().divide(new_cluster_memory,3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 		
 		meterGaugeRequestCPUFullUsage.setValue(new_percent_request_cpu.intValue());
 		meterGaugeRequestMEMFullUsage.setValue(new_percent_request_memory.intValue());
