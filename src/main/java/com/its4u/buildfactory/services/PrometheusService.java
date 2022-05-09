@@ -69,11 +69,9 @@ public class PrometheusService {
 		        JSONArray values = (JSONArray)result.get("value");      
 		        BigDecimal val = new BigDecimal(values.getString(1));
 		        if (type.equalsIgnoreCase("memory_usage_bytes")) {
-		        	maxConsumptionLast2w = val.divide(new BigDecimal("1024")).divide(new BigDecimal("1024")).setScale(0, BigDecimal.ROUND_HALF_UP);
-		        	
+		        	maxConsumptionLast2w = val.divide(new BigDecimal("1024")).divide(new BigDecimal("1024")).setScale(0, BigDecimal.ROUND_HALF_UP);		        	
 		        } else {
-		        	maxConsumptionLast2w = val.multiply(new BigDecimal("1000")).setScale(0, BigDecimal.ROUND_HALF_UP);
-		        	
+		        	maxConsumptionLast2w = val.multiply(new BigDecimal("1000")).setScale(0, BigDecimal.ROUND_HALF_UP);		        	
 		        }	
 			} catch (MalformedURLException e) {				
 				logger.error(e.getMessage());
