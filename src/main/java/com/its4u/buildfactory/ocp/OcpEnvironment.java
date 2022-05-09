@@ -168,15 +168,9 @@ public class OcpEnvironment {
 		txt.append("<td>"+limitMemory+"</td>");
 		txt.append("<td>"+getPer_lim_memory()+"</td>");
 		
-		txt.append("<td>"+quotaCpuRequest+"</td>");
-		txt.append("<td>"+quotaCpuRequest.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
-		txt.append("<td>"+quotaCpuLimit+"</td>");
-		txt.append("<td>"+quotaCpuLimit.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
-		txt.append("<td>"+quotaMemoryRequest+"</td>");
-		txt.append("<td>"+quotaMemoryRequest.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
-		txt.append("<td>"+quotaMemoryLimit+"</td>");
-		txt.append("<td>"+quotaMemoryLimit.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
-		txt.append("</tr>");
+		
+		appendQuota(txt, clusterOcp);
+		
     	return txt.toString();
     }
     
@@ -197,7 +191,13 @@ public class OcpEnvironment {
 		txt.append("<td>"+newLimitMemoryWithSimulation+"</td>");
 		txt.append("<td>"+newLimitMemoryWithSimulation.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		
-		txt.append("<td>"+quotaCpuRequest+"</td>");
+		appendQuota(txt, clusterOcp);
+			
+    	return txt.toString();
+    }
+    
+    public  void appendQuota(StringBuilder txt,OcpCluster clusterOcp) {
+    	txt.append("<td>"+quotaCpuRequest+"</td>");
 		txt.append("<td>"+quotaCpuRequest.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("<td>"+quotaCpuLimit+"</td>");
 		txt.append("<td>"+quotaCpuLimit.divide(clusterOcp.getCluster_cpu(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
@@ -206,7 +206,6 @@ public class OcpEnvironment {
 		txt.append("<td>"+quotaMemoryLimit+"</td>");
 		txt.append("<td>"+quotaMemoryLimit.divide(clusterOcp.getCluster_memory(), 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP)+"</td>");
 		txt.append("</tr>");
-    	return txt.toString();
     }
     
     public static String printFooterHtml() {
