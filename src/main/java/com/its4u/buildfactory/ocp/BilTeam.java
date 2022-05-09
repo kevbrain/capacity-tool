@@ -1,6 +1,7 @@
 package com.its4u.buildfactory.ocp;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 
@@ -64,7 +65,7 @@ public class BilTeam {
 				currentReqCpu = currentReqCpu.add(ns.getRequests_cpu());
 			}
 		}
-		return currentReqCpu.setScale(0, BigDecimal.ROUND_HALF_UP);
+		return currentReqCpu.setScale(0, RoundingMode.HALF_UP);
 	}
 	
 
@@ -75,7 +76,7 @@ public class BilTeam {
 				currentCurCpu = currentCurCpu.add(ns.getCurrent_cpu());
 			}
 		}
-		return currentCurCpu.setScale(0, BigDecimal.ROUND_HALF_UP);
+		return currentCurCpu.setScale(0, RoundingMode.HALF_UP);
 	}
 	
 	public BigDecimal getLimCpu() {
