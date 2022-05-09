@@ -109,7 +109,7 @@ public class OcpEnvironment {
     
     
     public static String printHeaderHtml(String title) {
-		StringBuffer txt = new StringBuffer();
+		StringBuilder txt = new StringBuilder();
 	
 		txt.append("<h1>"+title+" By Environment :</h1>");
 		txt.append("<table>");
@@ -362,7 +362,7 @@ public class OcpEnvironment {
 	            
 	            PodList podListFailed = serviceKubernetes.getClient().pods().inNamespace(name).withField("status.phase", "Failed").list();
 	            
-	            List<Pod> pods = new ArrayList<Pod>();
+	            List<Pod> pods = new ArrayList<>();
 	            
 	            // we take pod in consideration only if the host is a worker
 	            for (Pod pod:podList.getItems()) {
@@ -372,7 +372,7 @@ public class OcpEnvironment {
 	            	}
 	            }
 	            
-	            List<Pod> podsFailed = new ArrayList<Pod>();
+	            List<Pod> podsFailed = new ArrayList<>();
 	            
 	            // we take pod in consideration only if the host is a worker
 	            for (Pod pod:podListFailed.getItems()) {
@@ -401,8 +401,8 @@ public class OcpEnvironment {
 	}
 	
 	private  void loadOthersNamespaces(ServiceKubernetes serviceKubernetes) {
-    	List<Namespace> othersNamespace = new ArrayList<Namespace>();
-    	NamespaceList namespaceList = serviceKubernetes.getClient().namespaces().list();
+    	List<Namespace> othersNamespace = new ArrayList<>();
+    	this.namespaceList = serviceKubernetes.getClient().namespaces().list();
     	for (Namespace namespace : namespaceList.getItems()) {
     		if (this.ocpCluster.getBilNamespaces().get(namespace.getMetadata().getName())==null) {
     			othersNamespace.add(namespace);

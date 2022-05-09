@@ -2,7 +2,6 @@ package com.its4u.buildfactory.ocp;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.net.HttpURLConnection;
 import java.util.List;
 
 import org.slf4j.Logger;
