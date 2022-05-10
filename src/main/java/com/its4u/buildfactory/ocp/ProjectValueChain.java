@@ -6,13 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class BilValueChain {
+public class ProjectValueChain {
 
 	private String vcName;
 	
 	private List<OcpNamespace> namespaces;
 
-	public BilValueChain(String vcName, List<OcpNamespace> namespaces) {
+	public ProjectValueChain(String vcName, List<OcpNamespace> namespaces) {
 		super();
 		this.vcName = vcName;
 		this.namespaces = namespaces;

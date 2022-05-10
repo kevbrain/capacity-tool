@@ -41,7 +41,7 @@ public class ServiceKubernetes {
 				.build();
 		
 		this. client= new DefaultKubernetesClient(config);
-		System.out.println("Kube version = "+client.getVersion());
+
 	
     }
 }

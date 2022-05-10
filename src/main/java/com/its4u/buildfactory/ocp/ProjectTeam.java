@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.List;
 
 
-public class BilTeam {
+public class ProjectTeam {
 
 	private String teamName;
 	
@@ -26,7 +26,7 @@ public class BilTeam {
 	private BigDecimal limMemory=null;
 	
 
-	public BilTeam(String teamName, List<OcpNamespace> namespaces) {
+	public ProjectTeam(String teamName, List<OcpNamespace> namespaces) {
 		super();
 		this.teamName = teamName;
 		this.namespaces = namespaces;

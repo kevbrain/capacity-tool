@@ -341,14 +341,14 @@ public class OcpEnvironment {
 	            	if (ocpCluster.getBilTeams().get(team)!=null) {
 	            		ocpCluster.getBilTeams().get(team).getNamespaces().add(namespaceOcp);
 	            	} else {
-	            		BilTeam bilTeam = new BilTeam(team,new ArrayList<>());
+	            		ProjectTeam bilTeam = new ProjectTeam(team,new ArrayList<>());
 	            		bilTeam.getNamespaces().add(namespaceOcp);
 	            		ocpCluster.getBilTeams().put(team, bilTeam);
 	            	}
 	            	if (ocpCluster.getBilValueChains().get(vc)!=null) {
 	            		ocpCluster.getBilValueChains().get(vc).getNamespaces().add(namespaceOcp);
 	            	} else {
-	            		BilValueChain bilValueChain= new BilValueChain(vc,new ArrayList<>());
+	            		ProjectValueChain bilValueChain= new ProjectValueChain(vc,new ArrayList<>());
 	            		bilValueChain.getNamespaces().add(namespaceOcp);
 	            		ocpCluster.getBilValueChains().put(vc, bilValueChain);
 	            	}

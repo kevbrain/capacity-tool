@@ -50,9 +50,9 @@ public class OcpCluster {
     
 	private HashMap<String,OcpEnvironment> environment;
 	
-	private HashMap<String, BilTeam> bilTeams;
+	private HashMap<String, ProjectTeam> bilTeams;
 	
-	private HashMap<String, BilValueChain> bilValueChains;
+	private HashMap<String, ProjectValueChain> bilValueChains;
        
 	private HashMap<String,String> bilNamespaces;
 	
@@ -182,8 +182,8 @@ public class OcpCluster {
                    this.alertsPodHigthCpu = new ArrayList<OcpAlertPodHightCpu>();
                    this.alertsPodwithoutLimits = new ArrayList<OcpAlertProjectWhithoutlimits>();
                    this.alertsPodwithoutQuotas = new ArrayList<OcpAlertProjectWhithoutquotas>();
-                   this.bilTeams = new HashMap<String,BilTeam>();
-                   this.bilValueChains = new HashMap<String, BilValueChain>();
+                   this.bilTeams = new HashMap<String,ProjectTeam>();
+                   this.bilValueChains = new HashMap<String, ProjectValueChain>();
     }
     
     public OcpCluster loadPropertiesFromEnv() {
@@ -744,19 +744,19 @@ public class OcpCluster {
 		this.alertsPodwithoutQuotas = alertsPodwithoutQuotas;
 	}
 
-	public HashMap<String, BilTeam> getBilTeams() {
+	public HashMap<String, ProjectTeam> getBilTeams() {
 		return bilTeams;
 	}
 
-	public void setBilTeams(HashMap<String, BilTeam> bilTeams) {
+	public void setBilTeams(HashMap<String, ProjectTeam> bilTeams) {
 		this.bilTeams = bilTeams;
 	}
 
-	public HashMap<String, BilValueChain> getBilValueChains() {
+	public HashMap<String, ProjectValueChain> getBilValueChains() {
 		return bilValueChains;
 	}
 
-	public void setBilValueChains(HashMap<String, BilValueChain> bilValueChains) {
+	public void setBilValueChains(HashMap<String, ProjectValueChain> bilValueChains) {
 		this.bilValueChains = bilValueChains;
 	}
 
@@ -764,7 +764,7 @@ public class OcpCluster {
 		if (chartDataModelPodRepartition==null) {
 			chartDataModelPodRepartition = new ChartDataModel();
 			int i=0;
-			for (BilTeam team:bilTeams.values()) {
+			for (ProjectTeam team:bilTeams.values()) {
 				chartDataModelPodRepartition.getValues().add(team.getPods());
 				chartDataModelPodRepartition.getLabels().add(team.getTeamName());
 				chartDataModelPodRepartition.getColors().add(avColors[i]);
@@ -778,7 +778,7 @@ public class OcpCluster {
 		if (chartDataModelCpuRepartition==null) {
 			chartDataModelCpuRepartition = new ChartDataModel();
 			int i=0;
-			for (BilTeam team:bilTeams.values()) {
+			for (ProjectTeam team:bilTeams.values()) {
 				chartDataModelCpuRepartition.getValues().add(team.getCurrentReqCpu());
 				chartDataModelCpuRepartition.getLabels().add(team.getTeamName());
 				chartDataModelCpuRepartition.getColors().add(avColors[i]);
