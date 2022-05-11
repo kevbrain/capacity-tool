@@ -699,7 +699,8 @@
     		<p:fieldset legend="Full usage" rendered="#{clusterCapacityViewerBean.displayResume}">
 	   			<p:dataTable value="#{clusterCapacityViewerBean.clusterOcp.environment}" var="env" >
 	   				<p:column  headerText="Environment">
-					   	<h:outputText value="#{env.value.name}"/>
+					   	<p:commandButton type="button" value="#{env.value.name}"
+					    			styleClass="rounded-button ui-button-secondary"	/>	
 					</p:column>	
 					<p:column  headerText="Projects" style="text-align:right;">
 					   	<h:outputText value="#{env.value.env_size}"/>
