@@ -361,7 +361,7 @@ public class OcpEnvironment {
 	            PodList podListFailed = serviceKubernetes.getClient().pods().inNamespace(name).withField("status.phase", "Failed").list();
 	            
 	            List<Pod> pods = new ArrayList<>();
-	            System.out.println("Pods founded : "+pods.size());
+	            
 	            // we take pod in consideration only if the host is a worker
 	            for (Pod pod:podList.getItems()) {
 	            	if(pod.getSpec().getNodeName().startsWith("worker-")) {
@@ -369,7 +369,7 @@ public class OcpEnvironment {
 	            		nbrPod++;
 	            	}
 	            }
-	            
+	            System.out.println("Pods Running founded : "+pods.size());
 	            List<Pod> podsFailed = new ArrayList<>();
 	            
 	            // we take pod in consideration only if the host is a worker

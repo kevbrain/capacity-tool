@@ -174,7 +174,7 @@ public class ClusterCapacityViewerBean {
 		this.clusterOcp = schedulerService.getClusterOcp();
 		while (schedulerService.getClusterOcp()==null) {			
 				try {
-					TimeUnit.SECONDS.sleep(20);
+					TimeUnit.SECONDS.sleep(40);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					Thread.currentThread().interrupt();
