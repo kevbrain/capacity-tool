@@ -322,7 +322,7 @@ public class OcpEnvironment {
 		 	int nbrPod= 0;
 	        for (Namespace nsp: namespaces) {
 	            String name= nsp.getMetadata().getName();
-	            System.out.println("Load details namespace "+name); 
+	            
 	            OcpNamespace namespaceOcp = new OcpNamespace(this,name);
 	            
 	            

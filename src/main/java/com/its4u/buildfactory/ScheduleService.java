@@ -83,7 +83,7 @@ public class ScheduleService {
     		clusterOcpAnalyseInProgess.setGonogoLevelWarning(Integer.valueOf(gonogoLevelWarning));
     		clusterOcpAnalyseInProgess.setGonogoLevelBlock(Integer.valueOf(gonogoLevelBlock));
     		clusterOcpAnalyseInProgess.setWorkerPrefix(prefixWorker);
-    		clusterOcpAnalyseInProgess.setGroupView_label_1(appEnvsViewGroup2Label);
+    		clusterOcpAnalyseInProgess.setGroupView_label_1(appEnvsViewGroup1Label);
     		clusterOcpAnalyseInProgess.setGroupView_label_2(appEnvsViewGroup2Label);
     		
     		ServiceKubernetes serviceKubernetes = new ServiceKubernetes(server,token);
