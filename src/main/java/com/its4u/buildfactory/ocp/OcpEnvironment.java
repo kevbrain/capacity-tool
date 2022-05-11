@@ -318,9 +318,11 @@ public class OcpEnvironment {
     }
 	
 	private void loadDetailsNamespace(ServiceKubernetes serviceKubernetes,List<Namespace> namespaces) {
-		 int nbrPod= 0;
+		try { 
+		 	int nbrPod= 0;
 	        for (Namespace nsp: namespaces) {
 	            String name= nsp.getMetadata().getName();
+	            System.out.println("Load details namespace "+name); 
 	            OcpNamespace namespaceOcp = new OcpNamespace(this,name);
 	            
 	            
@@ -369,7 +371,7 @@ public class OcpEnvironment {
 	            		nbrPod++;
 	            	}
 	            }
-	            System.out.println("Pods Running : "+pods.size());
+	            
 	            List<Pod> podsFailed = new ArrayList<>();
 	            
 	            // we take pod in consideration only if the host is a worker
@@ -388,6 +390,9 @@ public class OcpEnvironment {
 	            this.getNamespaces().add(namespaceOcp);
 	            this.ocpCluster.getBilNamespaces().put(name,name);
 	        }
+		} catch (Exception e ) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void relaunchSimulation(ServiceKubernetes serviceKubernetes,String ha) {
