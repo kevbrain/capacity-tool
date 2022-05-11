@@ -292,8 +292,8 @@ public class OcpNamespace extends OcpResource{
 	    		
 	    	}    		    
 	    	
-	    	ocppod.setMax_cpu_last2w(PrometheusService.getMaxConsumptionLast2wOfService(ocpEnvironment.getOcpCluster(),this,ocppod,"cpu_usage"));
-	    	ocppod.setMax_memory_last2w(PrometheusService.getMaxConsumptionLast2wOfService(ocpEnvironment.getOcpCluster(),this,ocppod,"memory_usage_bytes"));
+	    	//ocppod.setMax_cpu_last2w(PrometheusService.getMaxConsumptionLast2wOfService(ocpEnvironment.getOcpCluster(),this,ocppod,"cpu_usage"));
+	    	//ocppod.setMax_memory_last2w(PrometheusService.getMaxConsumptionLast2wOfService(ocpEnvironment.getOcpCluster(),this,ocppod,"memory_usage_bytes"));
 	    	
 	    	this.getOcpPods().put(ocppod.getName(),ocppod);
 	    	
