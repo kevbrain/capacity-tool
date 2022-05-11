@@ -298,7 +298,6 @@ public class OcpCluster {
     	this.sim_tot_limit_memory = BigDecimal.ZERO;
     	
     	for (OcpEnvironment env:environment.values()) {			
-    		System.out.println("Environment : "+env.getName());
 			env.loadNamespaces(serviceKubernetes,env.getName());  			
 			ServiceWriter.writeAnalyseOfNamespaces(this, env.getName(), true);
 			ServiceWriter.writeSimulateAnalyseOfNamespaces(this, env.getName(), true);

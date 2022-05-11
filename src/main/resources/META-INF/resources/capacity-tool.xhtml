@@ -80,11 +80,11 @@
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
 			    	 	update="@form" style="margin:10px;background:#003b50;color:white" />
-			    	<p:commandButton value="Teams Summary"  actionListener="#{clusterCapacityViewerBean.displayTeams}" 
+			    	<p:commandButton value="#{clusterCapacityViewerBean.appEnvsViewGroup1ButtonLabel}"  actionListener="#{clusterCapacityViewerBean.displayTeams}" 
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
 			    	 	update="@form" style="margin:10px;background:#003b50;color:white" />	
-			    	 <p:commandButton value="Value-Chain Summary"  actionListener="#{clusterCapacityViewerBean.displayValueChains}" 
+			    	 <p:commandButton value="#{clusterCapacityViewerBean.appEnvsViewGroup2ButtonLabel}"  actionListener="#{clusterCapacityViewerBean.displayValueChains}" 
 			    		onclick="PF('wdg_process').show()" oncomplete="PF('wdg_process').hide()" immediate="true"
 			    		rendered="#{clusterCapacityViewerBean.environmentsLoaded}"
 			    	 	update="@form" style="margin:10px;background:#003b50;color:white" />		    	
