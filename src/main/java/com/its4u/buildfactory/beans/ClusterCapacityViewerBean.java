@@ -87,16 +87,16 @@ public class ClusterCapacityViewerBean {
 	@Value("${app.envs.namespace.label}")
 	private String appEnvsNamespaceLabel;
 	
-	@Value("${app.envs.view.group1.label}")
+	@Value("${app.group1.namespace.label}")
 	private String appEnvsViewGroup1Label;
 	
-	@Value("${app.envs.view.group2.label}")
+	@Value("${app.group2.namespace.label}")
 	private String appEnvsViewGroup2Label;
 	
-	@Value("${app.envs.view.group1.button.label}")
+	@Value("${app.group1.button.label}")
 	private String appEnvsViewGroup1ButtonLabel;
 	
-	@Value("${app.envs.view.group2.button.label}")
+	@Value("${app.group2.button.label}")
 	private String appEnvsViewGroup2ButtonLabel;
 	
 	@Value("${alert.percentage.consumption.resource.threshold}")

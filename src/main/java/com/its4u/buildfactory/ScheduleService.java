@@ -74,8 +74,8 @@ public class ScheduleService {
     		String gonogoLevelBlock = System.getenv("app.gonogo.block.request.level");
     		String name = System.getenv("app.ocp.instance.name");
     		String prefixWorker = System.getenv("app.ocp.worker.prefix");
-    		String appEnvsViewGroup1Label = System.getenv("app.envs.view.group1.label");
-    		String appEnvsViewGroup2Label = System.getenv("app.envs.view.group2.label");
+    		String appEnvsViewGroup1Label = System.getenv("app.group1.namespace.label");
+    		String appEnvsViewGroup2Label = System.getenv("app.group2.namespace.label");
     		
     		clusterOcpAnalyseInProgess = new OcpCluster(name,server,token);
     		clusterOcpAnalyseInProgess.loadPropertiesFromEnv();    	
