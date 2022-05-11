@@ -57,6 +57,9 @@ public class ClusterCapacityViewerBean {
 	@Value("${app.ocp.server.url}")
 	private String server;
 	
+	@Value("${app.ocp.worker.prefix}")
+	private String workerPrefix;
+	
 	@Value("${app.ocp.server.token}")
 	private String token;
 	
@@ -325,6 +328,7 @@ public class ClusterCapacityViewerBean {
 		clusterOcp.setNamespace_env_label(appEnvsNamespaceLabel);
 		clusterOcp.setAlertPercentageConsumptionResourceThreshold(new BigDecimal(alertPercentageConsumptionResourceThreshold));
 		clusterOcp.setNbrPodsForReserve(Integer.valueOf(appSimulatorReservePods));
+		clusterOcp.setWorkerPrefix(workerPrefix);
 		
 	}
 	

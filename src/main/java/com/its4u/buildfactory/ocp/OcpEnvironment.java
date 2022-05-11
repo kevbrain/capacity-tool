@@ -364,17 +364,17 @@ public class OcpEnvironment {
 	            
 	            // we take pod in consideration only if the host is a worker
 	            for (Pod pod:podList.getItems()) {
-	            	if(pod.getSpec().getNodeName().startsWith("worker-")) {
+	            	if(pod.getSpec().getNodeName().startsWith(ocpCluster.getWorkerPrefix())) {
 	            		pods.add(pod);
 	            		nbrPod++;
 	            	}
 	            }
-	            System.out.println("Pods Running founded : "+pods.size());
+	            System.out.println("Pods Running : "+pods.size());
 	            List<Pod> podsFailed = new ArrayList<>();
 	            
 	            // we take pod in consideration only if the host is a worker
 	            for (Pod pod:podListFailed.getItems()) {
-	            	if(pod.getSpec().getNodeName().startsWith("worker-")) {
+	            	if(pod.getSpec().getNodeName().startsWith(ocpCluster.getWorkerPrefix())) {
 	            		podsFailed.add(pod);	            		
 	            	}
 	            }	

@@ -164,6 +164,8 @@ public class OcpCluster {
 	
 	private int availablePodsInFullWorkload;
 	
+	private String workerPrefix;
+	
 	public OcpCluster(String name) {
 		super();
 		this.name = name.toUpperCase();
@@ -879,11 +881,12 @@ public class OcpCluster {
 		this.consoleUrl = consoleUrl;
 	}
 
-	
+	public String getWorkerPrefix() {
+		return workerPrefix;
+	}
 
-	
-	
-	
-	
-    
+	public void setWorkerPrefix(String workerPrefix) {
+		this.workerPrefix = workerPrefix;
+	}
+
 }

@@ -73,12 +73,14 @@ public class ScheduleService {
     		String gonogoLevelWarning = System.getenv("app.gonogo.warning.request.level");
     		String gonogoLevelBlock = System.getenv("app.gonogo.block.request.level");
     		String name = System.getenv("app.ocp.instance.name");
+    		String prefixWorker = System.getenv("app.ocp.worker.prefix");
     		
     		clusterOcpAnalyseInProgess = new OcpCluster(name,server,token);
     		clusterOcpAnalyseInProgess.loadPropertiesFromEnv();    	
     		clusterOcpAnalyseInProgess.setHa("default");
     		clusterOcpAnalyseInProgess.setGonogoLevelWarning(Integer.valueOf(gonogoLevelWarning));
     		clusterOcpAnalyseInProgess.setGonogoLevelBlock(Integer.valueOf(gonogoLevelBlock));
+    		clusterOcpAnalyseInProgess.setWorkerPrefix(prefixWorker);
     		
     		ServiceKubernetes serviceKubernetes = new ServiceKubernetes(server,token);
     		StringBuilder txtMail = new StringBuilder();
@@ -119,7 +121,6 @@ public class ScheduleService {
 	    
 	    	
     	} catch (Exception e) {
-    		e.printStackTrace();
     		logger.info(e.getMessage());    		
     	}
     	
