@@ -74,6 +74,8 @@ public class ScheduleService {
     		String gonogoLevelBlock = System.getenv("app.gonogo.block.request.level");
     		String name = System.getenv("app.ocp.instance.name");
     		String prefixWorker = System.getenv("app.ocp.worker.prefix");
+    		String appEnvsViewGroup1Label = System.getenv("app.envs.view.group1.label");
+    		String appEnvsViewGroup2Label = System.getenv("app.envs.view.group2.label");
     		
     		clusterOcpAnalyseInProgess = new OcpCluster(name,server,token);
     		clusterOcpAnalyseInProgess.loadPropertiesFromEnv();    	
@@ -81,6 +83,8 @@ public class ScheduleService {
     		clusterOcpAnalyseInProgess.setGonogoLevelWarning(Integer.valueOf(gonogoLevelWarning));
     		clusterOcpAnalyseInProgess.setGonogoLevelBlock(Integer.valueOf(gonogoLevelBlock));
     		clusterOcpAnalyseInProgess.setWorkerPrefix(prefixWorker);
+    		clusterOcpAnalyseInProgess.setGroupView_label_1(appEnvsViewGroup2Label);
+    		clusterOcpAnalyseInProgess.setGroupView_label_2(appEnvsViewGroup2Label);
     		
     		ServiceKubernetes serviceKubernetes = new ServiceKubernetes(server,token);
     		StringBuilder txtMail = new StringBuilder();

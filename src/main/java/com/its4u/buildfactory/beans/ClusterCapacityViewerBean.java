@@ -87,6 +87,12 @@ public class ClusterCapacityViewerBean {
 	@Value("${app.envs.namespace.label}")
 	private String appEnvsNamespaceLabel;
 	
+	@Value("${app.envs.view.group1.label}")
+	private String appEnvsViewGroup1Label;
+	
+	@Value("${app.envs.view.group2.label}")
+	private String appEnvsViewGroup2Label;
+	
 	@Value("${alert.percentage.consumption.resource.threshold}")
 	private String alertPercentageConsumptionResourceThreshold;
 	
@@ -328,7 +334,11 @@ public class ClusterCapacityViewerBean {
 		clusterOcp.setNamespace_env_label(appEnvsNamespaceLabel);
 		clusterOcp.setAlertPercentageConsumptionResourceThreshold(new BigDecimal(alertPercentageConsumptionResourceThreshold));
 		clusterOcp.setNbrPodsForReserve(Integer.valueOf(appSimulatorReservePods));
+		
 		clusterOcp.setWorkerPrefix(workerPrefix);
+		clusterOcp.setGroupView_label_1(appEnvsViewGroup1Label);
+		clusterOcp.setGroupView_label_2(appEnvsViewGroup2Label);
+		
 		
 	}
 	

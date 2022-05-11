@@ -141,6 +141,10 @@ public class OcpCluster {
     
 	private String namespace_env_label;
 	
+	private String groupView_label_1;
+	
+	private String groupView_label_2;
+	
 	private String consoleUrl;
 	
 	private DonutChartModel teamsRepartionPods;
@@ -889,4 +893,21 @@ public class OcpCluster {
 		this.workerPrefix = workerPrefix;
 	}
 
+	public String getGroupView_label_1() {
+		return groupView_label_1;
+	}
+
+	public void setGroupView_label_1(String groupView_label_1) {
+		this.groupView_label_1 = groupView_label_1;
+	}
+
+	public String getGroupView_label_2() {
+		return groupView_label_2;
+	}
+
+	public void setGroupView_label_2(String groupView_label_2) {
+		this.groupView_label_2 = groupView_label_2;
+	}
+
+	
 }
