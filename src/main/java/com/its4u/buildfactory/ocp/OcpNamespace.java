@@ -770,7 +770,7 @@ public class OcpNamespace extends OcpResource{
 	}
 
 	public String getTeam() {
-		return team.toUpperCase();
+		return team!=null?team.toUpperCase():"";
 	}
 
 	public void setTeam(String team) {
