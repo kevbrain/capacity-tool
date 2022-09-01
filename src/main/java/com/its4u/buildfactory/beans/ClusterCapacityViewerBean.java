@@ -1,6 +1,7 @@
 package com.its4u.buildfactory.beans;
 
 import java.io.IOException;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
