@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.its4u.buildfactory.ScheduleService;
+import com.its4u.buildfactory.ocp.OcpEnvironment;
 import com.its4u.buildfactory.ocp.OcpNode;
 import com.its4u.buildfactory.ocp.OcpResource;
 
@@ -49,6 +50,14 @@ public class CapacityRestController {
 	public ResponseEntity<Collection<OcpResource>> getNodes() {
 								
 		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getNodes());
+		
+	}
+	
+	@GetMapping(value = "/api/v1/environments")
+	@ResponseBody
+	public ResponseEntity<Collection<OcpEnvironment>> getenvironments() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getEnvironments());
 		
 	}
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.its4u.buildfactory.services.PrometheusService;
 import com.its4u.buildfactory.services.ServiceKubernetes;
 import com.its4u.buildfactory.services.ServiceRequestsAndLimits;
@@ -31,8 +32,10 @@ import io.fabric8.kubernetes.client.KubernetesClientException;
 
 public class OcpNamespace extends OcpResource{
 
+	@JsonIgnore
 	private static Logger logger = LoggerFactory.getLogger(OcpNamespace.class);
 	
+	@JsonIgnore
 	private OcpEnvironment ocpEnvironment;
 	
     private boolean protectedByLimits=false;

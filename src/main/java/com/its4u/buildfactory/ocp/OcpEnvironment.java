@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.its4u.buildfactory.services.ServiceCluster;
 import com.its4u.buildfactory.services.ServiceKubernetes;
 
@@ -16,20 +17,24 @@ import io.fabric8.kubernetes.api.model.PodList;
 
 public class OcpEnvironment {
 	
+	@JsonIgnore
 	private OcpCluster ocpCluster;
 
 	private String name;
 	
+	@JsonIgnore
 	private NamespaceList namespaceList;
 	
 	private List<OcpNamespace> namespaces;
 	
 	private List<OcpResource> namespacesUnused;
 	
+	@JsonIgnore
 	private int additionalPodWithSimulation;
 	
 	private int currentPods;
 	
+	@JsonIgnore
 	private int newPodsWithSimulation;
 	
 	private BigDecimal usageCpu=BigDecimal.ZERO;

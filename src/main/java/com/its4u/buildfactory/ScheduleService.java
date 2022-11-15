@@ -313,6 +313,10 @@ public class ScheduleService {
 		
 	}
 	
+	public Collection<OcpEnvironment> getEnvironments() {
+		return this.clusterOcp.getEnvironment().values();
+	}
+	
 	
 	
 }
