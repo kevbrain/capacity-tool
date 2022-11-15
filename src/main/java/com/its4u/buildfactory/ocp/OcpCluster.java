@@ -768,6 +768,7 @@ public class OcpCluster {
 		this.bilValueChains = bilValueChains;
 	}
 
+	@JsonIgnore
 	public ChartDataModel getDataValueForPodsRepartition() {
 		if (chartDataModelPodRepartition==null) {
 			chartDataModelPodRepartition = new ChartDataModel();
@@ -782,6 +783,7 @@ public class OcpCluster {
 		return chartDataModelPodRepartition;		
 	}
 	
+	@JsonIgnore
 	public ChartDataModel getDataValueForCPURepartition() {
 		if (chartDataModelCpuRepartition==null) {
 			chartDataModelCpuRepartition = new ChartDataModel();
