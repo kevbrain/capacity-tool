@@ -10,10 +10,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.its4u.buildfactory.ScheduleService;
+import com.its4u.buildfactory.ocp.OcpCluster;
 import com.its4u.buildfactory.ocp.OcpEnvironment;
 import com.its4u.buildfactory.ocp.OcpNode;
 import com.its4u.buildfactory.ocp.OcpResource;
@@ -58,6 +60,14 @@ public class CapacityRestController {
 	public ResponseEntity<Collection<OcpEnvironment>> getenvironments() {
 								
 		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getEnvironments());
+		
+	}
+	
+	@GetMapping(value = "/api/v1/cluster")
+	@ResponseBody
+	public ResponseEntity<OcpCluster> getCluster() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getCluster());
 		
 	}
 	

@@ -15,6 +15,7 @@ import org.primefaces.model.charts.donut.DonutChartModel;
 import org.primefaces.model.charts.hbar.HorizontalBarChartDataSet;
 import org.primefaces.model.charts.hbar.HorizontalBarChartModel;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.its4u.buildfactory.model.ChartDataModel;
 import com.its4u.buildfactory.services.PrometheusService;
 import com.its4u.buildfactory.services.ServiceKubernetes;
@@ -34,36 +35,37 @@ public class OcpCluster {
 	
 	private String server;
     
+	@JsonIgnore
 	private String token;
-	
+	@JsonIgnore
 	private String ha;
-	
+	@JsonIgnore
 	private int gonogoLevelWarning;
-	
+	@JsonIgnore
 	private int gonogoLevelBlock;	
-			
+	@JsonIgnore
 	private String[] envs = {"dev","tst","int","others"};
-	
+	@JsonIgnore
 	private int NbrPodsForReserve;
-	
+	@JsonIgnore
 	private HashMap<String,OcpResource> nodes;
-    
+	@JsonIgnore
 	private HashMap<String,OcpEnvironment> environment;
-	
+	@JsonIgnore
 	private HashMap<String, ProjectTeam> bilTeams;
-	
+	@JsonIgnore
 	private HashMap<String, ProjectValueChain> bilValueChains;
-       
+	@JsonIgnore
 	private HashMap<String,String> bilNamespaces;
-	
+	@JsonIgnore
 	private List<OcpAlertPodRestart> alertsPodRestarts;
-	
+	@JsonIgnore
 	private List<OcpAlertPodHightCpu> alertsPodHigthCpu;
-	
+	@JsonIgnore
 	private List<OcpAlertPodHightMemory> alertsPodHightMemory;
-	
+	@JsonIgnore
 	private List<OcpAlertProjectWhithoutlimits> alertsPodwithoutLimits;
-	
+	@JsonIgnore
 	private List<OcpAlertProjectWhithoutquotas> alertsPodwithoutQuotas;
     
 	private BigDecimal cluster_cpu = BigDecimal.ZERO;
@@ -135,26 +137,27 @@ public class OcpCluster {
     
 	private BigDecimal alertPercentageConsumptionResourceThreshold;
         
+	@JsonIgnore
 	private String prometheus_url;
-    
+	@JsonIgnore
 	private String prometheus_query_maxOverTime;
-    
+	@JsonIgnore
 	private String namespace_env_label;
-	
+	@JsonIgnore
 	private String groupView_label_1;
-	
+	@JsonIgnore
 	private String groupView_label_2;
 	
 	private String consoleUrl;
-	
+	@JsonIgnore
 	private DonutChartModel teamsRepartionPods;
-	
+	@JsonIgnore
 	private HorizontalBarChartModel hbarModelReparitionCpu;
-	
+	@JsonIgnore
 	private ChartDataModel chartDataModelPodRepartition;
-	
+	@JsonIgnore
 	private ChartDataModel chartDataModelCpuRepartition;
-	
+	@JsonIgnore
 	private String[] avColors = {"rgb(139, 108, 174)","rgb(10, 101, 116)",
 			"rgb(184, 145, 10)","rgb(219, 228, 100)",
 			"rgb(168, 85, 139)","rgb(21, 158, 219)",
@@ -167,7 +170,7 @@ public class OcpCluster {
 	private int availablePodsInCurrentUsage;
 	
 	private int availablePodsInFullWorkload;
-	
+	@JsonIgnore
 	private String workerPrefix;
 	
 	public OcpCluster(String name) {
