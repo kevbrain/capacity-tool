@@ -44,11 +44,11 @@ public class CapacityRestController {
 		
 	}
 	
-	@GetMapping(value = "/api/vi/nodes")
+	@GetMapping(value = "/api/v1/nodes")
 	@ResponseBody
 	public ResponseEntity<Collection<OcpResource>> getNodes() {
 								
-		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.TEXT_PLAIN).body(scheduleService.getNodes());
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getNodes());
 		
 	}
 	
