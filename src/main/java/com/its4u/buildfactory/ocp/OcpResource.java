@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.fabric8.kubernetes.api.model.Pod;
 
 
@@ -12,10 +14,13 @@ public abstract class OcpResource {
 
 	private String name;
 	
+	@JsonIgnore 
 	private List<Pod> podList;
 	
+	@JsonIgnore 
 	private List<Pod> podListFailed;
 	
+	@JsonIgnore 
 	private HashMap<String,OcpPod> ocpPods;
 
 	private BigDecimal allocatable_cpu=null;
