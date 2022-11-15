@@ -1,6 +1,9 @@
 package com.its4u.buildfactory.rest;
 
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpHeaders;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.its4u.buildfactory.ScheduleService;
+import com.its4u.buildfactory.ocp.OcpNode;
+import com.its4u.buildfactory.ocp.OcpResource;
 
 import lombok.AllArgsConstructor;
 
@@ -36,6 +41,14 @@ public class CapacityRestController {
 	public ResponseEntity<String> getStatusGoNoGo() {
 								
 		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.TEXT_PLAIN).body(scheduleService.getGoNoGo());
+		
+	}
+	
+	@GetMapping(value = "/api/vi/nodes")
+	@ResponseBody
+	public ResponseEntity<Collection<OcpResource>> getNodes() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.TEXT_PLAIN).body(scheduleService.getNodes());
 		
 	}
 	

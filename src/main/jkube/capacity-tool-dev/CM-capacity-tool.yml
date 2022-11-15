@@ -38,4 +38,9 @@ data:
   project.default.limit.memory: "{{project.default.limit.memory}}"
   project.default.request.cpu: "{{project.default.request.cpu}}"
   project.default.request.memory: "{{project.default.request.memory}}"
+  app.ocp.worker.prefix: "{{app.ocp.worker.prefix}}"
+  app.group1.namespace.label: "{{app.group1.namespace.label}}"
+  app.group2.namespace.label: "{{app.group2.namespace.label}}"
+  app.group1.button.label: "{{app.group1.button.label}}"
+  app.group2.button.label: "{{app.group2.button.label}}"
 ---

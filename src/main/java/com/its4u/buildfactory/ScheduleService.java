@@ -4,6 +4,7 @@ package com.its4u.buildfactory;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import com.its4u.buildfactory.ocp.OcpCluster;
 import com.its4u.buildfactory.ocp.OcpEnvironment;
+import com.its4u.buildfactory.ocp.OcpNode;
+import com.its4u.buildfactory.ocp.OcpResource;
 import com.its4u.buildfactory.rest.CapacityStatus;
 import com.its4u.buildfactory.services.ServiceAlerts;
 import com.its4u.buildfactory.services.ServiceKubernetes;
@@ -302,6 +305,12 @@ public class ScheduleService {
 
 	public void setClusterOcp(OcpCluster clusterOcp) {
 		this.clusterOcp = clusterOcp;
+	}
+
+
+	public Collection<OcpResource> getNodes() {
+		return this.clusterOcp.getNodes().values();
+		
 	}
 	
 	

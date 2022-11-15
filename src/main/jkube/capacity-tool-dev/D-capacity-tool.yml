@@ -192,6 +192,31 @@ spec:
                 configMapKeyRef:
                   name: capacity-tool-cm-0
                   key: prometheus.url
+            - name: app.ocp.worker.prefix
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.ocp.worker.prefix
+            - name: app.group1.namespace.label
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.group1.namespace.label
+            - name: app.group2.namespace.label
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.group2.namespace.label
+            - name: app.group1.button.label
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.group1.button.label
+            - name: app.group2.button.label
+              valueFrom:
+                configMapKeyRef:
+                  name: capacity-tool-cm-0
+                  key: app.group2.button.label
             - name: actuator.password
               valueFrom:
                 secretKeyRef:
