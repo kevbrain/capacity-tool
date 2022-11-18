@@ -155,6 +155,7 @@ public class ClusterCapacityViewerBean {
 	
 	@Getter(AccessLevel.NONE) private String displayOcpInstanceName;
 	
+	
 	@PostConstruct
     public void init() {
 		try {
