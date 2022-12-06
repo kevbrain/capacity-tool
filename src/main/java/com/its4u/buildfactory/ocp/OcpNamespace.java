@@ -2,6 +2,7 @@ package com.its4u.buildfactory.ocp;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class OcpNamespace extends OcpResource{
 	@JsonIgnore
 	private OcpEnvironment ocpEnvironment;
 	
-	private List<OcpPod> podListByNamespace;
+	private Collection<OcpPod> podListByNamespace;
 	
     private boolean protectedByLimits=false;
                   
@@ -800,11 +801,11 @@ public class OcpNamespace extends OcpResource{
 		this.teamEmail = teamEmail;
 	}
 
-	public List<OcpPod> getPodListByNamespace() {
-		return this.getPodListByNamespace();
+	public Collection<OcpPod> getPodListByNamespace() {
+		return this.getOcpPods().values();
 	}
 
-	public void setPodListByNamespace(List<OcpPod> podListByNamespace) {
+	public void setPodListByNamespace(Collection<OcpPod> podListByNamespace) {
 		this.podListByNamespace = podListByNamespace;
 	}
     
