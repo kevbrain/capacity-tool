@@ -20,6 +20,8 @@ import com.its4u.buildfactory.ocp.OcpCluster;
 import com.its4u.buildfactory.ocp.OcpEnvironment;
 import com.its4u.buildfactory.ocp.OcpNode;
 import com.its4u.buildfactory.ocp.OcpResource;
+import com.its4u.buildfactory.ocp.ProjectTeam;
+import com.its4u.buildfactory.ocp.ProjectValueChain;
 
 import lombok.AllArgsConstructor;
 @CrossOrigin(maxAge = 3600)
@@ -61,6 +63,22 @@ public class CapacityRestController {
 	public ResponseEntity<Collection<OcpEnvironment>> getenvironments() {
 								
 		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getEnvironments());
+		
+	}
+	
+	@GetMapping(value = "/api/v1/teams")
+	@ResponseBody
+	public ResponseEntity<Collection<ProjectTeam>> getTeams() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getTeams());
+		
+	}
+	
+	@GetMapping(value = "/api/v1/valueChains")
+	@ResponseBody
+	public ResponseEntity<Collection<ProjectValueChain>> getValueChains() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getValueChains());
 		
 	}
 	

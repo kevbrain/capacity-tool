@@ -18,6 +18,8 @@ import com.its4u.buildfactory.ocp.OcpCluster;
 import com.its4u.buildfactory.ocp.OcpEnvironment;
 import com.its4u.buildfactory.ocp.OcpNode;
 import com.its4u.buildfactory.ocp.OcpResource;
+import com.its4u.buildfactory.ocp.ProjectTeam;
+import com.its4u.buildfactory.ocp.ProjectValueChain;
 import com.its4u.buildfactory.rest.CapacityStatus;
 import com.its4u.buildfactory.services.ServiceAlerts;
 import com.its4u.buildfactory.services.ServiceKubernetes;
@@ -317,6 +319,15 @@ public class ScheduleService {
 		return this.clusterOcp.getEnvironment().values();
 	}
 
+	
+	public Collection<ProjectTeam> getTeams() {
+		return this.clusterOcp.getBilTeams().values();
+			
+	}
+	
+	public Collection<ProjectValueChain> getValueChains() {
+		return this.clusterOcp.getBilValueChains().values();
+	}
 
 	public OcpCluster getCluster() {
 		return this.clusterOcp;
