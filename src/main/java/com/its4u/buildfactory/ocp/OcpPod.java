@@ -38,6 +38,8 @@ public class OcpPod extends OcpResource{
     
 	private String maxMemory;
 	
+	private String podName;
+	
 	public OcpPod(String name) {
 		super(name);
 		this.nbrPods = 1;
@@ -201,6 +203,14 @@ public class OcpPod extends OcpResource{
 
 	public void setNamespace(String namespace) {
 		this.namespace = namespace;
+	}
+
+	public String getPodName() {
+		return this.getName();
+	}
+
+	public void setPodName(String podName) {
+		this.podName = podName;
 	}
 	
 	
