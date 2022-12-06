@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.its4u.buildfactory.ScheduleService;
+import com.its4u.buildfactory.ocp.OcpAlertPodHightCpu;
+import com.its4u.buildfactory.ocp.OcpAlertPodHightMemory;
+import com.its4u.buildfactory.ocp.OcpAlertPodRestart;
+import com.its4u.buildfactory.ocp.OcpAlertProjectWhithoutlimits;
+import com.its4u.buildfactory.ocp.OcpAlertProjectWhithoutquotas;
 import com.its4u.buildfactory.ocp.OcpCluster;
 import com.its4u.buildfactory.ocp.OcpEnvironment;
 import com.its4u.buildfactory.ocp.OcpNode;
@@ -79,6 +84,47 @@ public class CapacityRestController {
 	public ResponseEntity<Collection<ProjectValueChain>> getValueChains() {
 								
 		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getValueChains());
+		
+	}
+	
+	@GetMapping(value = "/api/v1/alerts/podRestarts")
+	@ResponseBody
+	public ResponseEntity<List<OcpAlertPodRestart>> getAlertsPodsRestart() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getAlertsPodRestart());
+		
+	}
+	
+	@GetMapping(value = "/api/v1/alerts/podsHightCpu")
+	@ResponseBody
+	public ResponseEntity<List<OcpAlertPodHightCpu>> getAlertsPodsHightCpu() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getAlertPodHigthCpu());
+		
+	}
+	
+	@GetMapping(value = "/api/v1/alerts/podHightMemory")
+	@ResponseBody
+	public ResponseEntity<List<OcpAlertPodHightMemory>> getAlertsalertsPodHightMemory() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getAlertPodHightMemory());
+		
+	}
+	
+
+	@GetMapping(value = "/api/v1/alerts/podwithoutLimits")
+	@ResponseBody
+	public ResponseEntity<List<OcpAlertProjectWhithoutlimits>> getAlertsalertsPodwithoutLimits() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getAlertPodWithoutLimit());
+		
+	}
+	
+	@GetMapping(value = "/api/v1/alerts/podwithoutQuotas")
+	@ResponseBody
+	public ResponseEntity<List<OcpAlertProjectWhithoutquotas>> getAlertsalertsPodwithoutQuotas() {
+								
+		return ResponseEntity.ok().headers(createHeaders()).contentType(MediaType.APPLICATION_JSON).body(scheduleService.getAlertPodWithoutQuotas());
 		
 	}
 	

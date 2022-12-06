@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -27,6 +28,11 @@ import com.its4u.buildfactory.services.ServiceWriter;
 import com.its4u.buildfactory.templateModel.MailAlertModel;
 import com.its4u.buildfactory.utils.MailUtils;
 import com.its4u.buildfactory.utils.TemplateGenerator;
+import com.its4u.buildfactory.ocp.OcpAlertPodHightCpu;
+import com.its4u.buildfactory.ocp.OcpAlertPodHightMemory;
+import com.its4u.buildfactory.ocp.OcpAlertPodRestart;
+import com.its4u.buildfactory.ocp.OcpAlertProjectWhithoutlimits;
+import com.its4u.buildfactory.ocp.OcpAlertProjectWhithoutquotas;
 
 import freemarker.template.TemplateException;
 
@@ -333,6 +339,23 @@ public class ScheduleService {
 		return this.clusterOcp;
 	}
 	
+	public List<OcpAlertPodRestart> getAlertsPodRestart() {
+		return this.clusterOcp.getAlertsPodRestarts();
+	}
 
+	public List<OcpAlertPodHightCpu> getAlertPodHigthCpu() {
+		return this.clusterOcp.getAlertsPodHigthCpu();
+	}
 	
+	public List<OcpAlertPodHightMemory> getAlertPodHightMemory() {
+		return this.clusterOcp.getAlertsPodHightMemory();
+	}
+	
+	public List<OcpAlertProjectWhithoutlimits> getAlertPodWithoutLimit() {
+		return this.clusterOcp.getAlertsPodwithoutLimits();
+	}
+	
+	public List<OcpAlertProjectWhithoutquotas> getAlertPodWithoutQuotas() {
+		return this.clusterOcp.getAlertsPodwithoutQuotas();
+	}
 }
