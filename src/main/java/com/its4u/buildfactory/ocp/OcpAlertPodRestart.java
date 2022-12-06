@@ -1,5 +1,7 @@
 package com.its4u.buildfactory.ocp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class OcpAlertPodRestart extends OcpAlert {
 
 	private String podName;
@@ -10,7 +12,10 @@ public class OcpAlertPodRestart extends OcpAlert {
 	
 	private OcpPod pod;
 	
+	@JsonIgnore
 	private OcpNamespace namespace;
+	
+	private String namespaceName;
 	
 	
 	
@@ -65,6 +70,15 @@ public class OcpAlertPodRestart extends OcpAlert {
 		this.namespace = namespace;
 	}
 
+	public String getNamespaceName() {
+		return this.namespace.getName();
+	}
+
+	public void setNamespaceName(String namespaceName) {
+		this.namespaceName = namespaceName;
+	}
+
+	
 	
 	
 	
