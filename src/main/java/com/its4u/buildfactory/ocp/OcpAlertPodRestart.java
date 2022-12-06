@@ -17,6 +17,8 @@ public class OcpAlertPodRestart extends OcpAlert {
 	
 	private String namespaceName;
 	
+	private String teamEmail_;
+	
 	
 	
 	public OcpAlertPodRestart(String namespaceName, String link) {
@@ -78,6 +80,15 @@ public class OcpAlertPodRestart extends OcpAlert {
 		this.namespaceName = namespaceName;
 	}
 
+	public String getTeamEmail_() {
+		return this.namespace.getTeamEmail();
+	}
+
+	public void setTeamEmail_(String teamEmail_) {
+		this.teamEmail_ = teamEmail_;
+	}
+
+	
 	
 	
 	
