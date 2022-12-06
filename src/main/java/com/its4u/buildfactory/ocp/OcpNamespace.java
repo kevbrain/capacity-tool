@@ -38,6 +38,8 @@ public class OcpNamespace extends OcpResource{
 	@JsonIgnore
 	private OcpEnvironment ocpEnvironment;
 	
+	private List<Pod> podListByNamespace;
+	
     private boolean protectedByLimits=false;
                   
     private boolean protectedByQuotas=false;
@@ -82,6 +84,8 @@ public class OcpNamespace extends OcpResource{
     private String valueChain;
     
     private String teamEmail;
+    
+    
     
  
 	public OcpNamespace(String name) {
@@ -795,7 +799,16 @@ public class OcpNamespace extends OcpResource{
 	public void setTeamEmail(String teamEmail) {
 		this.teamEmail = teamEmail;
 	}
+
+	public List<Pod> getPodListByNamespace() {
+		return this.getPodList();
+	}
+
+	public void setPodListByNamespace(List<Pod> podListByNamespace) {
+		this.podListByNamespace = podListByNamespace;
+	}
     
+	
 	
     
 }
