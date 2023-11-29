@@ -160,7 +160,7 @@ public class ClusterCapacityViewerBean {
     public void init() {
 		try {
 			
-			logger.info("Try to connect to "+server);
+			logger.info("Try to connect to OCP server : "+server);
 			clusterOcp = new OcpCluster(ocpInstanceName,server,token);
 			
 			loadProperties();    		    	
